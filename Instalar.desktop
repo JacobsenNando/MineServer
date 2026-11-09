@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Instalar MineServer
+Comment=Instala o perfil MineServer no Minecraft ou no SKLauncher
+Terminal=true
+Exec=bash -c 'cd "$(dirname "$(readlink -f "$1")")" && exec bash instalar.sh' -- %k
+Categories=Game;
+StartupNotify=true

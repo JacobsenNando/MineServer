@@ -1,5 +1,15 @@
 # MineServer
 
+[Baixar o MineServer](https://github.com/JacobsenNando/MineServer/archive/refs/heads/master.zip)
+
+O botão verde **Code** desta página pede o Git. Pode ignorar. O link acima baixa um zip pronto, e o Python também fica de fora.
+
+No Windows, abre os Downloads, clica com o botão direito em `MineServer-master.zip` e escolhe **Extrair tudo**. Abre a pasta `MineServer-master` e dá dois cliques em `Instalar.bat`. Se aparecer um aviso azul, clica em **Mais informações** e em **Executar assim mesmo**.
+
+No Linux, extrai o mesmo zip e dá dois cliques em **Instalar MineServer**. Se o arquivo abrir como texto, entra na pasta, abre o terminal e escreve `bash instalar.sh`.
+
+A janela pergunta dos shaders. Enter deixa sem. `s` instala, e o jogo fica mais bonito e mais pesado.
+
 Entra. O mundo já está andando, e ele continua sendo Minecraft: madeira, ferro, diamante, netherite, Nether e o dragão. A diferença é que a gente sai de casa junto, e o personagem cresce no caminho.
 
 A selva daqui tem ruína de pedra no meio das árvores. A mina desce fundo. A praia também existe.
@@ -99,17 +109,7 @@ O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell P
 
 ## Para entrar
 
-No Linux, na pasta baixada:
-
-```sh
-bash instalar.sh
-```
-
-No Windows, dois cliques em `Instalar.bat`. Não precisa instalar Python.
-
-O script pergunta dos shaders. Enter deixa sem. `s` instala.
-
-Depois:
+O download e o instalador estão no começo desta página. Quando a janela terminar:
 
 1. Abra o Minecraft oficial ou o SKLauncher.
 2. Escolha o perfil MineServer.
