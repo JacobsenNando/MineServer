@@ -1,0 +1,5 @@
+*.pem
+.env
+.env.*
+Skin/
+scripts/oci-signup-wizard.sh
