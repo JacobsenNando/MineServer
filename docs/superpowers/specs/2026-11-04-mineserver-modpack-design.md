@@ -14,6 +14,7 @@ Sucesso: o grupo ainda joga madeira, ferro, diamante, netherite, Nether, End e o
 - Heap alvo **6 GB**, piso **4 GB**.
 - O pacote só é instalado quando a instância Ampere chamada `mineserver` existir. A porta 25565 continua fechada até lá.
 - Todo mundo usa o mesmo pacote no cliente.
+- O servidor aceita o cliente original e também Minecraft por launcher, inclusive o SK Launcher. Na instalação, `online-mode=false`. O nome do jogador é o nome que o launcher envia.
 - As versões abaixo são as builds Fabric que estavam no Modrinth em 2026-11-04. Na instalação, usa-se essa build ou uma build mais nova do **mesmo** mod que ainda mire a 26.2.
 
 A 26.2 traz cavernas de enxofre, gêiseres e o cubo de enxofre. A 26.3 (floresta manchada, álamo, acampamentos abandonados, almofadas, camas de palha) fica de fora, porque Illager Invasion e Skill Proficiencies param na 26.2.

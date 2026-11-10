@@ -7,6 +7,8 @@ cd "$(dirname "$0")"
 REQ="requirements/client.txt"
 MINECRAFT_DIR="${MINECRAFT_DIR:-$HOME/.minecraft}"
 SHADERS="${MINESERVER_SHADERS:-}"
+SERVER_DIR=""
+GAME_DIR_FLAG=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -14,8 +16,16 @@ while [ $# -gt 0 ]; do
       MINECRAFT_DIR="$2"
       shift 2
       ;;
+    --game-dir)
+      GAME_DIR_FLAG="$2"
+      shift 2
+      ;;
+    --server-dir)
+      SERVER_DIR="$2"
+      shift 2
+      ;;
     *)
-      echo "Uso: bash instalar.sh [--minecraft-dir PASTA]" >&2
+      echo "Uso: bash instalar.sh [--minecraft-dir PASTA] [--game-dir PASTA] [--server-dir PASTA]" >&2
       exit 1
       ;;
   esac
@@ -35,10 +45,24 @@ command -v sha1sum >/dev/null 2>&1 || {
   exit 1
 }
 
-case "$MINECRAFT_DIR" in
-  /*) ;;
-  *) MINECRAFT_DIR="$(pwd)/$MINECRAFT_DIR" ;;
-esac
+abs_dir() {
+  case "$1" in
+    /*) printf '%s\n' "$1" ;;
+    *) printf '%s\n' "$(pwd)/$1" ;;
+  esac
+}
+
+MINECRAFT_DIR="$(abs_dir "$MINECRAFT_DIR")"
+if [ -n "$SERVER_DIR" ]; then
+  SERVER_DIR="$(abs_dir "$SERVER_DIR")"
+  if [ ! -d "$SERVER_DIR" ]; then
+    echo "Não achei a pasta do servidor: $SERVER_DIR" >&2
+    exit 1
+  fi
+fi
+if [ -n "$GAME_DIR_FLAG" ]; then
+  GAME_DIR_FLAG="$(abs_dir "$GAME_DIR_FLAG")"
+fi
 
 meta() {
   key="$1"
@@ -58,6 +82,61 @@ if [ -z "$MINECRAFT_VERSION" ] || [ -z "$LOADER_VERSION" ] || [ -z "$PROFILE_ID"
   exit 1
 fi
 
+profile_game_dir() {
+  profiles="$1"
+  want="$2"
+  [ -f "$profiles" ] || return 1
+  awk -v want="$want" '
+    function braces(s,    i, c, n) {
+      n = 0
+      for (i = 1; i <= length(s); i++) {
+        c = substr(s, i, 1)
+        if (c == "{") n++
+        else if (c == "}") n--
+      }
+      return n
+    }
+    function grab(s, key,    rest, q) {
+      if (match(s, "\"" key "\"[[:space:]]*:[[:space:]]*\"")) {
+        rest = substr(s, RSTART + RLENGTH)
+        q = index(rest, "\"")
+        if (q > 1) return substr(rest, 1, q - 1)
+      }
+      return ""
+    }
+    BEGIN { in_profiles = 0; depth = 0; capture = 0; pname = ""; pdir = "" }
+    {
+      if (!in_profiles) {
+        if ($0 ~ /"profiles"[[:space:]]*:[[:space:]]*\{/) {
+          in_profiles = 1
+          depth = braces($0)
+        }
+        next
+      }
+      delta = braces($0)
+      if (!capture && depth == 1 && delta > 0) {
+        capture = 1
+        pname = ""
+        pdir = ""
+      }
+      if (capture) {
+        n = grab($0, "name")
+        if (n != "") pname = n
+        d = grab($0, "gameDir")
+        if (d != "") pdir = d
+      }
+      depth += delta
+      if (capture && depth <= 1) {
+        if (pname == want && pdir != "") {
+          print pdir
+          exit 0
+        }
+        capture = 0
+      }
+    }
+  ' "$profiles"
+}
+
 ask_shaders() {
   if [ -n "$SHADERS" ]; then
     return 0
@@ -75,29 +154,51 @@ want_shaders() {
 
 ask_shaders
 
-GAME_DIR="$MINECRAFT_DIR/$GAME_DIR_NAME"
+if [ -n "$GAME_DIR_FLAG" ]; then
+  GAME_DIR="$GAME_DIR_FLAG"
+else
+  found="$(profile_game_dir "$MINECRAFT_DIR/launcher_profiles.json" "$PROFILE_NAME" || true)"
+  if [ -n "$found" ]; then
+    GAME_DIR="$found"
+  else
+    GAME_DIR="$MINECRAFT_DIR/$GAME_DIR_NAME"
+  fi
+fi
 mkdir -p "$GAME_DIR/mods" "$GAME_DIR/shaderpacks" \
   "$MINECRAFT_DIR/versions/$VERSION_ID"
+if [ -n "$SERVER_DIR" ]; then
+  mkdir -p "$SERVER_DIR/mods"
+fi
+
+hash_ok() {
+  local file sum
+  file="$1"
+  sum="$2"
+  [ -n "$sum" ] && [ "$sum" != "-" ] && [ -f "$file" ] && echo "$sum  $file" | sha1sum -c - >/dev/null 2>&1
+}
 
 download() {
+  local url dest sum alt
   url="$1"
   dest="$2"
   sum="$3"
-  if [ -f "$dest" ] && echo "$sum  $dest" | sha1sum -c - >/dev/null 2>&1; then
+  alt="${4:-}"
+  if hash_ok "$dest" "$sum" || hash_ok "$dest" "$alt"; then
     echo "já está certo: $(basename "$dest")"
     return 0
   fi
   echo "baixando $(basename "$dest")"
   curl -fL --retry 3 --retry-delay 2 -A "MineServer-installer" -o "$dest.partial" "$url"
-  mv "$dest.partial" "$dest"
-  if ! echo "$sum  $dest" | sha1sum -c - >/dev/null 2>&1; then
-    echo "O arquivo $(basename "$dest") não confere com a ficha. Nada foi deixado no lugar." >&2
-    rm -f "$dest"
+  if ! echo "$sum  $dest.partial" | sha1sum -c - >/dev/null 2>&1; then
+    rm -f "$dest.partial"
+    echo "O arquivo $(basename "$dest") não confere com a ficha. O que já estava no lugar ficou." >&2
     exit 1
   fi
+  mv "$dest.partial" "$dest"
 }
 
 patch_loader() {
+  local jar needed tmp
   jar="$1"
   needed="$2"
   command -v unzip >/dev/null 2>&1 || {
@@ -125,12 +226,15 @@ patch_loader() {
 }
 
 install_row() {
-  side="$1"
-  filename="$2"
-  sum="$3"
-  url="$4"
-  dest="$5"
-  patch="$6"
+  local base side filename sum url dest patch alt target
+  base="$1"
+  side="$2"
+  filename="$3"
+  sum="$4"
+  url="$5"
+  dest="$6"
+  patch="$7"
+  alt="$8"
   if [ "$side" = "shader" ] && ! want_shaders; then
     return 0
   fi
@@ -148,10 +252,10 @@ install_row() {
       exit 1
       ;;
   esac
-  target="$GAME_DIR/$dest/$filename"
-  mkdir -p "$GAME_DIR/$dest"
-  download "$url" "$target" "$sum"
-  if [ "$patch" != "-" ]; then
+  target="$base/$dest/$filename"
+  mkdir -p "$base/$dest"
+  download "$url" "$target" "$sum" "$alt"
+  if [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
     patch_loader "$target" "$patch"
   fi
 }
@@ -162,7 +266,10 @@ while IFS="$(printf '\t')" read -r side id name filename sum url dest patch orig
   case "$side" in
     \#*) continue ;;
   esac
-  install_row "$side" "$filename" "$sum" "$url" "$dest" "$patch"
+  install_row "$GAME_DIR" "$side" "$filename" "$sum" "$url" "$dest" "$patch" "$server_sha1"
+  if [ -n "$SERVER_DIR" ] && [ "$origin" = "server" ]; then
+    install_row "$SERVER_DIR" "$side" "$filename" "$sum" "$url" "$dest" "$patch" "$server_sha1"
+  fi
 done < "$REQ"
 
 FABRIC_JSON="$MINECRAFT_DIR/versions/$VERSION_ID/$VERSION_ID.json"
@@ -193,7 +300,7 @@ if [ ! -f "$PROFILES" ]; then
 }
 EOF
 elif grep -q "\"name\"[[:space:]]*:[[:space:]]*\"$PROFILE_NAME\"" "$PROFILES"; then
-  echo "O perfil $PROFILE_NAME já existe. Atualizei os mods dessa instalação."
+  echo "O perfil $PROFILE_NAME já existe. Atualizei os mods em $GAME_DIR."
 else
   tmp="$(mktemp)"
   awk -v id="$PROFILE_ID" -v stamp="$STAMP" -v game="$GAME_DIR" -v mem="$MEMORY" -v ver="$VERSION_ID" -v name="$PROFILE_NAME" '
@@ -233,5 +340,8 @@ if want_shaders; then
   echo "Shaders instalados. No jogo, o pacote é o Complementary."
 else
   echo "Shaders não instalados."
+fi
+if [ -n "$SERVER_DIR" ]; then
+  echo "Mods do servidor atualizados em $SERVER_DIR/mods."
 fi
 echo "O endereço do servidor o grupo manda no chat."

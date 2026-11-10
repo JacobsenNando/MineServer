@@ -1,7 +1,9 @@
 # Instala o cliente MineServer no Windows.
 # Funciona com o Minecraft oficial e com o SKLauncher: os dois leem o mesmo perfil.
 param(
-  [string]$MinecraftDir = ""
+  [string]$MinecraftDir = "",
+  [string]$ServerDir = "",
+  [string]$GameDir = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,9 +44,36 @@ if (-not $answer) {
 }
 $WantShaders = $answer -match '^(s|sim)$'
 
-$GameDir = Join-Path $MinecraftDir $GameDirName
+function Get-ProfileGameDir {
+  $profilesPath = Join-Path $MinecraftDir "launcher_profiles.json"
+  if (-not (Test-Path -LiteralPath $profilesPath)) { return "" }
+  $parsed = Get-Content -Raw -LiteralPath $profilesPath | ConvertFrom-Json
+  foreach ($entry in $parsed.profiles.PSObject.Properties) {
+    if ($entry.Value.name -eq $ProfileName -and $entry.Value.gameDir) {
+      return [string]$entry.Value.gameDir
+    }
+  }
+  return ""
+}
+
+if ($ServerDir -and -not (Test-Path -LiteralPath $ServerDir -PathType Container)) {
+  throw "Não achei a pasta do servidor: $ServerDir"
+}
+
+$GameDirArg = $GameDir
+if ($GameDirArg) {
+  $GameDir = $GameDirArg
+} else {
+  $existingGameDir = Get-ProfileGameDir
+  if ($existingGameDir) { $GameDir = $existingGameDir }
+  else { $GameDir = Join-Path $MinecraftDir $GameDirName }
+}
+
 New-Item -ItemType Directory -Force -Path (Join-Path $GameDir "mods") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $GameDir "shaderpacks") | Out-Null
+if ($ServerDir) {
+  New-Item -ItemType Directory -Force -Path (Join-Path $ServerDir "mods") | Out-Null
+}
 $VersionDir = Join-Path $MinecraftDir "versions\$VersionId"
 New-Item -ItemType Directory -Force -Path $VersionDir | Out-Null
 
@@ -52,22 +81,28 @@ function Get-Sha1([string]$Path) {
   return (Get-FileHash -LiteralPath $Path -Algorithm SHA1).Hash.ToLowerInvariant()
 }
 
-function Save-Url([string]$Url, [string]$Dest, [string]$Sum) {
+function Test-Hash([string]$Path, [string]$Sum) {
+  if (-not $Sum -or $Sum -eq "-") { return $false }
+  if (-not (Test-Path -LiteralPath $Path)) { return $false }
+  return (Get-Sha1 $Path) -eq $Sum
+}
+
+function Save-Url([string]$Url, [string]$Dest, [string]$Sum, [string]$AltSum) {
   if (-not $Url.StartsWith("https://")) {
     throw "A ficha tem um endereço que não é https: $Dest"
   }
-  if ((Test-Path -LiteralPath $Dest) -and (Get-Sha1 $Dest) -eq $Sum) {
+  if ((Test-Hash $Dest $Sum) -or (Test-Hash $Dest $AltSum)) {
     Write-Host "já está certo: $(Split-Path -Leaf $Dest)"
     return
   }
   Write-Host "baixando $(Split-Path -Leaf $Dest)"
   $partial = "$Dest.partial"
   Invoke-WebRequest -Uri $Url -OutFile $partial -UseBasicParsing
-  Move-Item -LiteralPath $partial -Destination $Dest -Force
-  if ((Get-Sha1 $Dest) -ne $Sum) {
-    Remove-Item -LiteralPath $Dest -Force
-    throw "O arquivo $(Split-Path -Leaf $Dest) não confere com a ficha."
+  if ((Get-Sha1 $partial) -ne $Sum) {
+    Remove-Item -LiteralPath $partial -Force
+    throw "O arquivo $(Split-Path -Leaf $Dest) não confere com a ficha. O que já estava no lugar ficou."
   }
+  Move-Item -LiteralPath $partial -Destination $Dest -Force
 }
 
 function Update-LoaderPin([string]$Jar, [string]$Needed) {
@@ -105,12 +140,20 @@ foreach ($line in Get-Content -LiteralPath $Req -Encoding UTF8) {
   $url = $col[5]
   $dest = $col[6]
   $patch = $col[7]
+  $origin = $col[8]
+  $alt = "-"
+  if ($col.Length -gt 9) { $alt = $col[9] }
   if ($side -eq "shader" -and -not $WantShaders) { continue }
   if ($side -ne "required" -and $side -ne "shader") { throw "Lado desconhecido na ficha: $side" }
-  $target = Join-Path (Join-Path $GameDir $dest) $filename
-  New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
-  Save-Url $url $target $sum
-  if ($patch -ne "-") { Update-LoaderPin $target $patch }
+  $targets = @(Join-Path (Join-Path $GameDir $dest) $filename)
+  if ($ServerDir -and $origin -eq "server") {
+    $targets += Join-Path (Join-Path $ServerDir $dest) $filename
+  }
+  foreach ($target in $targets) {
+    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
+    Save-Url $url $target $sum $alt
+    if ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
+  }
 }
 
 $fabricJson = Join-Path $VersionDir "$VersionId.json"
@@ -145,7 +188,7 @@ if (-not (Test-Path -LiteralPath $profiles)) {
 } else {
   $text = [System.IO.File]::ReadAllText($profiles)
   if ($text -match ('"name"\s*:\s*"' + [regex]::Escape($ProfileName) + '"')) {
-    Write-Host "O perfil $ProfileName já existe. Atualizei os mods dessa instalação."
+    Write-Host "O perfil $ProfileName já existe. Atualizei os mods em $GameDir."
   } else {
     $block = @"
     "$ProfileId": {
@@ -172,4 +215,5 @@ Write-Host "Abra o Minecraft oficial ou o SKLauncher e escolha o perfil $Profile
 Write-Host "O nome que você usa no launcher é o nome dentro do jogo. Use o seu."
 if ($WantShaders) { Write-Host "Shaders instalados. No jogo, o pacote é o Complementary." }
 else { Write-Host "Shaders não instalados." }
+if ($ServerDir) { Write-Host "Mods do servidor atualizados em $(Join-Path $ServerDir 'mods')." }
 Write-Host "O endereço do servidor o grupo manda no chat."

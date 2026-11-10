@@ -19,6 +19,8 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [FerriteCore](https://modrinth.com/mod/uXXizFIs) `ferritecore-9.0.0-fabric.jar`
 - [Forge Config API Port](https://modrinth.com/mod/ohNO6lps) `ForgeConfigAPIPort-v26.2.1-mc26.2.x-Fabric.jar`
 - [Friends&Foes](https://modrinth.com/mod/POQ2i9zu) `friendsandfoes-fabric-5.0.4+mc26.2.jar`
+- [Frostbyte's Slabs & Stairs](https://modrinth.com/mod/WWL04tjR) `slabsandstairs-1.15.2-26.2.jar`
+- [Fusion](https://modrinth.com/mod/p19vrgc2) `fusion-1.3.16-fabric-mc26.2.jar`
 - [GeckoLib 5](https://modrinth.com/mod/8BmcQJ2H) `geckolib-fabric-26.2-5.5.5.jar`
 - [Illager Invasion](https://modrinth.com/mod/jSV9w0J5) `IllagerInvasion-v26.2.0-mc26.2.x-Fabric.jar`
 - [Immersive Armors](https://modrinth.com/mod/eE2Db4YU) `immersive_armors-1.8.2+26.2-fabric.jar`
@@ -30,12 +32,15 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [PrickleMC](https://modrinth.com/mod/aaRl8GiW) `PrickleMC-fabric-MC26.2-26.2.0.3.jar`
 - [Puzzles Lib](https://modrinth.com/mod/QAGBst4M) `puzzleslib-v26.2.5-mc26.2.x+fabric.jar`
 - [RangedWeaponAPI](https://modrinth.com/mod/AqaIIO6D) `ranged_weapon_api-fabric-4.0.0+26.2.jar`
+- [Rechiseled](https://modrinth.com/mod/B0g2vT6l) `rechiseled-1.2.6-fabric-mc26.2.jar`
 - [Relics (RPG Series)](https://modrinth.com/mod/BDQucwF0) `relics-fabric-1.4.1+26.2.jar`
 - [Resourceful Lib](https://modrinth.com/mod/G1hIVOrD) `ResourcefulLib-5.0.4.jar`
 - [Shogi](https://modrinth.com/mod/bi4iCmsw) `shogi-fabric-26.2-26.2.0.8.jar`
 - [Skill Proficiencies](https://modrinth.com/mod/d4TtjlpN) `specialities-1.6.4+26.2.jar`
 - [Spell Engine](https://modrinth.com/mod/XvoWJaA2) `spell_engine-fabric-1.10.9+26.2.jar`
 - [Spell Power Attribute](https://modrinth.com/mod/8ooWzSQP) `spell_power-fabric-1.6.2+26.2.jar`
+- [SuperMartijn642's Config Library](https://modrinth.com/mod/LN9BxssP) `supermartijn642configlib-1.1.8a-fabric-mc26.2.jar`
+- [SuperMartijn642's Core Lib](https://modrinth.com/mod/rOUBggPv) `supermartijn642corelib-1.1.26b-fabric-mc26.2.jar`
 - [The Graveyard](https://modrinth.com/mod/QivVPB8W) `graveyard-FABRIC-4.0.0+mc26.2.jar`
 - [Tom's Simple Storage Mod](https://modrinth.com/mod/XZNI4Cpy) `toms_storage_fabric-26.2-2.11.4.jar`
 - [Towns and Towers](https://modrinth.com/mod/DjLobEOy) `t_and_t-fabric-neoforge-1.13.11.jar`
@@ -59,4 +64,4 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Complementary Reimagined](https://modrinth.com/shader/HVnmMxH1) `ComplementaryReimagined_r5.9.3.zip`
 - [Iris](https://modrinth.com/mod/YL57xq9U) `iris-fabric-1.11.4+mc26.2.jar`
 
-Ficam só no servidor e não entram nesta lista: servercore.
+Ficam só no servidor e não entram nesta lista: servercore, discord-mc-chat.
