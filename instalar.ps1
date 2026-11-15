@@ -174,6 +174,18 @@ function Update-ReiFallback([string]$Jar) {
   }
 }
 
+function Update-SkillHud([string]$Jar) {
+  Add-Type -AssemblyName System.IO.Compression
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  $zip = [System.IO.Compression.ZipFile]::Open($Jar, [System.IO.Compression.ZipArchiveMode]::Update)
+  try {
+    Update-ReiClass $zip "daripher/skilltree/client/hud/SkillProgressHudOverlay.class" (Join-Path $Root "patches\skilltree\SkillProgressHudOverlay.class")
+    Update-ReiClass $zip "daripher/skilltree/client/SkillTreeModClient.class" (Join-Path $Root "patches\skilltree\SkillTreeModClient.class")
+  } finally {
+    $zip.Dispose()
+  }
+}
+
 function Update-LoaderPin([string]$Jar, [string]$Needed) {
   Add-Type -AssemblyName System.IO.Compression
   Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -223,6 +235,7 @@ foreach ($line in Get-Content -LiteralPath $Req -Encoding UTF8) {
     Save-Url $url $target $sum $alt
     if ($patch -eq "rei-fallback") { Update-ReiFallback $target }
     elseif ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
+    if ($filename -eq "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar") { Update-SkillHud $target }
   }
 }
 

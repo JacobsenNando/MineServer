@@ -334,6 +334,23 @@ patch_rei() {
   patch_rei_entrypoint "$jar"
 }
 
+# A barra de progresso fica na linha da experiência, com metade da largura.
+patch_skill_hud() {
+  local jar
+  jar="$1"
+  need_zip
+  case "$jar" in
+    /*) ;;
+    *) jar="$(pwd)/$jar" ;;
+  esac
+  patch_rei_entry "$jar" \
+    "daripher/skilltree/client/hud/SkillProgressHudOverlay.class" \
+    "patches/skilltree/SkillProgressHudOverlay.class"
+  patch_rei_entry "$jar" \
+    "daripher/skilltree/client/SkillTreeModClient.class" \
+    "patches/skilltree/SkillTreeModClient.class"
+}
+
 install_row() {
   local base side filename sum url dest patch alt target
   base="$1"
@@ -368,6 +385,9 @@ install_row() {
     patch_rei "$target"
   elif [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
     patch_loader "$target" "$patch"
+  fi
+  if [ "$filename" = "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar" ]; then
+    patch_skill_hud "$target"
   fi
 }
 
