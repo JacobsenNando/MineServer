@@ -77,6 +77,18 @@ if ($ServerDir) {
 $VersionDir = Join-Path $MinecraftDir "versions\$VersionId"
 New-Item -ItemType Directory -Force -Path $VersionDir | Out-Null
 
+function Remove-RetiredViewer([string]$Dest) {
+  foreach ($name in @("RoughlyEnoughItems-26.2.820.jar", "architectury-fabric-21.1.12.jar")) {
+    $path = Join-Path (Join-Path $Dest "mods") $name
+    if (Test-Path -LiteralPath $path) {
+      Remove-Item -LiteralPath $path -Force
+      Write-Host "Removi $name."
+    }
+  }
+}
+Remove-RetiredViewer $GameDir
+if ($ServerDir) { Remove-RetiredViewer $ServerDir }
+
 function Get-Sha1([string]$Path) {
   return (Get-FileHash -LiteralPath $Path -Algorithm SHA1).Hash.ToLowerInvariant()
 }
@@ -107,7 +119,7 @@ function Save-Url([string]$Url, [string]$Dest, [string]$Sum, [string]$AltSum) {
 
 function Update-ReiClass([System.IO.Compression.ZipArchive]$Zip, [string]$EntryName, [string]$ClassPath) {
   if (-not (Test-Path -LiteralPath $ClassPath)) {
-    throw "Falta $ClassPath para corrigir o REI."
+    throw "Falta $ClassPath para corrigir o mod."
   }
   $payload = [System.IO.File]::ReadAllBytes($ClassPath)
   $entry = $Zip.GetEntry($EntryName)
@@ -138,40 +150,6 @@ function Update-ReiClass([System.IO.Compression.ZipArchive]$Zip, [string]$EntryN
   $write = $created.Open()
   $write.Write($payload, 0, $payload.Length)
   $write.Close()
-}
-
-function Update-ReiFallback([string]$Jar) {
-  Add-Type -AssemblyName System.IO.Compression
-  Add-Type -AssemblyName System.IO.Compression.FileSystem
-  $zip = [System.IO.Compression.ZipFile]::Open($Jar, [System.IO.Compression.ZipArchiveMode]::Update)
-  try {
-    Update-ReiClass $zip "me/shedaniel/rei/impl/client/registry/display/ClientRecipeFallback.class" (Join-Path $Root "patches\rei\ClientRecipeFallback.class")
-    Update-ReiClass $zip "me/shedaniel/rei/plugin/client/displays/ClientsidedCraftingDisplay.class" (Join-Path $Root "patches\rei\ClientsidedCraftingDisplay.class")
-    Update-ReiClass $zip "me/shedaniel/rei/impl/client/transfer/SimpleTransferHandlerImpl.class" (Join-Path $Root "patches\rei\SimpleTransferHandlerImpl.class")
-    Update-ReiClass $zip "me/shedaniel/rei/plugin/autocrafting/recipebook/DefaultRecipeBookHandler.class" (Join-Path $Root "patches\rei\DefaultRecipeBookHandler.class")
-    Update-ReiClass $zip "me/shedaniel/rei/impl/common/registry/displays/ServerDisplayRegistryImpl.class" (Join-Path $Root "patches\rei\ServerDisplayRegistryImpl.class")
-    Update-ReiClass $zip "me/shedaniel/rei/plugin/client/backpack/BackpackCraftingTransfer.class" (Join-Path $Root "patches\rei\BackpackCraftingTransfer.class")
-    Update-ReiClass $zip "me/shedaniel/rei/plugin/client/backpack/BackpackReiPlugin.class" (Join-Path $Root "patches\rei\BackpackReiPlugin.class")
-    $meta = $zip.GetEntry("fabric.mod.json")
-    if (-not $meta) { throw "Não achei fabric.mod.json dentro do jar do REI." }
-    $reader = New-Object System.IO.StreamReader($meta.Open())
-    $json = $reader.ReadToEnd()
-    $reader.Close()
-    $plugin = "me.shedaniel.rei.plugin.client.backpack.BackpackReiPlugin"
-    if (-not $json.Contains($plugin)) {
-      $needle = '"me.shedaniel.rei.plugin.client.runtime.HideIngredientsFromTagsPlugin"'
-      if (-not $json.Contains($needle)) { throw "Não achei a lista rei_client dentro do REI." }
-      $meta.Delete()
-      $updated = $json.Replace($needle, $needle + ",`n      `"$plugin`"")
-      $created = $zip.CreateEntry("fabric.mod.json")
-      $created.LastWriteTime = [DateTimeOffset]::Parse("1980-01-01T00:00:00Z")
-      $writer = New-Object System.IO.StreamWriter($created.Open())
-      $writer.Write($updated)
-      $writer.Close()
-    }
-  } finally {
-    $zip.Dispose()
-  }
 }
 
 function Update-SkillHud([string]$Jar) {
@@ -233,8 +211,7 @@ foreach ($line in Get-Content -LiteralPath $Req -Encoding UTF8) {
   foreach ($target in $targets) {
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
     Save-Url $url $target $sum $alt
-    if ($patch -eq "rei-fallback") { Update-ReiFallback $target }
-    elseif ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
+    if ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
     if ($filename -eq "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar") { Update-SkillHud $target }
   }
 }
@@ -260,7 +237,16 @@ function Install-ServerBundle([string]$Dest) {
   Write-Host "MineServer Classes copiado para $(Join-Path $Dest 'mods')."
 }
 
+function Install-JeiAddon([string]$Dest) {
+  $jar = Join-Path $Root "bundled\client\mineserver-jei-1.0.0.jar"
+  if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
+  Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-jei-1.0.0.jar") -Force
+  Write-Host "MineServer JEI copiado para $(Join-Path $Dest 'mods')."
+}
+
 Install-ClientConfig $GameDir
+Install-JeiAddon $GameDir
 if ($ServerDir) { Install-ServerBundle $ServerDir }
 
 $fabricJson = Join-Path $VersionDir "$VersionId.json"

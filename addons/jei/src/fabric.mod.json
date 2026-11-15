@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "mineserver_jei",
+  "version": "1.0.0",
+  "name": "MineServer JEI",
+  "description": "Mostra a mesa de encadernação e o corte de gema no JEI.",
+  "authors": ["JacobsenNando"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "jei_mod_plugin": [
+      "com.mineserver.jei.SpellBindingJeiPlugin",
+      "com.mineserver.jei.GemCuttingJeiPlugin"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "26.2",
+    "java": ">=25",
+    "jei": "*",
+    "spell_engine": "*",
+    "jewelry": "*"
+  }
+}

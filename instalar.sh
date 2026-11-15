@@ -229,16 +229,13 @@ patch_loader() {
   rm -rf "$tmp"
 }
 
-# REI 26.2.820 deixa de mostrar a receita depois que o servidor a desbloqueia.
-# O botão + enche a mesa vanilla, a mesa do Tom e a grade da mochila com upgrade.
-# As classes em patches/rei fazem isso, e o mod também entra no servidor.
-patch_rei_entry() {
+patch_class() {
   local jar entry class tmp current
   jar="$1"
   entry="$2"
   class="$3"
   [ -f "$class" ] || {
-    echo "Falta $class para corrigir o REI." >&2
+    echo "Falta $class para corrigir o mod." >&2
     exit 1
   }
   if unzip -l "$jar" "$entry" | grep -q "$(basename "$entry")"; then
@@ -263,75 +260,10 @@ patch_rei_entry() {
   unzip -p "$jar" "$entry" > "$current"
   if ! cmp -s "$current" "$class"; then
     rm -f "$current"
-    echo "A correção do REI não entrou em $(basename "$jar")." >&2
+    echo "A correção não entrou em $(basename "$jar")." >&2
     exit 1
   fi
   rm -f "$current"
-}
-
-patch_rei_entrypoint() {
-  local jar tmp
-  jar="$1"
-  tmp="$(mktemp -d)"
-  unzip -p "$jar" fabric.mod.json > "$tmp/fabric.mod.json"
-  if grep -q "BackpackReiPlugin" "$tmp/fabric.mod.json"; then
-    rm -rf "$tmp"
-    return 0
-  fi
-  awk '
-    /HideIngredientsFromTagsPlugin"/ && !done {
-      sub(/"$/, "\",")
-      print
-      print "      \"me.shedaniel.rei.plugin.client.backpack.BackpackReiPlugin\""
-      done = 1
-      next
-    }
-    { print }
-  ' "$tmp/fabric.mod.json" > "$tmp/patched.json"
-  if ! grep -q "BackpackReiPlugin" "$tmp/patched.json"; then
-    echo "Não achei a lista rei_client dentro do REI." >&2
-    rm -rf "$tmp"
-    exit 1
-  fi
-  mv "$tmp/patched.json" "$tmp/fabric.mod.json"
-  touch -t 198001010000 "$tmp/fabric.mod.json"
-  (
-    cd "$tmp"
-    zip -q -X "$jar" fabric.mod.json
-  )
-  rm -rf "$tmp"
-}
-
-patch_rei() {
-  local jar
-  jar="$1"
-  need_zip
-  case "$jar" in
-    /*) ;;
-    *) jar="$(pwd)/$jar" ;;
-  esac
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/impl/client/registry/display/ClientRecipeFallback.class" \
-    "patches/rei/ClientRecipeFallback.class"
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/plugin/client/displays/ClientsidedCraftingDisplay.class" \
-    "patches/rei/ClientsidedCraftingDisplay.class"
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/impl/client/transfer/SimpleTransferHandlerImpl.class" \
-    "patches/rei/SimpleTransferHandlerImpl.class"
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/plugin/autocrafting/recipebook/DefaultRecipeBookHandler.class" \
-    "patches/rei/DefaultRecipeBookHandler.class"
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/impl/common/registry/displays/ServerDisplayRegistryImpl.class" \
-    "patches/rei/ServerDisplayRegistryImpl.class"
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/plugin/client/backpack/BackpackCraftingTransfer.class" \
-    "patches/rei/BackpackCraftingTransfer.class"
-  patch_rei_entry "$jar" \
-    "me/shedaniel/rei/plugin/client/backpack/BackpackReiPlugin.class" \
-    "patches/rei/BackpackReiPlugin.class"
-  patch_rei_entrypoint "$jar"
 }
 
 # A barra de progresso fica no canto inferior direito, com 80 pixels de largura.
@@ -343,12 +275,36 @@ patch_skill_hud() {
     /*) ;;
     *) jar="$(pwd)/$jar" ;;
   esac
-  patch_rei_entry "$jar" \
+  patch_class "$jar" \
     "daripher/skilltree/client/hud/SkillProgressHudOverlay.class" \
     "patches/skilltree/SkillProgressHudOverlay.class"
-  patch_rei_entry "$jar" \
+  patch_class "$jar" \
     "daripher/skilltree/client/SkillTreeModClient.class" \
     "patches/skilltree/SkillTreeModClient.class"
+}
+
+retire_old_viewers() {
+  local base name
+  base="$1"
+  for name in RoughlyEnoughItems-26.2.820.jar architectury-fabric-21.1.12.jar; do
+    if [ -f "$base/mods/$name" ]; then
+      rm -f "$base/mods/$name"
+      echo "Removi $name."
+    fi
+  done
+}
+
+copy_jei_addon() {
+  local dest src
+  dest="$1"
+  src="bundled/client/mineserver-jei-1.0.0.jar"
+  [ -f "$src" ] || {
+    echo "Falta $src." >&2
+    exit 1
+  }
+  mkdir -p "$dest/mods"
+  cp "$src" "$dest/mods/mineserver-jei-1.0.0.jar"
+  echo "MineServer JEI copiado para $dest/mods."
 }
 
 install_row() {
@@ -381,15 +337,18 @@ install_row() {
   target="$base/$dest/$filename"
   mkdir -p "$base/$dest"
   download "$url" "$target" "$sum" "$alt"
-  if [ "$patch" = "rei-fallback" ]; then
-    patch_rei "$target"
-  elif [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
+  if [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
     patch_loader "$target" "$patch"
   fi
   if [ "$filename" = "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar" ]; then
     patch_skill_hud "$target"
   fi
 }
+
+retire_old_viewers "$GAME_DIR"
+if [ -n "$SERVER_DIR" ]; then
+  retire_old_viewers "$SERVER_DIR"
+fi
 
 # shellcheck disable=SC2034
 while IFS="$(printf '\t')" read -r side id name filename sum url dest patch origin server_sha1 page; do
@@ -431,6 +390,7 @@ copy_server_bundle() {
 }
 
 copy_client_config "$GAME_DIR"
+copy_jei_addon "$GAME_DIR"
 if [ -n "$SERVER_DIR" ]; then
   copy_server_bundle "$SERVER_DIR"
 fi

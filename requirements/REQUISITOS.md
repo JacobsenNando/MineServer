@@ -7,7 +7,6 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 ## Entram sempre
 
 - [Archers (RPG Series)](https://modrinth.com/mod/QgooUXAJ) `archers-fabric-3.1.3.003+26.2.jar`
-- [Architectury](https://modrinth.com/mod/lhGA9TYQ) `architectury-fabric-21.1.12.jar`
 - [Armor Model API](https://modrinth.com/mod/onz2NN2n) `armor_model_api-fabric-1.1.2+26.2.jar`
 - [Arsenal (RPG Series)](https://modrinth.com/mod/LiP9Q3KV) `arsenal-fabric-1.5.1+26.2.jar`
 - [AttributeFix](https://modrinth.com/mod/lOOpEntO) `AttributeFix-fabric-MC26.2-26.2.0.1.jar`
@@ -31,6 +30,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Illager Invasion](https://modrinth.com/mod/jSV9w0J5) `IllagerInvasion-v26.2.0-mc26.2.x-Fabric.jar`
 - [Immersive Armors](https://modrinth.com/mod/eE2Db4YU) `immersive_armors-1.8.2+26.2-fabric.jar`
 - [Jewelry (RPG Series)](https://modrinth.com/mod/sNJAIjUm) `jewelry-fabric-2.5.1+26.2.jar`
+- [Just Enough Items](https://modrinth.com/mod/u6dRKJwZ) `jei-26.2-fabric-30.48.0.244.jar`
 - [Krypton](https://modrinth.com/mod/fQEb0iXm) `krypton-0.3.1.jar`
 - [Lithium](https://modrinth.com/mod/gvQqBUqZ) `lithium-fabric-0.25.3+mc26.2.jar`
 - [Lootr](https://modrinth.com/mod/EltpO5cN) `lootr-fabric-26.2-1.24.41.124.jar`
@@ -46,7 +46,6 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Relics (RPG Series)](https://modrinth.com/mod/BDQucwF0) `relics-fabric-1.4.1+26.2.jar`
 - [Resourceful Lib](https://modrinth.com/mod/G1hIVOrD) `ResourcefulLib-5.0.4.jar`
 - [Rogues & Warriors (RPG Series)](https://modrinth.com/mod/3MKqoGuP) `rogues-fabric-3.1.3.003+26.2.jar`
-- [Roughly Enough Items](https://modrinth.com/mod/nfn13YXA) `RoughlyEnoughItems-26.2.820.jar`
 - [Runes](https://modrinth.com/mod/lP9Yrr1E) `runes-fabric-1.3.2+26.2.jar`
 - [Shogi](https://modrinth.com/mod/bi4iCmsw) `shogi-fabric-26.2-26.2.0.8.jar`
 - [Skill Proficiencies](https://modrinth.com/mod/d4TtjlpN) `specialities-1.6.4+26.2.jar`
@@ -82,4 +81,4 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Complementary Reimagined](https://modrinth.com/shader/HVnmMxH1) `ComplementaryReimagined_r5.9.3.zip`
 - [Iris](https://modrinth.com/mod/YL57xq9U) `iris-fabric-1.11.4+mc26.2.jar`
 
-Ficam só no servidor e não entram nesta lista: servercore, discord-mc-chat, Player Corpses, MineServer Comandos e MineServer Classes.
+Ficam só no servidor e não entram nesta lista: servercore, discord-mc-chat, Player Corpses, MineServer Comandos e MineServer Classes. O instalador copia o MineServer JEI para o cliente. Ele mostra a mesa de encadernação e o corte de gema.

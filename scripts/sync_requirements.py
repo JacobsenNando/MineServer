@@ -125,7 +125,7 @@ def write_requirements(meta: dict[str, str], rows: list[dict[str, str]]) -> None
     lines = [
         "# Ficha do cliente MineServer",
         "# Quem vai jogar usa o instalador. O mundo e os arquivos do servidor não estão aqui.",
-        "# patch rei-fallback corrige o REI 26.2.820: a receita continua visível e o botão + enche a mesa vanilla, a mesa do Tom e a grade da mochila com upgrade. O REI e o Architectury entram no servidor. O server_sha1 dessa linha é o jar já corrigido.",
+        "# O visualizador de receitas é o JEI. O MezzConfig vem dentro do jar do JEI. O addon mostra a mesa de encadernação e o corte de gema. O instalador remove o REI e o Architectury que ficaram de antes.",
         "# O Passive Skill Tree recebe a barra de progresso no canto inferior direito, com 80 pixels de largura. O server_sha1 dessa linha é o jar já corrigido.",
     ]
     for key in META_KEYS:

@@ -135,13 +135,13 @@ Estes mudam a sua partida:
 - **Traveler's Backpack.** A mochila.
 - **Frostbyte's Slabs & Stairs.** Laje, escada e muro de blocos que o jogo não corta, inclusive a calcita. Na mesa de corte, um bloco vira duas lajes ou uma escada.
 - **Rechiseled.** O cinzel (barra de ferro em cima do graveto) abre uma tela. Ela troca pedra, madeira e outros blocos por tijolo, pilar, ladrilho e a laje e a escada de cada padrão, um por um. A calcita continua no Frostbyte.
-- **Roughly Enough Items.** A tecla E abre o inventário com itens e receitas do pacote do lado.
+- **Just Enough Items.** A tecla E abre o inventário com itens e receitas do pacote do lado. A mesa de encadernação e o corte de gema aparecem aí.
 - **Neat.** A vida do mob e do amigo aparece em cima deles.
 - **Remnants Minimap.** **M** abre o mapa. **N** esconde o minimapa até você fechar o jogo.
 
 Estes deixam o jogo mais leve no seu computador: Sodium, Entity Culling, ImmediatelyFast, Bad Optimizations e Dynamic FPS. Se na instalação você digitar `s`, entram também o Iris e o shader Complementary. Ele deixa o mundo mais bonito e mais pesado. Enter segue sem shader.
 
-O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell Power, Player Animation Library, GeckoLib, Balm, Cloth Config, Puzzles Lib, Cristel Lib, Resourceful Lib, Forge Config API Port, Architectury, Cardinal Components, AttributeFix, Prickle, Ranged Weapon API, Armor Model API, Bundle API, Structure Pool API, Villagers Trading Plus, Shogi, Lithium, FerriteCore, Krypton, Clumps, Fusion, SuperMartijn642's Core Lib e SuperMartijn642's Config Library. A lista com link e arquivo está em [requirements/REQUISITOS.md](requirements/REQUISITOS.md).
+O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell Power, Player Animation Library, GeckoLib, Balm, Cloth Config, Puzzles Lib, Cristel Lib, Resourceful Lib, Forge Config API Port, Cardinal Components, AttributeFix, Prickle, Ranged Weapon API, Armor Model API, Bundle API, Structure Pool API, Villagers Trading Plus, Shogi, Lithium, FerriteCore, Krypton, Clumps, Fusion, SuperMartijn642's Core Lib e SuperMartijn642's Config Library. A lista com link e arquivo está em [requirements/REQUISITOS.md](requirements/REQUISITOS.md).
 
 ## Para entrar
 

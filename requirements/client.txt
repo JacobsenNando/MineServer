@@ -1,7 +1,7 @@
 # Ficha do cliente MineServer
 # Quem vai jogar usa o instalador. O mundo e os arquivos do servidor não estão aqui.
-# O instalador grava bundled/config/trinkets.json no cliente. Com --server-dir, copia bundled/server/mineserver-classes-1.0.0.jar.
-# patch rei-fallback corrige o REI 26.2.820: a receita continua visível e o botão + enche a mesa vanilla, a mesa do Tom e a grade da mochila com upgrade. O REI e o Architectury entram no servidor. O server_sha1 dessa linha é o jar já corrigido.
+# O instalador grava bundled/config/trinkets.json no cliente. Com --server-dir, copia bundled/server/mineserver-classes-1.0.0.jar. Copia bundled/client/mineserver-jei-1.0.0.jar para o cliente.
+# O visualizador de receitas é o JEI. O MezzConfig vem dentro do jar do JEI. O addon mostra a mesa de encadernação e o corte de gema. O instalador remove o REI e o Architectury que ficaram de antes.
 # O Passive Skill Tree recebe a barra de progresso no canto inferior direito, com 80 pixels de largura. O server_sha1 dessa linha é o jar já corrigido.
 # minecraft 26.2
 # loader fabric
@@ -14,7 +14,6 @@
 # server_only servercore discord-mc-chat mr_player_deathcorpses mineserver-comandos mineserver-classes
 # columns	side	id	name	filename	sha1	url	dest	patch	origin	server_sha1	page
 required	archers	Archers (RPG Series)	archers-fabric-3.1.3.003+26.2.jar	f33e2ceddb27b34a52b30a1e3b83772386e21acb	https://cdn.modrinth.com/data/QgooUXAJ/versions/YeNcwLgu/archers-fabric-3.1.3.003%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/QgooUXAJ
-required	architectury	Architectury	architectury-fabric-21.1.12.jar	13358dcb2fcd29890f9ee73109553c179940c9e6	https://cdn.modrinth.com/data/lhGA9TYQ/versions/ohb3PBGZ/architectury-fabric-21.1.12.jar	mods	-	server	-	https://modrinth.com/mod/lhGA9TYQ
 required	armor_model_api	Armor Model API	armor_model_api-fabric-1.1.2+26.2.jar	6013654db02bfc61e9b2b506ec7e8ffba522b094	https://cdn.modrinth.com/data/onz2NN2n/versions/v25Jo0f4/armor_model_api-fabric-1.1.2%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/onz2NN2n
 required	arsenal	Arsenal (RPG Series)	arsenal-fabric-1.5.1+26.2.jar	0ccd2554865e006ad794d13298f18700be84f165	https://cdn.modrinth.com/data/LiP9Q3KV/versions/RLUAJaXX/arsenal-fabric-1.5.1%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/LiP9Q3KV
 required	attributefix	AttributeFix	AttributeFix-fabric-MC26.2-26.2.0.1.jar	cb946cce8aa06b36f52e252552bd6fadcc4fb300	https://cdn.modrinth.com/data/lOOpEntO/versions/DwUCU2Y7/AttributeFix-fabric-MC26.2-26.2.0.1.jar	mods	-	server	-	https://modrinth.com/mod/lOOpEntO
@@ -38,6 +37,7 @@ required	geckolib	GeckoLib 5	geckolib-fabric-26.2-5.5.5.jar	66bd0b658dadc9345d9b
 required	illagerinvasion	Illager Invasion	IllagerInvasion-v26.2.0-mc26.2.x-Fabric.jar	d7dab841e7cfa9cdb02980e158a5809b2d5b11db	https://cdn.modrinth.com/data/jSV9w0J5/versions/1EML9Osa/IllagerInvasion-v26.2.0-mc26.2.x-Fabric.jar	mods	-	server	-	https://modrinth.com/mod/jSV9w0J5
 required	immersive_armors	Immersive Armors	immersive_armors-1.8.2+26.2-fabric.jar	8a88a913b49cf237843ed5f1ea64b1eb82e4a59d	https://cdn.modrinth.com/data/eE2Db4YU/versions/rjh6c2Ms/immersive_armors-1.8.2%2B26.2-fabric.jar	mods	-	server	-	https://modrinth.com/mod/eE2Db4YU
 required	jewelry	Jewelry (RPG Series)	jewelry-fabric-2.5.1+26.2.jar	08d3ffe1aeaa86bce3a1879b090ea181c838dd3c	https://cdn.modrinth.com/data/sNJAIjUm/versions/7Uhj05Kr/jewelry-fabric-2.5.1%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/sNJAIjUm
+required	jei	Just Enough Items	jei-26.2-fabric-30.48.0.244.jar	ab2c982647d1ac94770c235d10d6b10a4f98a3ed	https://cdn.modrinth.com/data/u6dRKJwZ/versions/j62WSkzi/jei-26.2-fabric-30.48.0.244.jar	mods	-	server	-	https://modrinth.com/mod/u6dRKJwZ
 required	krypton	Krypton	krypton-0.3.1.jar	c83ed92c0f9f8523d7e6096151e74222fea91e96	https://cdn.modrinth.com/data/fQEb0iXm/versions/5WeL0Nkz/krypton-0.3.1.jar	mods	-	server	-	https://modrinth.com/mod/fQEb0iXm
 required	lithium	Lithium	lithium-fabric-0.25.3+mc26.2.jar	435ad0289209bb72195e7a423756a03f5dfa5a9a	https://cdn.modrinth.com/data/gvQqBUqZ/versions/f7vZ0VWU/lithium-fabric-0.25.3%2Bmc26.2.jar	mods	-	server	-	https://modrinth.com/mod/gvQqBUqZ
 required	lootr	Lootr	lootr-fabric-26.2-1.24.41.124.jar	f1879274e67392f74e4a34b2bce5cce957deb6c3	https://cdn.modrinth.com/data/EltpO5cN/versions/HegkPUoM/lootr-fabric-26.2-1.24.41.124.jar	mods	-	server	-	https://modrinth.com/mod/EltpO5cN
@@ -53,7 +53,6 @@ required	rechiseled	Rechiseled	rechiseled-1.2.6-fabric-mc26.2.jar	d1f0a09611e5a9
 required	relics_rpgs	Relics (RPG Series)	relics-fabric-1.4.1+26.2.jar	0b6466de20c90ccf8a3bc5b70e2af19a4948558d	https://cdn.modrinth.com/data/BDQucwF0/versions/LlhxEeBi/relics-fabric-1.4.1%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/BDQucwF0
 required	resourcefullib	Resourceful Lib	ResourcefulLib-5.0.4.jar	09319ddea83747f368d7ebc4ce509cc1f052461b	https://cdn.modrinth.com/data/G1hIVOrD/versions/4BbCbnE6/ResourcefulLib-5.0.4.jar	mods	-	server	-	https://modrinth.com/mod/G1hIVOrD
 required	rogues	Rogues & Warriors (RPG Series)	rogues-fabric-3.1.3.003+26.2.jar	376ca75ab0e03f195398ee245b4090d218f9b01d	https://cdn.modrinth.com/data/3MKqoGuP/versions/rlNs4IpI/rogues-fabric-3.1.3.003%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/3MKqoGuP
-required	roughlyenoughitems	Roughly Enough Items	RoughlyEnoughItems-26.2.820.jar	a57f1180a72e5f5541ad3cf63a799e95140882e6	https://cdn.modrinth.com/data/nfn13YXA/versions/4o0NSIMj/RoughlyEnoughItems-26.2.820.jar	mods	rei-fallback	server	eaf6e6c6453577728e4192631944c3b88d66a088	https://modrinth.com/mod/nfn13YXA
 required	runes	Runes	runes-fabric-1.3.2+26.2.jar	36857a90e1cf83a20fff456909818d7b49e56ed1	https://cdn.modrinth.com/data/lP9Yrr1E/versions/rrNHR0aU/runes-fabric-1.3.2%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/lP9Yrr1E
 required	shogi	Shogi	shogi-fabric-26.2-26.2.0.8.jar	5800f10bc987e26bcff69b20f345d7cd67366a5c	https://cdn.modrinth.com/data/bi4iCmsw/versions/kjPMnetX/shogi-fabric-26.2-26.2.0.8.jar	mods	-	server	-	https://modrinth.com/mod/bi4iCmsw
 required	specialities	Skill Proficiencies	specialities-1.6.4+26.2.jar	a91a74bf5836ae69c51707977933c8636b94a211	https://cdn.modrinth.com/data/d4TtjlpN/versions/lrJ9cfh9/specialities-1.6.4%2B26.2.jar	mods	-	server	-	https://modrinth.com/mod/d4TtjlpN
