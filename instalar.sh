@@ -334,7 +334,7 @@ patch_rei() {
   patch_rei_entrypoint "$jar"
 }
 
-# A barra de progresso fica na linha da experiência, com metade da largura.
+# A barra de progresso fica no canto inferior direito, com 80 pixels de largura.
 patch_skill_hud() {
   local jar
   jar="$1"
