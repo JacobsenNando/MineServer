@@ -105,6 +105,75 @@ function Save-Url([string]$Url, [string]$Dest, [string]$Sum, [string]$AltSum) {
   Move-Item -LiteralPath $partial -Destination $Dest -Force
 }
 
+function Update-ReiClass([System.IO.Compression.ZipArchive]$Zip, [string]$EntryName, [string]$ClassPath) {
+  if (-not (Test-Path -LiteralPath $ClassPath)) {
+    throw "Falta $ClassPath para corrigir o REI."
+  }
+  $payload = [System.IO.File]::ReadAllBytes($ClassPath)
+  $entry = $Zip.GetEntry($EntryName)
+  if (-not $entry) {
+    $created = $Zip.CreateEntry($EntryName)
+    $created.LastWriteTime = [DateTimeOffset]::Parse("1980-01-01T00:00:00Z")
+    $write = $created.Open()
+    $write.Write($payload, 0, $payload.Length)
+    $write.Close()
+    return
+  }
+  $read = $entry.Open()
+  $buffer = New-Object System.IO.MemoryStream
+  $read.CopyTo($buffer)
+  $read.Close()
+  $current = $buffer.ToArray()
+  $buffer.Dispose()
+  $same = $current.Length -eq $payload.Length
+  if ($same) {
+    for ($i = 0; $i -lt $current.Length; $i++) {
+      if ($current[$i] -ne $payload[$i]) { $same = $false; break }
+    }
+  }
+  if ($same) { return }
+  $entry.Delete()
+  $created = $Zip.CreateEntry($EntryName)
+  $created.LastWriteTime = [DateTimeOffset]::Parse("1980-01-01T00:00:00Z")
+  $write = $created.Open()
+  $write.Write($payload, 0, $payload.Length)
+  $write.Close()
+}
+
+function Update-ReiFallback([string]$Jar) {
+  Add-Type -AssemblyName System.IO.Compression
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  $zip = [System.IO.Compression.ZipFile]::Open($Jar, [System.IO.Compression.ZipArchiveMode]::Update)
+  try {
+    Update-ReiClass $zip "me/shedaniel/rei/impl/client/registry/display/ClientRecipeFallback.class" (Join-Path $Root "patches\rei\ClientRecipeFallback.class")
+    Update-ReiClass $zip "me/shedaniel/rei/plugin/client/displays/ClientsidedCraftingDisplay.class" (Join-Path $Root "patches\rei\ClientsidedCraftingDisplay.class")
+    Update-ReiClass $zip "me/shedaniel/rei/impl/client/transfer/SimpleTransferHandlerImpl.class" (Join-Path $Root "patches\rei\SimpleTransferHandlerImpl.class")
+    Update-ReiClass $zip "me/shedaniel/rei/plugin/autocrafting/recipebook/DefaultRecipeBookHandler.class" (Join-Path $Root "patches\rei\DefaultRecipeBookHandler.class")
+    Update-ReiClass $zip "me/shedaniel/rei/impl/common/registry/displays/ServerDisplayRegistryImpl.class" (Join-Path $Root "patches\rei\ServerDisplayRegistryImpl.class")
+    Update-ReiClass $zip "me/shedaniel/rei/plugin/client/backpack/BackpackCraftingTransfer.class" (Join-Path $Root "patches\rei\BackpackCraftingTransfer.class")
+    Update-ReiClass $zip "me/shedaniel/rei/plugin/client/backpack/BackpackReiPlugin.class" (Join-Path $Root "patches\rei\BackpackReiPlugin.class")
+    $meta = $zip.GetEntry("fabric.mod.json")
+    if (-not $meta) { throw "Não achei fabric.mod.json dentro do jar do REI." }
+    $reader = New-Object System.IO.StreamReader($meta.Open())
+    $json = $reader.ReadToEnd()
+    $reader.Close()
+    $plugin = "me.shedaniel.rei.plugin.client.backpack.BackpackReiPlugin"
+    if (-not $json.Contains($plugin)) {
+      $needle = '"me.shedaniel.rei.plugin.client.runtime.HideIngredientsFromTagsPlugin"'
+      if (-not $json.Contains($needle)) { throw "Não achei a lista rei_client dentro do REI." }
+      $meta.Delete()
+      $updated = $json.Replace($needle, $needle + ",`n      `"$plugin`"")
+      $created = $zip.CreateEntry("fabric.mod.json")
+      $created.LastWriteTime = [DateTimeOffset]::Parse("1980-01-01T00:00:00Z")
+      $writer = New-Object System.IO.StreamWriter($created.Open())
+      $writer.Write($updated)
+      $writer.Close()
+    }
+  } finally {
+    $zip.Dispose()
+  }
+}
+
 function Update-LoaderPin([string]$Jar, [string]$Needed) {
   Add-Type -AssemblyName System.IO.Compression
   Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -152,9 +221,34 @@ foreach ($line in Get-Content -LiteralPath $Req -Encoding UTF8) {
   foreach ($target in $targets) {
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
     Save-Url $url $target $sum $alt
-    if ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
+    if ($patch -eq "rei-fallback") { Update-ReiFallback $target }
+    elseif ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
   }
 }
+
+function Install-ClientConfig([string]$Dest) {
+  $src = Join-Path $Root "bundled\config\trinkets.json"
+  if (-not (Test-Path -LiteralPath $src)) { throw "Falta $src." }
+  $config = Join-Path $Dest "config"
+  New-Item -ItemType Directory -Force -Path $config | Out-Null
+  Copy-Item -LiteralPath $src -Destination (Join-Path $config "trinkets.json") -Force
+  Write-Host "Coluna de berloques gravada em $(Join-Path $config 'trinkets.json')"
+}
+
+function Install-ServerBundle([string]$Dest) {
+  $jar = Join-Path $Root "bundled\server\mineserver-classes-1.0.0.jar"
+  $trinkets = Join-Path $Root "bundled\config\trinkets.json"
+  if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
+  if (-not (Test-Path -LiteralPath $trinkets)) { throw "Falta $trinkets." }
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "config") | Out-Null
+  Copy-Item -LiteralPath $trinkets -Destination (Join-Path $Dest "config\trinkets.json") -Force
+  Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-classes-1.0.0.jar") -Force
+  Write-Host "MineServer Classes copiado para $(Join-Path $Dest 'mods')."
+}
+
+Install-ClientConfig $GameDir
+if ($ServerDir) { Install-ServerBundle $ServerDir }
 
 $fabricJson = Join-Path $VersionDir "$VersionId.json"
 Write-Host "baixando o perfil Fabric $VersionId"
@@ -215,5 +309,9 @@ Write-Host "Abra o Minecraft oficial ou o SKLauncher e escolha o perfil $Profile
 Write-Host "O nome que você usa no launcher é o nome dentro do jogo. Use o seu."
 if ($WantShaders) { Write-Host "Shaders instalados. No jogo, o pacote é o Complementary." }
 else { Write-Host "Shaders não instalados." }
-if ($ServerDir) { Write-Host "Mods do servidor atualizados em $(Join-Path $ServerDir 'mods')." }
+if ($ServerDir) {
+  Write-Host "Mods do servidor atualizados em $(Join-Path $ServerDir 'mods')."
+  Write-Host "A trava de classe está em $(Join-Path $ServerDir 'mods\mineserver-classes-1.0.0.jar')."
+}
+Write-Host "Anel, livro e mochila ficam na coluna ao lado do personagem. Feche o jogo e abra de novo se ele estiver aberto."
 Write-Host "O endereço do servidor o grupo manda no chat."

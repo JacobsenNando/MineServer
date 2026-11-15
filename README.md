@@ -61,6 +61,37 @@ No fundo da árvore do Ferreiro abre um caminho de maça. Ele fica escondido at�
 
 Se a build não ficou boa, o Pergaminho da Amnésia zera a árvore. Vinte por cento dos pontos ficam para trás. O dragão pode deixar um desses pergaminhos.
 
+## Classes de combate
+
+A árvore da tecla O continua. O livro de feitiços é outro caminho: ele muda o jeito de lutar.
+
+A mesa de encadernação aparece no gazebo de vila em terreno novo. Dá para construir a sua. Estante ao redor, como na mesa de encantamentos. O livro fica equipado, e a arma fica na mão.
+
+| Classe | Para começar | O que ela faz |
+| --- | --- | --- |
+| Mago | um cajado ou uma varinha | tomo arcano, de fogo ou de gelo. A runa é a munição |
+| Arqueiro | um arco ou uma besta | o manual de arquearia vale em qualquer arco |
+| Paladino | um martelo, uma maça ou uma claymore | protege o grupo e bate de perto. O escudo cabe |
+| Sacerdote | um cajado ou uma varinha sagrada | cura e protege |
+| Ladino | uma adaga ou uma foice, nas duas mãos | desvia e engana |
+| Guerreiro | um machado duplo, uma glaive ou uma claymore | quebra a guarda e esmaga |
+
+O primeiro livro criado na mesa de encadernação escolhe a classe. Os três tomos do mago contam como a mesma. Paladino, sacerdote, arqueiro, ladino e guerreiro ficam cada um no seu. Antes desse livro, só arma do vanilla equipa. Armadura, joia, relíquia e runa continuam. Depois, o equipamento de outra classe volta para o inventário. Espada, arco e armadura do vanilla continuam. Joia, relíquia e runa também. A mesa de cada classe continua livre.
+
+A arma lendária do Arsenal segue o tipo. O mago usa cajado e claymore. O cajado de cura também cabe no sacerdote. O paladino usa claymore, martelo, maça e escudo. O guerreiro usa claymore, machado duplo, glaive, lança e a espada longa. O arqueiro usa arco e besta. O ladino usa adaga e foice. Maça e escudo ficam fora do mago.
+
+O pergaminho de esquecimento leva um livro, um fragmento de ametista e obsidiana chorona. Usar o pergaminho devolve o equipamento da classe e abre a escolha de novo.
+
+Anel, colar, livro, aljava, cinto e mochila ficam numa coluna ao lado do personagem, sem precisar passar o mouse. O instalador grava isso em `config/trinkets.json`, com a coluna sempre visível e doze espaços. Feche o jogo e abra de novo para a coluna aparecer.
+
+A runa se crafta na mão. O altar de runas devolve mais peças com o mesmo material.
+
+A joia nasce de gema na profundidade do diamante. O anel e o colar entram no espaço de berloque.
+
+Torre de mago, santuário e loja de joias só nascem em terreno que ainda não foi gerado.
+
+O mod de ladinos e guerreiros recalibra Afiação, Julgamento e Ruína dos artrópodes. O de arqueiros recalibra Poder e Carga rápida. O número novo vale para todo mundo.
+
 ## Por que o pacote é este
 
 A ideia é um Minecraft um pouco mais de RPG, sem trocar a progressão. A arma nova entra na mão. A armadura nova entra no visual do vanilla. O perigo extra mora na noite, na mina, no acampamento illager, na masmorra e no cemitério. Caverna de enxofre é da própria 26.2. Nenhuma dimensão nova.
@@ -89,6 +120,9 @@ Estes mudam a sua partida:
 - **Immersive Armors.** Conjuntos de armadura no visual do vanilla.
 - **Relics** e **Trinkets.** Amuletos no espaço de berloque.
 - **Passive Skill Tree.** As classes e a árvore da tecla O.
+- **Wizards, Archers, Paladins & Priests, Rogues & Warriors.** As classes de combate e os livros de feitiço.
+- **Runes.** A munição do mago, do paladino e do sacerdote.
+- **Jewelry.** Anel e colar no espaço de berloque.
 - **Skill Proficiencies.** As quinze habilidades que sobem fazendo.
 - **Friends & Foes.** Criaturas que vieram das votações de mob.
 - **Illager Invasion.** Acampamento e raid de illager mais bravos. Dá para contornar.
@@ -107,7 +141,7 @@ Estes mudam a sua partida:
 
 Estes deixam o jogo mais leve no seu computador: Sodium, Entity Culling, ImmediatelyFast, Bad Optimizations e Dynamic FPS. Se na instalação você digitar `s`, entram também o Iris e o shader Complementary. Ele deixa o mundo mais bonito e mais pesado. Enter segue sem shader.
 
-O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell Power, Player Animation Library, GeckoLib, Balm, Cloth Config, Puzzles Lib, Cristel Lib, Resourceful Lib, Forge Config API Port, Architectury, Cardinal Components, AttributeFix, Prickle, Ranged Weapon API, Villagers Trading Plus, Shogi, Lithium, FerriteCore, Krypton, Clumps, Fusion, SuperMartijn642's Core Lib e SuperMartijn642's Config Library. A lista com link e arquivo está em [requirements/REQUISITOS.md](requirements/REQUISITOS.md).
+O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell Power, Player Animation Library, GeckoLib, Balm, Cloth Config, Puzzles Lib, Cristel Lib, Resourceful Lib, Forge Config API Port, Architectury, Cardinal Components, AttributeFix, Prickle, Ranged Weapon API, Armor Model API, Bundle API, Structure Pool API, Villagers Trading Plus, Shogi, Lithium, FerriteCore, Krypton, Clumps, Fusion, SuperMartijn642's Core Lib e SuperMartijn642's Config Library. A lista com link e arquivo está em [requirements/REQUISITOS.md](requirements/REQUISITOS.md).
 
 ## Para entrar
 
@@ -136,4 +170,4 @@ Para colocar no servidor os mods que os dois lados usam, na hora de instalar:
 bash instalar.sh --server-dir /caminho/do/servidor
 ```
 
-No Windows o mesmo é `powershell -File instalar.ps1 -ServerDir C:\caminho\do\servidor`. A pasta é a do servidor, a que contém `mods`.
+No Windows o mesmo é `powershell -File instalar.ps1 -ServerDir C:\caminho\do\servidor`. A pasta é a do servidor, a que contém `mods`. Esse comando também copia o MineServer Classes, que trava a classe no primeiro livro criado na mesa de encadernação.

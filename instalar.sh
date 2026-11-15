@@ -197,18 +197,22 @@ download() {
   mv "$dest.partial" "$dest"
 }
 
+need_zip() {
+  command -v unzip >/dev/null 2>&1 || {
+    echo "Falta o programa unzip." >&2
+    exit 1
+  }
+  command -v zip >/dev/null 2>&1 || {
+    echo "Falta o programa zip." >&2
+    exit 1
+  }
+}
+
 patch_loader() {
   local jar needed tmp
   jar="$1"
   needed="$2"
-  command -v unzip >/dev/null 2>&1 || {
-    echo "Falta o programa unzip para ajustar o Passive Skill Tree." >&2
-    exit 1
-  }
-  command -v zip >/dev/null 2>&1 || {
-    echo "Falta o programa zip para ajustar o Passive Skill Tree." >&2
-    exit 1
-  }
+  need_zip
   tmp="$(mktemp -d)"
   unzip -p "$jar" fabric.mod.json > "$tmp/fabric.mod.json"
   if ! grep -q '"fabricloader": "0.19.3"' "$tmp/fabric.mod.json"; then
@@ -223,6 +227,111 @@ patch_loader() {
     zip -q "$jar" fabric.mod.json
   )
   rm -rf "$tmp"
+}
+
+# REI 26.2.820 deixa de mostrar a receita depois que o servidor a desbloqueia.
+# O botão + enche a mesa vanilla, a mesa do Tom e a grade da mochila com upgrade.
+# As classes em patches/rei fazem isso, e o mod também entra no servidor.
+patch_rei_entry() {
+  local jar entry class tmp current
+  jar="$1"
+  entry="$2"
+  class="$3"
+  [ -f "$class" ] || {
+    echo "Falta $class para corrigir o REI." >&2
+    exit 1
+  }
+  if unzip -l "$jar" "$entry" | grep -q "$(basename "$entry")"; then
+    current="$(mktemp)"
+    unzip -p "$jar" "$entry" > "$current"
+    if cmp -s "$current" "$class"; then
+      rm -f "$current"
+      return 0
+    fi
+    rm -f "$current"
+  fi
+  tmp="$(mktemp -d)"
+  mkdir -p "$tmp/$(dirname "$entry")"
+  cp "$class" "$tmp/$entry"
+  touch -t 198001010000 "$tmp/$entry"
+  (
+    cd "$tmp"
+    zip -q -X "$jar" "$entry"
+  )
+  rm -rf "$tmp"
+  current="$(mktemp)"
+  unzip -p "$jar" "$entry" > "$current"
+  if ! cmp -s "$current" "$class"; then
+    rm -f "$current"
+    echo "A correção do REI não entrou em $(basename "$jar")." >&2
+    exit 1
+  fi
+  rm -f "$current"
+}
+
+patch_rei_entrypoint() {
+  local jar tmp
+  jar="$1"
+  tmp="$(mktemp -d)"
+  unzip -p "$jar" fabric.mod.json > "$tmp/fabric.mod.json"
+  if grep -q "BackpackReiPlugin" "$tmp/fabric.mod.json"; then
+    rm -rf "$tmp"
+    return 0
+  fi
+  awk '
+    /HideIngredientsFromTagsPlugin"/ && !done {
+      sub(/"$/, "\",")
+      print
+      print "      \"me.shedaniel.rei.plugin.client.backpack.BackpackReiPlugin\""
+      done = 1
+      next
+    }
+    { print }
+  ' "$tmp/fabric.mod.json" > "$tmp/patched.json"
+  if ! grep -q "BackpackReiPlugin" "$tmp/patched.json"; then
+    echo "Não achei a lista rei_client dentro do REI." >&2
+    rm -rf "$tmp"
+    exit 1
+  fi
+  mv "$tmp/patched.json" "$tmp/fabric.mod.json"
+  touch -t 198001010000 "$tmp/fabric.mod.json"
+  (
+    cd "$tmp"
+    zip -q -X "$jar" fabric.mod.json
+  )
+  rm -rf "$tmp"
+}
+
+patch_rei() {
+  local jar
+  jar="$1"
+  need_zip
+  case "$jar" in
+    /*) ;;
+    *) jar="$(pwd)/$jar" ;;
+  esac
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/impl/client/registry/display/ClientRecipeFallback.class" \
+    "patches/rei/ClientRecipeFallback.class"
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/plugin/client/displays/ClientsidedCraftingDisplay.class" \
+    "patches/rei/ClientsidedCraftingDisplay.class"
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/impl/client/transfer/SimpleTransferHandlerImpl.class" \
+    "patches/rei/SimpleTransferHandlerImpl.class"
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/plugin/autocrafting/recipebook/DefaultRecipeBookHandler.class" \
+    "patches/rei/DefaultRecipeBookHandler.class"
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/impl/common/registry/displays/ServerDisplayRegistryImpl.class" \
+    "patches/rei/ServerDisplayRegistryImpl.class"
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/plugin/client/backpack/BackpackCraftingTransfer.class" \
+    "patches/rei/BackpackCraftingTransfer.class"
+  patch_rei_entry "$jar" \
+    "me/shedaniel/rei/plugin/client/backpack/BackpackReiPlugin.class" \
+    "patches/rei/BackpackReiPlugin.class"
+  patch_rei_entrypoint "$jar"
 }
 
 install_row() {
@@ -255,7 +364,9 @@ install_row() {
   target="$base/$dest/$filename"
   mkdir -p "$base/$dest"
   download "$url" "$target" "$sum" "$alt"
-  if [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
+  if [ "$patch" = "rei-fallback" ]; then
+    patch_rei "$target"
+  elif [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
     patch_loader "$target" "$patch"
   fi
 }
@@ -271,6 +382,38 @@ while IFS="$(printf '\t')" read -r side id name filename sum url dest patch orig
     install_row "$SERVER_DIR" "$side" "$filename" "$sum" "$url" "$dest" "$patch" "$server_sha1"
   fi
 done < "$REQ"
+
+copy_client_config() {
+  local dest src
+  dest="$1"
+  src="bundled/config/trinkets.json"
+  [ -f "$src" ] || {
+    echo "Falta $src." >&2
+    exit 1
+  }
+  mkdir -p "$dest/config"
+  cp "$src" "$dest/config/trinkets.json"
+  echo "Coluna de berloques gravada em $dest/config/trinkets.json"
+}
+
+copy_server_bundle() {
+  local dest src
+  dest="$1"
+  src="bundled/server/mineserver-classes-1.0.0.jar"
+  [ -f "$src" ] || {
+    echo "Falta $src." >&2
+    exit 1
+  }
+  mkdir -p "$dest/mods" "$dest/config"
+  cp "bundled/config/trinkets.json" "$dest/config/trinkets.json"
+  cp "$src" "$dest/mods/mineserver-classes-1.0.0.jar"
+  echo "MineServer Classes copiado para $dest/mods."
+}
+
+copy_client_config "$GAME_DIR"
+if [ -n "$SERVER_DIR" ]; then
+  copy_server_bundle "$SERVER_DIR"
+fi
 
 FABRIC_JSON="$MINECRAFT_DIR/versions/$VERSION_ID/$VERSION_ID.json"
 echo "baixando o perfil Fabric $VERSION_ID"
@@ -343,5 +486,7 @@ else
 fi
 if [ -n "$SERVER_DIR" ]; then
   echo "Mods do servidor atualizados em $SERVER_DIR/mods."
+  echo "A trava de classe está em $SERVER_DIR/mods/mineserver-classes-1.0.0.jar."
 fi
+echo "Anel, livro e mochila ficam na coluna ao lado do personagem. Feche o jogo e abra de novo se ele estiver aberto."
 echo "O endereço do servidor o grupo manda no chat."

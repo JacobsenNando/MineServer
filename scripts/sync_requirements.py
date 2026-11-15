@@ -125,6 +125,7 @@ def write_requirements(meta: dict[str, str], rows: list[dict[str, str]]) -> None
     lines = [
         "# Ficha do cliente MineServer",
         "# Quem vai jogar usa o instalador. O mundo e os arquivos do servidor não estão aqui.",
+        "# patch rei-fallback corrige o REI 26.2.820: a receita continua visível e o botão + enche a mesa vanilla, a mesa do Tom e a grade da mochila com upgrade. O REI e o Architectury entram no servidor. O server_sha1 dessa linha é o jar já corrigido.",
     ]
     for key in META_KEYS:
         lines.append(f"# {key} {meta[key]}")
