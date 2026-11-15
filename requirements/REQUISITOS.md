@@ -18,8 +18,10 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Cloth Config v26.2](https://modrinth.com/mod/9s6osm5g) `cloth-config-26.2.155.jar`
 - [Clumps](https://modrinth.com/mod/Wnxd13zP) `Clumps-fabric-26.2-26.2.1.jar`
 - [Cristel Lib](https://modrinth.com/mod/cl223EMc) `cristellib-fabric-26.2-3.1.13.jar`
+- [Decorative Blocks Rewalked](https://modrinth.com/mod/nZMnPhfd) `decorative_blocks_rewalked-fabric-26.2-7.0.0.jar`
 - [Dungeons and Taverns](https://modrinth.com/mod/tpehi7ww) `dungeons-and-taverns-5.3.2.jar`
 - [Fabric API](https://modrinth.com/mod/P7dR8mSH) `fabric-api-0.161.0+26.2.jar`
+- [Farmer's Delight](https://modrinth.com/mod/7vxePowz) `FarmersDelight-26.2-3.6.30+refabricated.jar`
 - [FerriteCore](https://modrinth.com/mod/uXXizFIs) `ferritecore-9.0.0-fabric.jar`
 - [Forge Config API Port](https://modrinth.com/mod/ohNO6lps) `ForgeConfigAPIPort-v26.2.1-mc26.2.x-Fabric.jar`
 - [Friends&Foes](https://modrinth.com/mod/POQ2i9zu) `friendsandfoes-fabric-5.0.4+mc26.2.jar`
@@ -32,6 +34,8 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Krypton](https://modrinth.com/mod/fQEb0iXm) `krypton-0.3.1.jar`
 - [Lithium](https://modrinth.com/mod/gvQqBUqZ) `lithium-fabric-0.25.3+mc26.2.jar`
 - [Lootr](https://modrinth.com/mod/EltpO5cN) `lootr-fabric-26.2-1.24.41.124.jar`
+- [Macaw's Lights and Lamps](https://modrinth.com/mod/w4an97C2) `mcw-lights-1.1.5-mc26.2fabric.jar`
+- [Macaw's Windows](https://modrinth.com/mod/C7I0BCni) `mcw-windows-2.4.2-mc26.2fabric.jar`
 - [Paladins & Priests (RPG Series)](https://modrinth.com/mod/FxXkHaLe) `paladins-fabric-3.1.3.003+26.2.jar`
 - [Passive Skill Tree](https://github.com/glea94/Passive-SKill-Tree-Fabric) `PassiveSkillTree-Fabric-26.2-0.7.6+c.jar`
 - [Player Animation Library](https://modrinth.com/mod/ha1mEyJS) `PlayerAnimationLibMerged-1.2.8+mc.26.2.jar`
@@ -46,6 +50,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Runes](https://modrinth.com/mod/lP9Yrr1E) `runes-fabric-1.3.2+26.2.jar`
 - [Shogi](https://modrinth.com/mod/bi4iCmsw) `shogi-fabric-26.2-26.2.0.8.jar`
 - [Skill Proficiencies](https://modrinth.com/mod/d4TtjlpN) `specialities-1.6.4+26.2.jar`
+- [skniro's Furniture](https://modrinth.com/mod/pezpt98N) `SkniroFurniture-1.6.0-26.2-Fabric.jar`
 - [Spell Engine](https://modrinth.com/mod/XvoWJaA2) `spell_engine-fabric-1.10.9+26.2.jar`
 - [Spell Power Attribute](https://modrinth.com/mod/8ooWzSQP) `spell_power-fabric-1.6.2+26.2.jar`
 - [Structure Pool API](https://modrinth.com/mod/LrYZi08Q) `structure_pool_api-fabric-1.3.0+26.2.jar`
@@ -64,9 +69,13 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Dynamic FPS](https://modrinth.com/mod/LQ3K71Q1) `dynamic-fps-3.11.9+minecraft-26.2.0-fabric.jar`
 - [EntityCulling](https://modrinth.com/mod/NNAgCjsB) `entityculling-fabric-1.11.3-mc26.2.jar`
 - [ImmediatelyFast](https://modrinth.com/mod/5ZwdcRci) `ImmediatelyFast-Fabric-1.16.5+26.2.jar`
+- [Kirin UI](https://modrinth.com/mod/9aNz8Zqn) `kirin-1.22.0+26.2.jar`
+- [LambDynamicLights](https://modrinth.com/mod/yBW8D80W) `lambdynamiclights-4.12.4+26.2.jar`
 - [Neat](https://modrinth.com/mod/Ins7SzzR) `Neat-26.2-50-FABRIC.jar`
+- [Presence Footsteps](https://modrinth.com/mod/rcTfTZr3) `PresenceFootsteps-1.13.3+26.2.jar`
 - [Remnants Minimap](https://modrinth.com/mod/lLviL6Oq) `remnantminimaps-fabric-26.2-2.0.1.jar`
 - [Sodium](https://modrinth.com/mod/AANobbMI) `sodium-fabric-0.9.2+mc26.2.jar`
+- [Sound Physics Remastered](https://modrinth.com/mod/qyVF9oeo) `sound-physics-remastered-fabric-1.5.2+26.2.jar`
 
 ## Só se a pessoa pedir os shaders
 
