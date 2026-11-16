@@ -27,6 +27,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Frostbyte's Slabs & Stairs](https://modrinth.com/mod/WWL04tjR) `slabsandstairs-1.15.2-26.2.jar`
 - [Fusion](https://modrinth.com/mod/p19vrgc2) `fusion-1.3.16-fabric-mc26.2.jar`
 - [GeckoLib 5](https://modrinth.com/mod/8BmcQJ2H) `geckolib-fabric-26.2-5.5.5.jar`
+- [Icy's Better Horses](https://modrinth.com/mod/XlUm5I57) `icys-better-horses-2.1.8-fab-26.2.jar`
 - [Illager Invasion](https://modrinth.com/mod/jSV9w0J5) `IllagerInvasion-v26.2.0-mc26.2.x-Fabric.jar`
 - [Immersive Armors](https://modrinth.com/mod/eE2Db4YU) `immersive_armors-1.8.2+26.2-fabric.jar`
 - [Jewelry (RPG Series)](https://modrinth.com/mod/sNJAIjUm) `jewelry-fabric-2.5.1+26.2.jar`
@@ -36,6 +37,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Lootr](https://modrinth.com/mod/EltpO5cN) `lootr-fabric-26.2-1.24.41.124.jar`
 - [Macaw's Lights and Lamps](https://modrinth.com/mod/w4an97C2) `mcw-lights-1.1.5-mc26.2fabric.jar`
 - [Macaw's Windows](https://modrinth.com/mod/C7I0BCni) `mcw-windows-2.4.2-mc26.2fabric.jar`
+- [Modonomicon](https://modrinth.com/mod/692GClaE) `modonomicon-26.2-fabric-2.5.0.jar`
 - [Paladins & Priests (RPG Series)](https://modrinth.com/mod/FxXkHaLe) `paladins-fabric-3.1.3.003+26.2.jar`
 - [Passive Skill Tree](https://github.com/glea94/Passive-SKill-Tree-Fabric) `PassiveSkillTree-Fabric-26.2-0.7.6+c.jar`
 - [Player Animation Library](https://modrinth.com/mod/ha1mEyJS) `PlayerAnimationLibMerged-1.2.8+mc.26.2.jar`

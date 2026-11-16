@@ -385,6 +385,7 @@ copy_server_bundle() {
   }
   mkdir -p "$dest/mods" "$dest/config"
   cp "bundled/config/trinkets.json" "$dest/config/trinkets.json"
+  cp "bundled/config/icys-better-horses.json" "$dest/config/icys-better-horses.json"
   cp "$src" "$dest/mods/mineserver-classes-1.0.0.jar"
   echo "MineServer Classes copiado para $dest/mods."
 }

@@ -130,6 +130,7 @@ Estes mudam a sua partida:
 - **Dungeons and Taverns.** Masmorra e taverna de bloco vanilla. O grupo entra quando quer.
 - **Towns and Towers.** Vila e torre a mais, em terreno que ainda não foi gerado.
 - **Waystones.** O ponto de viagem nas vilas novas.
+- **Icy's Better Horses.** Domesticar o cavalo o torna seu. O vínculo sobe a velocidade e o pulo. P chama o cavalo, G lista os seus, e R manda seguir, ficar ou voltar para casa. A carroça leva quatro pessoas e um baú.
 - **Lootr.** O baú de estrutura vira o seu baú.
 - **Tom's Simple Storage.** Baús da base ligados entre si.
 - **Traveler's Backpack.** A mochila.
@@ -141,7 +142,7 @@ Estes mudam a sua partida:
 
 Estes deixam o jogo mais leve no seu computador: Sodium, Entity Culling, ImmediatelyFast, Bad Optimizations e Dynamic FPS. Se na instalação você digitar `s`, entram também o Iris e o shader Complementary. Ele deixa o mundo mais bonito e mais pesado. Enter segue sem shader.
 
-O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell Power, Player Animation Library, GeckoLib, Balm, Cloth Config, Puzzles Lib, Cristel Lib, Resourceful Lib, Forge Config API Port, Cardinal Components, AttributeFix, Prickle, Ranged Weapon API, Armor Model API, Bundle API, Structure Pool API, Villagers Trading Plus, Shogi, Lithium, FerriteCore, Krypton, Clumps, Fusion, SuperMartijn642's Core Lib e SuperMartijn642's Config Library. A lista com link e arquivo está em [requirements/REQUISITOS.md](requirements/REQUISITOS.md).
+O resto entra porque os mods de cima precisam: Fabric API, Spell Engine, Spell Power, Player Animation Library, GeckoLib, Modonomicon, Balm, Cloth Config, Puzzles Lib, Cristel Lib, Resourceful Lib, Forge Config API Port, Cardinal Components, AttributeFix, Prickle, Ranged Weapon API, Armor Model API, Bundle API, Structure Pool API, Villagers Trading Plus, Shogi, Lithium, FerriteCore, Krypton, Clumps, Fusion, SuperMartijn642's Core Lib e SuperMartijn642's Config Library. A lista com link e arquivo está em [requirements/REQUISITOS.md](requirements/REQUISITOS.md).
 
 ## Para entrar
 

@@ -228,11 +228,14 @@ function Install-ClientConfig([string]$Dest) {
 function Install-ServerBundle([string]$Dest) {
   $jar = Join-Path $Root "bundled\server\mineserver-classes-1.0.0.jar"
   $trinkets = Join-Path $Root "bundled\config\trinkets.json"
+  $horses = Join-Path $Root "bundled\config\icys-better-horses.json"
   if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
   if (-not (Test-Path -LiteralPath $trinkets)) { throw "Falta $trinkets." }
+  if (-not (Test-Path -LiteralPath $horses)) { throw "Falta $horses." }
   New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
   New-Item -ItemType Directory -Force -Path (Join-Path $Dest "config") | Out-Null
   Copy-Item -LiteralPath $trinkets -Destination (Join-Path $Dest "config\trinkets.json") -Force
+  Copy-Item -LiteralPath $horses -Destination (Join-Path $Dest "config\icys-better-horses.json") -Force
   Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-classes-1.0.0.jar") -Force
   Write-Host "MineServer Classes copiado para $(Join-Path $Dest 'mods')."
 }
