@@ -46,7 +46,7 @@ Você escolhe um jeito de jogar, e o jogo também te ensina outro por baixo.
 
 **O que sobe sozinho.** Enquanto você minera, corta árvore, luta, atira, pesca, planta, cava, se defende, corre, escala, anda agachado, forja, faz poção e encanta, quinze habilidades sobem com a prática. O bônus soma com o encantamento da ferramenta. A barra aparece na tela. Ninguém escolhe isso num menu: a habilidade sobe porque você fez a ação.
 
-**O que você escolhe.** A tecla **O** abre a árvore de habilidades. Ali estão as classes. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. Dá para investir em mais de uma árvore. A classe é um caminho, e o grupo fica mais forte quando os caminhos são diferentes.
+**O que você escolhe.** A tecla **O** abre a árvore de habilidades. Ali estão Caçador, Alquimista, Cozinheiro e Ferreiro. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. A classe de combate limita quais desses ramos aceitam ponto novo. O manual `docs/manual-de-classes.pdf` descreve o de cada uma.
 
 Para a árvore abrir de verdade, crafte uma vez o item que apresenta a classe:
 
@@ -63,22 +63,26 @@ Se a build não ficou boa, o Pergaminho da Amnésia zera a árvore. Vinte por ce
 
 ## Classes de combate
 
-A árvore da tecla O continua. O livro de feitiços é outro caminho: ele muda o jeito de lutar.
+A árvore da tecla O continua, com o ramo preso à classe de combate. O livro de feitiços é outro caminho: ele muda o jeito de lutar.
 
 A mesa de encadernação aparece no gazebo de vila em terreno novo. Dá para construir a sua. Estante ao redor, como na mesa de encantamentos. O livro fica equipado, e a arma fica na mão.
 
 | Classe | Para começar | O que ela faz |
 | --- | --- | --- |
-| Mago | um cajado ou uma varinha | tomo arcano, de fogo ou de gelo. A runa é a munição |
+| Mago de fogo | um cajado ou uma varinha de fogo | tomo de fogo. A runa é a munição |
+| Mago de gelo | um cajado ou uma varinha de gelo | tomo de gelo. A runa é a munição |
+| Mago arcano | um cajado ou uma varinha arcana | tomo arcano. A runa é a munição |
 | Arqueiro | um arco ou uma besta | o manual de arquearia vale em qualquer arco |
 | Paladino | um martelo, uma maça ou uma claymore | protege o grupo e bate de perto. O escudo cabe |
 | Sacerdote | um cajado ou uma varinha sagrada | cura e protege |
 | Ladino | uma adaga ou uma foice, nas duas mãos | desvia e engana |
 | Guerreiro | um machado duplo, uma glaive ou uma claymore | quebra a guarda e esmaga |
 
-O primeiro livro criado na mesa de encadernação escolhe a classe. Os três tomos do mago contam como a mesma. Paladino, sacerdote, arqueiro, ladino e guerreiro ficam cada um no seu. Antes desse livro, só arma do vanilla equipa. Armadura, joia, relíquia e runa continuam. Depois, o equipamento de outra classe volta para o inventário. Espada, arco e armadura do vanilla continuam. Joia, relíquia e runa também. A mesa de cada classe continua livre.
+O primeiro livro criado na mesa de encadernação escolhe a classe. Fogo, gelo e arcano ficam separados. Paladino, sacerdote, arqueiro, ladino e guerreiro ficam cada um no seu. Antes desse livro, só arma do vanilla equipa. Armadura, joia, relíquia e runa continuam. Depois, o equipamento de outra classe volta para o inventário. O tomo, o cajado, a varinha e a túnica de outra escola também. A varinha de novato, o cajado simples e a túnica de mago servem para as três escolas. Espada, arco e armadura do vanilla continuam. Joia, relíquia e runa também. A mesa de cada classe continua livre.
 
-A arma lendária do Arsenal segue o tipo. O mago usa cajado e claymore. O cajado de cura também cabe no sacerdote. O paladino usa claymore, martelo, maça e escudo. O guerreiro usa claymore, machado duplo, glaive, lança e a espada longa. O arqueiro usa arco e besta. O ladino usa adaga e foice. Maça e escudo ficam fora do mago.
+Quem já era Mago escolhe a escola no próximo tomo criado nessa mesa. Até lá, as três escolas continuam com ele.
+
+A arma lendária do Arsenal segue o tipo. O mago de fogo, o de gelo e o arcano usam cajado e claymore. O cajado de cura também cabe no sacerdote. O paladino usa claymore, martelo, maça e escudo. O guerreiro usa claymore, machado duplo, glaive, lança e a espada longa. O arqueiro usa arco e besta. O ladino usa adaga e foice. Maça e escudo ficam fora do mago.
 
 O pergaminho de esquecimento leva um livro, um fragmento de ametista e obsidiana chorona. Usar o pergaminho devolve o equipamento da classe e abre a escolha de novo.
 

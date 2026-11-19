@@ -72,6 +72,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [ImmediatelyFast](https://modrinth.com/mod/5ZwdcRci) `ImmediatelyFast-Fabric-1.16.5+26.2.jar`
 - [Kirin UI](https://modrinth.com/mod/9aNz8Zqn) `kirin-1.22.0+26.2.jar`
 - [LambDynamicLights](https://modrinth.com/mod/yBW8D80W) `lambdynamiclights-4.12.4+26.2.jar`
+- [Mod Menu](https://modrinth.com/mod/mOgUt4GM) `modmenu-20.0.3.jar`
 - [Neat](https://modrinth.com/mod/Ins7SzzR) `Neat-26.2-50-FABRIC.jar`
 - [Presence Footsteps](https://modrinth.com/mod/rcTfTZr3) `PresenceFootsteps-1.13.3+26.2.jar`
 - [Remnants Minimap](https://modrinth.com/mod/lLviL6Oq) `remnantminimaps-fabric-26.2-2.0.1.jar`

@@ -266,6 +266,24 @@ patch_class() {
   rm -f "$current"
 }
 
+# A camada do meio do peito da armadura divina não desenha mais o brilho forçado.
+# Em primeira pessoa, a armadura do próprio jogador não desenha por cima da câmera.
+patch_immersive_armors() {
+  local jar
+  jar="$1"
+  need_zip
+  case "$jar" in
+    /*) ;;
+    *) jar="$(pwd)/$jar" ;;
+  esac
+  patch_class "$jar" \
+    "immersive_armors/ItemsClient.class" \
+    "patches/immersive_armors/ItemsClient.class"
+  patch_class "$jar" \
+    "immersive_armors/mixin/MixinHumanoidArmorLayer.class" \
+    "patches/immersive_armors/mixin/MixinHumanoidArmorLayer.class"
+}
+
 # A barra de progresso fica no canto inferior direito, com 80 pixels de largura.
 patch_skill_hud() {
   local jar
@@ -342,6 +360,9 @@ install_row() {
   fi
   if [ "$filename" = "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar" ]; then
     patch_skill_hud "$target"
+  fi
+  if [ "$filename" = "immersive_armors-1.8.2+26.2-fabric.jar" ]; then
+    patch_immersive_armors "$target"
   fi
 }
 

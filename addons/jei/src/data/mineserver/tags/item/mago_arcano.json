@@ -1,0 +1,145 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "arsenal:unique_claymore_1",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_claymore_2",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_claymore_sw",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_1",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_2",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_3",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_4",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_5",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_6",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_damage_sw",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_heal_1",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_heal_2",
+      "required": false
+    },
+    {
+      "id": "arsenal:unique_staff_heal_sw",
+      "required": false
+    },
+    {
+      "id": "wizards:aether_wizard_staff",
+      "required": false
+    },
+    {
+      "id": "wizards:arcane_robe_chest",
+      "required": false
+    },
+    {
+      "id": "wizards:arcane_robe_feet",
+      "required": false
+    },
+    {
+      "id": "wizards:arcane_robe_head",
+      "required": false
+    },
+    {
+      "id": "wizards:arcane_robe_legs",
+      "required": false
+    },
+    {
+      "id": "wizards:netherite_arcane_robe_chest",
+      "required": false
+    },
+    {
+      "id": "wizards:netherite_arcane_robe_feet",
+      "required": false
+    },
+    {
+      "id": "wizards:netherite_arcane_robe_head",
+      "required": false
+    },
+    {
+      "id": "wizards:netherite_arcane_robe_legs",
+      "required": false
+    },
+    {
+      "id": "wizards:spell_book/arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:spell_scroll/arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:staff_arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:staff_crystal_arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:staff_netherite_arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:staff_wizard",
+      "required": false
+    },
+    {
+      "id": "wizards:wand_arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:wand_netherite_arcane",
+      "required": false
+    },
+    {
+      "id": "wizards:wand_novice",
+      "required": false
+    },
+    {
+      "id": "wizards:wizard_robe_chest",
+      "required": false
+    },
+    {
+      "id": "wizards:wizard_robe_feet",
+      "required": false
+    },
+    {
+      "id": "wizards:wizard_robe_head",
+      "required": false
+    },
+    {
+      "id": "wizards:wizard_robe_legs",
+      "required": false
+    }
+  ]
+}
