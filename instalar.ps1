@@ -1,5 +1,6 @@
 # Instala o cliente MineServer no Windows.
 # Funciona com o Minecraft oficial e com o SKLauncher: os dois leem o mesmo perfil.
+# O mesmo fluxo existe em instalar.sh. Instalar.bat abre este script.
 param(
   [string]$MinecraftDir = "",
   [string]$ServerDir = "",
@@ -164,6 +165,20 @@ function Update-SkillHud([string]$Jar) {
   }
 }
 
+# A camada do meio do peito da armadura divina não desenha mais o brilho forçado.
+# Em primeira pessoa, a armadura do próprio jogador não desenha por cima da câmera.
+function Update-ImmersiveArmors([string]$Jar) {
+  Add-Type -AssemblyName System.IO.Compression
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  $zip = [System.IO.Compression.ZipFile]::Open($Jar, [System.IO.Compression.ZipArchiveMode]::Update)
+  try {
+    Update-ReiClass $zip "immersive_armors/ItemsClient.class" (Join-Path $Root "patches\immersive_armors\ItemsClient.class")
+    Update-ReiClass $zip "immersive_armors/mixin/MixinHumanoidArmorLayer.class" (Join-Path $Root "patches\immersive_armors\mixin\MixinHumanoidArmorLayer.class")
+  } finally {
+    $zip.Dispose()
+  }
+}
+
 function Update-LoaderPin([string]$Jar, [string]$Needed) {
   Add-Type -AssemblyName System.IO.Compression
   Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -213,6 +228,7 @@ foreach ($line in Get-Content -LiteralPath $Req -Encoding UTF8) {
     Save-Url $url $target $sum $alt
     if ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
     if ($filename -eq "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar") { Update-SkillHud $target }
+    if ($filename -eq "immersive_armors-1.8.2+26.2-fabric.jar") { Update-ImmersiveArmors $target }
   }
 }
 

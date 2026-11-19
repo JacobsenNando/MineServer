@@ -1,6 +1,7 @@
 #!/bin/sh
 # Instala o cliente MineServer no Linux.
 # Funciona com o Minecraft oficial e com o SKLauncher: os dois leem o mesmo perfil.
+# O mesmo fluxo existe em instalar.ps1. Instalar.bat abre esse script no Windows.
 set -eu
 
 cd "$(dirname "$0")"
