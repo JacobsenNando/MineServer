@@ -515,6 +515,83 @@ copy_client_config() {
   echo "Coluna de berloques gravada em $dest/config/trinkets.json"
 }
 
+# O pacote fica por último em resourcePacks: no 26.2, o último da lista cobre o anterior.
+# lang:pt_br faz o jogo ler assets/*/lang/pt_br.json desse pacote.
+copy_language_pack() {
+  local dest src options tmp
+  dest="$1"
+  src="bundled/resourcepacks/mineserver-idioma"
+  options="$dest/options.txt"
+  tmp="$options.partial"
+  [ -f "$src/pack.mcmeta" ] || {
+    echo "Falta o pacote de idioma em $src." >&2
+    exit 1
+  }
+  if minecraft_client_open; then
+    echo "O Minecraft está aberto. Fecha ele por completo e roda o instalador de novo. Com o jogo aberto a tradução não fica ligada." >&2
+    exit 1
+  fi
+  mkdir -p "$dest/resourcepacks"
+  rm -rf "$dest/resourcepacks/mineserver-idioma"
+  cp -R "$src" "$dest/resourcepacks/mineserver-idioma"
+  if [ -f "$options" ]; then
+    awk '
+      function rebuilt(line, want, keep,    key, body, n, i, parts, item, out) {
+        key = line
+        sub(/:.*/, "", key)
+        body = line
+        sub(/^[^:]*:[[:space:]]*\[/, "", body)
+        sub(/\][[:space:]]*$/, "", body)
+        n = split(body, parts, ",")
+        out = ""
+        for (i = 1; i <= n; i++) {
+          item = parts[i]
+          gsub(/^[[:space:]]+|[[:space:]]+$/, "", item)
+          if (item == "" || item == want) continue
+          out = out (out == "" ? "" : ",") item
+        }
+        if (keep && out == "") out = "\"vanilla\""
+        if (keep) out = out (out == "" ? "" : ",") want
+        return key ":[" out "]"
+      }
+      BEGIN { pack = "\"file/mineserver-idioma\"" }
+      {
+        sub(/\r$/, "")
+        if ($0 ~ /^resourcePacks:/) {
+          seen_packs = 1
+          print rebuilt($0, pack, 1)
+          next
+        }
+        if ($0 ~ /^incompatibleResourcePacks:/) {
+          print rebuilt($0, pack, 0)
+          next
+        }
+        if ($0 ~ /^lang:/) {
+          seen_lang = 1
+          print "lang:pt_br"
+          next
+        }
+        print
+      }
+      END {
+        if (!seen_packs) print "resourcePacks:[\"vanilla\"," pack "]"
+        if (!seen_lang) print "lang:pt_br"
+      }
+    ' "$options" > "$tmp" || {
+      rm -f "$tmp"
+      echo "Não consegui ligar a tradução em $options." >&2
+      exit 1
+    }
+    mv "$tmp" "$options"
+  else
+    printf '%s\n' \
+      'lang:pt_br' \
+      'resourcePacks:["vanilla","file/mineserver-idioma"]' \
+      'incompatibleResourcePacks:[]' > "$options"
+  fi
+  echo "Tradução ligada em $dest. A árvore de habilidades abre em português."
+}
+
 copy_server_bundle() {
   local dest src
   dest="$1"
@@ -531,6 +608,7 @@ copy_server_bundle() {
 }
 
 copy_client_config "$GAME_DIR"
+copy_language_pack "$GAME_DIR"
 copy_jei_addon "$GAME_DIR"
 copy_atributos "$GAME_DIR"
 copy_encantamentos "$GAME_DIR"

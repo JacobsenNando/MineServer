@@ -347,6 +347,74 @@ function Install-ClientConfig([string]$Dest) {
   Write-Host "Coluna de berloques gravada em $(Join-Path $config 'trinkets.json')"
 }
 
+# O pacote fica por último em resourcePacks: no 26.2, o último da lista cobre o anterior.
+# lang:pt_br faz o jogo ler assets/*/lang/pt_br.json desse pacote.
+function Update-OptionsPackList([string]$Line, [string]$Pack, [bool]$Keep) {
+  $colon = $Line.IndexOf(":")
+  $key = $Line.Substring(0, $colon)
+  $body = $Line.Substring($colon + 1).Trim()
+  if ($body.StartsWith("[")) { $body = $body.Substring(1) }
+  if ($body.EndsWith("]")) { $body = $body.Substring(0, $body.Length - 1) }
+  $items = New-Object System.Collections.Generic.List[string]
+  if ($body.Trim().Length -gt 0) {
+    foreach ($part in $body.Split(",")) {
+      $item = $part.Trim()
+      if ($item.Length -eq 0 -or $item -eq $Pack) { continue }
+      $items.Add($item)
+    }
+  }
+  if ($Keep -and $items.Count -eq 0) { $items.Add('"vanilla"') }
+  if ($Keep) { $items.Add($Pack) }
+  return ($key + ":[" + ($items -join ",") + "]")
+}
+
+function Install-LanguagePack([string]$Dest) {
+  $src = Join-Path $Root "bundled\resourcepacks\mineserver-idioma"
+  if (-not (Test-Path -LiteralPath (Join-Path $src "pack.mcmeta"))) {
+    throw "Falta o pacote de idioma em $src."
+  }
+  if (Test-MinecraftClientOpen) {
+    Write-Host "O Minecraft está aberto. Fecha ele por completo e roda o instalador de novo. Com o jogo aberto a tradução não fica ligada."
+    exit 1
+  }
+  $packDir = Join-Path (Join-Path $Dest "resourcepacks") "mineserver-idioma"
+  if (Test-Path -LiteralPath $packDir) { Remove-Item -LiteralPath $packDir -Recurse -Force }
+  New-Item -ItemType Directory -Force -Path (Split-Path -Parent $packDir) | Out-Null
+  Copy-Item -LiteralPath $src -Destination $packDir -Recurse -Force
+  $options = Join-Path $Dest "options.txt"
+  $pack = '"file/mineserver-idioma"'
+  $utf8 = New-Object System.Text.UTF8Encoding $false
+  if (Test-Path -LiteralPath $options) {
+    $seenPacks = $false
+    $seenLang = $false
+    $out = New-Object System.Collections.Generic.List[string]
+    foreach ($raw in [System.IO.File]::ReadAllLines($options)) {
+      $line = $raw.TrimEnd([char]13)
+      if ($line.StartsWith("resourcePacks:")) {
+        $seenPacks = $true
+        $line = Update-OptionsPackList $line $pack $true
+      } elseif ($line.StartsWith("incompatibleResourcePacks:")) {
+        $line = Update-OptionsPackList $line $pack $false
+      } elseif ($line.StartsWith("lang:")) {
+        $seenLang = $true
+        $line = "lang:pt_br"
+      }
+      $out.Add($line)
+    }
+    if (-not $seenPacks) { $out.Add('resourcePacks:["vanilla","file/mineserver-idioma"]') }
+    if (-not $seenLang) { $out.Add("lang:pt_br") }
+    [System.IO.File]::WriteAllLines($options, $out.ToArray(), $utf8)
+  } else {
+    $fresh = @(
+      "lang:pt_br",
+      'resourcePacks:["vanilla","file/mineserver-idioma"]',
+      "incompatibleResourcePacks:[]"
+    )
+    [System.IO.File]::WriteAllLines($options, $fresh, $utf8)
+  }
+  Write-Host "Tradução ligada em $Dest. A árvore de habilidades abre em português."
+}
+
 function Install-ServerBundle([string]$Dest) {
   $jar = Join-Path $Root "bundled\server\mineserver-classes-1.0.0.jar"
   $trinkets = Join-Path $Root "bundled\config\trinkets.json"
@@ -395,6 +463,7 @@ function Install-Encantamentos([string]$Dest) {
 }
 
 Install-ClientConfig $GameDir
+Install-LanguagePack $GameDir
 Install-JeiAddon $GameDir
 Install-Atributos $GameDir
 Install-Encantamentos $GameDir

@@ -46,7 +46,7 @@ Você escolhe um jeito de jogar, e o jogo também te ensina outro por baixo.
 
 **O que sobe sozinho.** Enquanto você minera, corta árvore, luta, atira, pesca, planta, cava, se defende, corre, escala, anda agachado, forja, faz poção e encanta, quinze habilidades sobem com a prática. O bônus soma com o encantamento da ferramenta. A barra aparece na tela. Ninguém escolhe isso num menu: a habilidade sobe porque você fez a ação.
 
-**O que você escolhe.** A tecla **O** abre a árvore de habilidades. O menu mostra os caminhos da classe: Caçador, Alquimista, Cozinheiro, Ferreiro e, no paladino, a maça. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. O manual `docs/manual-de-classes.pdf` descreve o de cada uma.
+**O que você escolhe.** A tecla **O** abre a árvore de habilidades. O menu mostra os caminhos da classe: Caçador, Alquimista, Cozinheiro, Ferreiro e, no paladino, a maça. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. O manual `docs/manual-de-classes.pdf` descreve o de cada uma. O instalador deixa essa árvore em português. Você não precisa ligar nada no menu de pacotes.
 
 Para a árvore abrir de verdade, crafte uma vez o item que apresenta a classe:
 
