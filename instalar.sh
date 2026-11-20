@@ -5,6 +5,85 @@
 set -eu
 
 cd "$(dirname "$0")"
+ROOT=$(pwd)
+
+minecraft_client_open() {
+  ps -A -o args= 2>/dev/null | grep -E 'KnotClient|net\.minecraft\.client\.main\.Main' | grep -v grep >/dev/null 2>&1
+}
+
+trees_match() {
+  command -v diff >/dev/null 2>&1 || return 1
+  diff -rq --exclude .mineserver-rev --exclude .git "$1" "$2" >/dev/null 2>&1
+}
+
+update_from_github() {
+  if [ -n "${MINESERVER_SKIP_UPDATE:-}" ]; then
+    return 0
+  fi
+  if [ -d .git ]; then
+    return 0
+  fi
+  if minecraft_client_open; then
+    echo "O Minecraft está aberto. Fecha ele por completo e roda o instalador de novo. Com o jogo aberto a atualização não entra." >&2
+    exit 1
+  fi
+  command -v curl >/dev/null 2>&1 || {
+    echo "Não achei o curl. Sigo com a cópia que já está aqui."
+    return 0
+  }
+  command -v unzip >/dev/null 2>&1 || {
+    echo "Não achei o unzip. Sigo com a cópia que já está aqui."
+    return 0
+  }
+  body=$(curl -fsSL --retry 3 -A "MineServer-installer" \
+    -H "Accept: application/vnd.github+json" \
+    "https://api.github.com/repos/JacobsenNando/MineServer/commits/master" || true)
+  sha=$(printf '%s\n' "$body" | grep -o '"sha": *"[0-9a-f]\{40\}"' | head -n 1 | grep -o '[0-9a-f]\{40\}' || true)
+  if [ -z "$sha" ]; then
+    echo "Não consegui consultar o GitHub. Sigo com a cópia que já está aqui."
+    return 0
+  fi
+  local_rev=""
+  if [ -f .mineserver-rev ]; then
+    local_rev=$(tr -d '[:space:]' < .mineserver-rev)
+  fi
+  if [ "$local_rev" = "$sha" ]; then
+    return 0
+  fi
+  echo "Consultando a versão no GitHub."
+  tmp=$(mktemp -d)
+  if ! curl -fsSL --retry 3 -A "MineServer-installer" -o "$tmp/master.zip" \
+    "https://github.com/JacobsenNando/MineServer/archive/refs/heads/master.zip"; then
+    echo "Não consegui baixar a versão nova. Sigo com a cópia que já está aqui."
+    rm -rf "$tmp"
+    return 0
+  fi
+  if ! unzip -q "$tmp/master.zip" -d "$tmp/src"; then
+    echo "O zip novo veio incompleto. Sigo com a cópia que já está aqui."
+    rm -rf "$tmp"
+    return 0
+  fi
+  src="$tmp/src/MineServer-master"
+  if [ ! -f "$src/instalar.sh" ]; then
+    echo "O zip novo não trouxe o instalador. Sigo com a cópia que já está aqui."
+    rm -rf "$tmp"
+    return 0
+  fi
+  if trees_match "$src" .; then
+    printf '%s\n' "$sha" > .mineserver-rev
+    rm -rf "$tmp"
+    echo "Esta pasta já está na versão nova."
+    return 0
+  fi
+  cp -a "$src"/. .
+  printf '%s\n' "$sha" > .mineserver-rev
+  rm -rf "$tmp"
+  echo "Pasta atualizada. Continuo a instalação com a versão nova."
+  MINESERVER_SKIP_UPDATE=1 exec "$ROOT/instalar.sh" "$@"
+}
+
+update_from_github "$@"
+
 REQ="requirements/client.txt"
 MINECRAFT_DIR="${MINECRAFT_DIR:-$HOME/.minecraft}"
 SHADERS="${MINESERVER_SHADERS:-}"
@@ -326,6 +405,19 @@ copy_jei_addon() {
   echo "MineServer JEI copiado para $dest/mods."
 }
 
+copy_class_mod() {
+  local dest src
+  dest="$1"
+  src="bundled/server/mineserver-classes-1.0.0.jar"
+  [ -f "$src" ] || {
+    echo "Falta $src." >&2
+    exit 1
+  }
+  mkdir -p "$dest/mods"
+  cp "$src" "$dest/mods/mineserver-classes-1.0.0.jar"
+  echo "MineServer Classes copiado para $dest/mods."
+}
+
 install_row() {
   local base side filename sum url dest patch alt target
   base="$1"
@@ -414,6 +506,7 @@ copy_server_bundle() {
 
 copy_client_config "$GAME_DIR"
 copy_jei_addon "$GAME_DIR"
+copy_class_mod "$GAME_DIR"
 if [ -n "$SERVER_DIR" ]; then
   copy_server_bundle "$SERVER_DIR"
 fi
@@ -491,5 +584,6 @@ if [ -n "$SERVER_DIR" ]; then
   echo "Mods do servidor atualizados em $SERVER_DIR/mods."
   echo "A trava de classe está em $SERVER_DIR/mods/mineserver-classes-1.0.0.jar."
 fi
+echo "O menu de caminhos usa $GAME_DIR/mods/mineserver-classes-1.0.0.jar. Feche o Minecraft por completo para carregar."
 echo "Anel, livro e mochila ficam na coluna ao lado do personagem. Feche o jogo e abra de novo se ele estiver aberto."
 echo "O endereço do servidor o grupo manda no chat."

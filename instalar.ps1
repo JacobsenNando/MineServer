@@ -11,6 +11,112 @@ $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+function Test-MinecraftClientOpen {
+  try {
+    $rows = Get-CimInstance Win32_Process -ErrorAction Stop
+  } catch {
+    return $false
+  }
+  foreach ($row in $rows) {
+    if ($row.Name -match '^(java|javaw)\.exe$' -and $row.CommandLine -match 'KnotClient|net\.minecraft\.client\.main\.Main') {
+      return $true
+    }
+  }
+  return $false
+}
+
+function Test-SameInstallerTree([string]$Src, [string]$Dest) {
+  & robocopy.exe $Src $Dest /L /E /NFL /NDL /NJH /NJS /NC /NS /NP /XF .mineserver-rev /XD .git | Out-Null
+  $code = $LASTEXITCODE
+  $global:LASTEXITCODE = 0
+  return ($code -eq 0)
+}
+
+function Update-InstallerFromGitHub {
+  if ($env:MINESERVER_SKIP_UPDATE -eq "1") { return }
+  if (Test-Path -LiteralPath (Join-Path $Root ".git")) { return }
+  if (Test-MinecraftClientOpen) {
+    Write-Host "O Minecraft está aberto. Fecha ele por completo e roda o instalador de novo. Com o jogo aberto a atualização não entra."
+    exit 1
+  }
+  $api = "https://api.github.com/repos/JacobsenNando/MineServer/commits/master"
+  $zipUrl = "https://github.com/JacobsenNando/MineServer/archive/refs/heads/master.zip"
+  try {
+    $response = Invoke-WebRequest -Uri $api -UseBasicParsing -Headers @{
+      "User-Agent" = "MineServer-installer"
+      "Accept" = "application/vnd.github+json"
+    }
+    $sha = [string](($response.Content | ConvertFrom-Json).sha)
+  } catch {
+    Write-Host "Não consegui consultar o GitHub. Sigo com a cópia que já está aqui."
+    return
+  }
+  if ($sha -notmatch '^[0-9a-f]{40}$') {
+    Write-Host "Não consegui consultar o GitHub. Sigo com a cópia que já está aqui."
+    return
+  }
+  $stampPath = Join-Path $Root ".mineserver-rev"
+  $localRev = ""
+  if (Test-Path -LiteralPath $stampPath) {
+    $localRev = ([System.IO.File]::ReadAllText($stampPath)).Trim()
+  }
+  if ($localRev -eq $sha) { return }
+  Write-Host "Consultando a versão no GitHub."
+  $tmp = Join-Path $env:TEMP ("mineserver-update-" + [guid]::NewGuid().ToString("n"))
+  New-Item -ItemType Directory -Force -Path $tmp | Out-Null
+  $zip = Join-Path $tmp "master.zip"
+  $extracted = Join-Path $tmp "src"
+  try {
+    Invoke-WebRequest -Uri $zipUrl -OutFile $zip -UseBasicParsing -Headers @{
+      "User-Agent" = "MineServer-installer"
+    }
+    New-Item -ItemType Directory -Force -Path $extracted | Out-Null
+    if (Get-Command tar.exe -ErrorAction SilentlyContinue) {
+      & tar.exe -xf $zip -C $extracted
+    } else {
+      Expand-Archive -LiteralPath $zip -DestinationPath $extracted -Force
+    }
+  } catch {
+    Write-Host "Não consegui baixar a versão nova. Sigo com a cópia que já está aqui."
+    Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+    return
+  }
+  $src = Join-Path $extracted "MineServer-master"
+  if (-not (Test-Path -LiteralPath (Join-Path $src "instalar.ps1"))) {
+    Write-Host "O zip novo não trouxe o instalador. Sigo com a cópia que já está aqui."
+    Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+    return
+  }
+  if (Test-SameInstallerTree $src $Root) {
+    [System.IO.File]::WriteAllText($stampPath, $sha)
+    Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+    Write-Host "Esta pasta já está na versão nova."
+    return
+  }
+  & robocopy.exe $src $Root /E /NFL /NDL /NJH /NJS /NC /NS /NP | Out-Null
+  if ($LASTEXITCODE -ge 8) {
+    $global:LASTEXITCODE = 0
+    Write-Host "Não consegui copiar a versão nova. Sigo com a cópia que já está aqui."
+    Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+    return
+  }
+  $global:LASTEXITCODE = 0
+  [System.IO.File]::WriteAllText($stampPath, $sha)
+  Remove-Item -LiteralPath $tmp -Recurse -Force -ErrorAction SilentlyContinue
+  Write-Host "Pasta atualizada. Continuo a instalação com a versão nova."
+  $bound = @()
+  foreach ($key in $PSBoundParameters.Keys) {
+    $bound += "-$key"
+    $bound += [string]$PSBoundParameters[$key]
+  }
+  $env:MINESERVER_SKIP_UPDATE = "1"
+  & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Root "instalar.ps1") @bound
+  exit $LASTEXITCODE
+}
+
+Update-InstallerFromGitHub
+
 $Req = Join-Path $Root "requirements\client.txt"
 if (-not (Test-Path $Req)) {
   Write-Host "Não achei requirements\client.txt. Rode este instalador na pasta baixada do MineServer."
@@ -256,6 +362,14 @@ function Install-ServerBundle([string]$Dest) {
   Write-Host "MineServer Classes copiado para $(Join-Path $Dest 'mods')."
 }
 
+function Install-ClassMod([string]$Dest) {
+  $jar = Join-Path $Root "bundled\server\mineserver-classes-1.0.0.jar"
+  if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
+  Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-classes-1.0.0.jar") -Force
+  Write-Host "MineServer Classes copiado para $(Join-Path $Dest 'mods')."
+}
+
 function Install-JeiAddon([string]$Dest) {
   $jar = Join-Path $Root "bundled\client\mineserver-jei-1.0.0.jar"
   if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
@@ -266,6 +380,7 @@ function Install-JeiAddon([string]$Dest) {
 
 Install-ClientConfig $GameDir
 Install-JeiAddon $GameDir
+Install-ClassMod $GameDir
 if ($ServerDir) { Install-ServerBundle $ServerDir }
 
 $fabricJson = Join-Path $VersionDir "$VersionId.json"
@@ -331,5 +446,6 @@ if ($ServerDir) {
   Write-Host "Mods do servidor atualizados em $(Join-Path $ServerDir 'mods')."
   Write-Host "A trava de classe está em $(Join-Path $ServerDir 'mods\mineserver-classes-1.0.0.jar')."
 }
+Write-Host "O menu de caminhos usa $(Join-Path $GameDir 'mods\mineserver-classes-1.0.0.jar'). Feche o Minecraft por completo para carregar."
 Write-Host "Anel, livro e mochila ficam na coluna ao lado do personagem. Feche o jogo e abra de novo se ele estiver aberto."
 Write-Host "O endereço do servidor o grupo manda no chat."

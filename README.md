@@ -4,9 +4,9 @@
 
 O botão verde **Code** desta página pede o Git. Pode ignorar. O link acima baixa um zip pronto, e o Python também fica de fora.
 
-No Windows, abre os Downloads, clica com o botão direito em `MineServer-master.zip` e escolhe **Extrair tudo**. Abre a pasta `MineServer-master` e dá dois cliques em `Instalar.bat`. Se aparecer um aviso azul, clica em **Mais informações** e em **Executar assim mesmo**.
+No Windows, abre os Downloads, clica com o botão direito em `MineServer-master.zip` e escolhe **Extrair tudo**. Abre a pasta `MineServer-master` e dá dois cliques em `Instalar.bat`. Se aparecer um aviso azul, clica em **Mais informações** e em **Executar assim mesmo**. Guarda essa pasta. Na próxima atualização, o mesmo `Instalar.bat` busca a versão nova. O Minecraft tem que estar fechado.
 
-No Linux, extrai o mesmo zip e dá dois cliques em **Instalar MineServer**. Se o arquivo abrir como texto, entra na pasta, abre o terminal e escreve `bash instalar.sh`. Se o perfil MineServer já existe, os mods vão para a pasta desse perfil.
+No Linux, extrai o mesmo zip e dá dois cliques em **Instalar MineServer**. Se o arquivo abrir como texto, entra na pasta, abre o terminal e escreve `bash instalar.sh`. Se o perfil MineServer já existe, os mods vão para a pasta desse perfil. Na próxima vez, o mesmo comando busca a versão nova.
 
 A janela pergunta dos shaders. Enter deixa sem. `s` instala, e o jogo fica mais bonito e mais pesado.
 
@@ -46,7 +46,7 @@ Você escolhe um jeito de jogar, e o jogo também te ensina outro por baixo.
 
 **O que sobe sozinho.** Enquanto você minera, corta árvore, luta, atira, pesca, planta, cava, se defende, corre, escala, anda agachado, forja, faz poção e encanta, quinze habilidades sobem com a prática. O bônus soma com o encantamento da ferramenta. A barra aparece na tela. Ninguém escolhe isso num menu: a habilidade sobe porque você fez a ação.
 
-**O que você escolhe.** A tecla **O** abre a árvore de habilidades. Ali estão Caçador, Alquimista, Cozinheiro e Ferreiro. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. A classe de combate limita quais desses ramos aceitam ponto novo. O manual `docs/manual-de-classes.pdf` descreve o de cada uma.
+**O que você escolhe.** A tecla **O** abre a árvore de habilidades. O menu mostra os caminhos da classe: Caçador, Alquimista, Cozinheiro, Ferreiro e, no paladino, a maça. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. O manual `docs/manual-de-classes.pdf` descreve o de cada uma.
 
 Para a árvore abrir de verdade, crafte uma vez o item que apresenta a classe:
 
@@ -175,4 +175,4 @@ Para colocar no servidor os mods que os dois lados usam, na hora de instalar:
 bash instalar.sh --server-dir /caminho/do/servidor
 ```
 
-No Windows o mesmo é `powershell -File instalar.ps1 -ServerDir C:\caminho\do\servidor`. A pasta é a do servidor, a que contém `mods`. Esse comando também copia o MineServer Classes, que trava a classe no primeiro livro criado na mesa de encadernação.
+No Windows o mesmo é `powershell -File instalar.ps1 -ServerDir C:\caminho\do\servidor`. A pasta é a do servidor, a que contém `mods`. O instalador copia o MineServer Classes para o cliente e, com `--server-dir`, para o servidor. No servidor ele trava a classe e o ponto. No cliente ele esconde o caminho que a classe não usa.
