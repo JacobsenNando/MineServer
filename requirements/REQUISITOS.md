@@ -17,6 +17,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Cloth Config v26.2](https://modrinth.com/mod/9s6osm5g) `cloth-config-26.2.155.jar`
 - [Clumps](https://modrinth.com/mod/Wnxd13zP) `Clumps-fabric-26.2-26.2.1.jar`
 - [Cristel Lib](https://modrinth.com/mod/cl223EMc) `cristellib-fabric-26.2-3.1.13.jar`
+- [Damage Tester](https://modrinth.com/mod/frsShSJ6) `damage_tester-fabric-26.2-1.0.1.jar`
 - [Decorative Blocks Rewalked](https://modrinth.com/mod/nZMnPhfd) `decorative_blocks_rewalked-fabric-26.2-7.0.0.jar`
 - [Dungeons and Taverns](https://modrinth.com/mod/tpehi7ww) `dungeons-and-taverns-5.3.2.jar`
 - [Fabric API](https://modrinth.com/mod/P7dR8mSH) `fabric-api-0.161.0+26.2.jar`
