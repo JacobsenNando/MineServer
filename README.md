@@ -131,7 +131,7 @@ Estes mudam a sua partida:
 - **Wizards, Archers, Paladins & Priests, Rogues & Warriors.** As classes de combate e os livros de feitiço.
 - **Runes.** A munição do mago, do paladino e do sacerdote.
 - **Jewelry.** Anel e colar no espaço de berloque.
-- **Skill Proficiencies.** As quinze habilidades que sobem fazendo.
+- **Skill Proficiencies.** As quinze habilidades que sobem fazendo. Arquearia sobe com qualquer arco e qualquer besta.
 - **Friends & Foes.** Criaturas que vieram das votações de mob.
 - **Illager Invasion.** Acampamento e raid de illager mais bravos. Dá para contornar.
 - **The Graveyard.** Cemitério, morto-vivo e chefe nesses lugares.
