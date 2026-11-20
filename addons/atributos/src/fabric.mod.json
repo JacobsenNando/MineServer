@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "mineserver_atributos",
+  "version": "1.0.0",
+  "name": "MineServer Atributos",
+  "description": "Abre uma ficha com vida, dano e os outros atributos.",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.mineserver.atributos.MineServerAtributos"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": ">=26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

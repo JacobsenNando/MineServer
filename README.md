@@ -65,6 +65,8 @@ Se a build não ficou boa, o Pergaminho da Amnésia zera a árvore. Vinte por ce
 
 A árvore da tecla O continua, com o ramo preso à classe de combate. O livro de feitiços é outro caminho: ele muda o jeito de lutar.
 
+A tecla J abre a ficha com a vida, o dano, a armadura e o resto que o jogo já somou. O H continua empinando o cavalo. A troca fica em Controles, na categoria Diversos.
+
 A mesa de encadernação aparece no gazebo de vila em terreno novo. Dá para construir a sua. Estante ao redor, como na mesa de encantamentos. O livro fica equipado, e a arma fica na mão.
 
 | Classe | Para começar | O que ela faz |

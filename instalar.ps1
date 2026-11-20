@@ -378,8 +378,17 @@ function Install-JeiAddon([string]$Dest) {
   Write-Host "MineServer JEI copiado para $(Join-Path $Dest 'mods')."
 }
 
+function Install-Atributos([string]$Dest) {
+  $jar = Join-Path $Root "bundled\client\mineserver-atributos-1.0.0.jar"
+  if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
+  Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-atributos-1.0.0.jar") -Force
+  Write-Host "MineServer Atributos copiado para $(Join-Path $Dest 'mods')."
+}
+
 Install-ClientConfig $GameDir
 Install-JeiAddon $GameDir
+Install-Atributos $GameDir
 Install-ClassMod $GameDir
 if ($ServerDir) { Install-ServerBundle $ServerDir }
 
