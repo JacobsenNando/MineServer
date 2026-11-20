@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "mineserver_encantamentos",
+  "version": "1.0.0",
+  "name": "MineServer Encantamentos",
+  "description": "Mostra o que o encantamento faz ao passar o mouse no livro.",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.mineserver.encantamentos.MineServerEncantamentos"]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": ">=26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

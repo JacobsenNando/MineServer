@@ -386,9 +386,18 @@ function Install-Atributos([string]$Dest) {
   Write-Host "MineServer Atributos copiado para $(Join-Path $Dest 'mods')."
 }
 
+function Install-Encantamentos([string]$Dest) {
+  $jar = Join-Path $Root "bundled\client\mineserver-encantamentos-1.0.0.jar"
+  if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
+  Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-encantamentos-1.0.0.jar") -Force
+  Write-Host "MineServer Encantamentos copiado para $(Join-Path $Dest 'mods')."
+}
+
 Install-ClientConfig $GameDir
 Install-JeiAddon $GameDir
 Install-Atributos $GameDir
+Install-Encantamentos $GameDir
 Install-ClassMod $GameDir
 if ($ServerDir) { Install-ServerBundle $ServerDir }
 

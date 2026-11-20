@@ -123,6 +123,7 @@ Estes mudam a sua partida:
 - **Better Combat.** Cada tipo de arma tem alcance e golpe próprios.
 - **Weapons Expanded.** Armas novas, com receita.
 - **Damage Tester.** Boneco para testar arma e feitiço. A receita é fardo de feno no meio, graveto dos lados e suporte de armadura embaixo. O golpe mostra o dano, o DPS e o total. Botão direito veste armadura nele. Agachar e bater de mão vazia recolhe.
+- **Livro de encantamento.** Passar o mouse no livro mostra, em cinza, o que aquele nível faz. A arma e a armadura encantadas mostram a mesma linha.
 - **Arsenal.** Armas lendárias, achadas no fim do jogo.
 - **Immersive Armors.** Conjuntos de armadura no visual do vanilla.
 - **Relics** e **Trinkets.** Amuletos no espaço de berloque.

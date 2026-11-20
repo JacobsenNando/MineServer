@@ -1,6 +1,6 @@
 # Ficha do cliente MineServer
 # Quem vai jogar usa o instalador. O mundo e os arquivos do servidor não estão aqui.
-# O instalador grava bundled/config/trinkets.json no cliente. Com --server-dir, copia bundled/server/mineserver-classes-1.0.0.jar e bundled/config/icys-better-horses.json. Copia bundled/client/mineserver-jei-1.0.0.jar para o cliente.
+# O instalador grava bundled/config/trinkets.json no cliente. Com --server-dir, copia bundled/server/mineserver-classes-1.0.0.jar e bundled/config/icys-better-horses.json. Copia bundled/client/mineserver-jei-1.0.0.jar e bundled/client/mineserver-encantamentos-1.0.0.jar para o cliente.
 # O visualizador de receitas é o JEI. O MezzConfig vem dentro do jar do JEI. O addon mostra a mesa de encadernação e o corte de gema. O instalador remove o REI e o Architectury que ficaram de antes.
 # O Passive Skill Tree recebe a barra de progresso no canto inferior direito, com 80 pixels de largura. O server_sha1 dessa linha é o jar já corrigido.
 # A armadura divina do Immersive Armors perde o brilho forçado do peito. Em primeira pessoa, a armadura desse mod não desenha por cima da câmera. O server_sha1 dessa linha é o jar já corrigido.
