@@ -80,13 +80,13 @@ A mesa de encadernação aparece no gazebo de vila em terreno novo. Dá para con
 | Ladino | uma adaga ou uma foice, nas duas mãos | desvia e engana |
 | Guerreiro | um machado duplo, uma glaive ou uma claymore | quebra a guarda e esmaga |
 
-O primeiro livro criado na mesa de encadernação escolhe a classe. Fogo, gelo e arcano ficam separados. Paladino, sacerdote, arqueiro, ladino e guerreiro ficam cada um no seu. Antes desse livro, só arma do vanilla equipa. Armadura, joia, relíquia e runa continuam. Depois, o equipamento de outra classe volta para o inventário. O tomo, o cajado, a varinha e a túnica de outra escola também. A varinha de novato, o cajado simples e a túnica de mago servem para as três escolas. Espada, arco e armadura do vanilla continuam. Joia, relíquia e runa também. A mesa de cada classe continua livre.
+O primeiro livro criado na mesa de encadernação escolhe a classe. Um tomo novo de outra classe, criado nessa mesa, troca a classe. Os pontos já gastos na árvore voltam inteiros, um por nó aprendido. Fogo, gelo e arcano ficam separados. Paladino, sacerdote, arqueiro, ladino e guerreiro ficam cada um no seu. Antes desse livro, só arma do vanilla equipa. Armadura, joia, relíquia e runa continuam. Depois, o equipamento de outra classe volta para o inventário. O tomo, o cajado, a varinha e a túnica de outra escola também. A varinha de novato, o cajado simples e a túnica de mago servem para as três escolas. Espada, arco e armadura do vanilla continuam. Joia, relíquia e runa também. A mesa de cada classe continua livre.
 
 Quem já era Mago escolhe a escola no próximo tomo criado nessa mesa. Até lá, as três escolas continuam com ele.
 
 A arma lendária do Arsenal segue o tipo. O mago de fogo, o de gelo e o arcano usam cajado e claymore. O cajado de cura também cabe no sacerdote. O paladino usa claymore, martelo, maça e escudo. O guerreiro usa claymore, machado duplo, glaive, lança e a espada longa. O arqueiro usa arco e besta. O ladino usa adaga e foice. Maça e escudo ficam fora do mago.
 
-O pergaminho de esquecimento leva um livro, um fragmento de ametista e obsidiana chorona. Usar o pergaminho devolve o equipamento da classe e abre a escolha de novo.
+O pergaminho de esquecimento leva um livro, um fragmento de ametista e obsidiana chorona. Usar o pergaminho devolve o equipamento da classe, devolve os pontos da árvore e abre a escolha de novo.
 
 Anel, colar, livro, aljava, cinto e mochila ficam numa coluna ao lado do personagem, sem precisar passar o mouse. O instalador grava isso em `config/trinkets.json`, com a coluna sempre visível e doze espaços. Feche o jogo e abra de novo para a coluna aparecer.
 
