@@ -59,6 +59,8 @@ Para a árvore abrir de verdade, crafte uma vez o item que apresenta a classe:
 
 No fundo da árvore do Ferreiro abre um caminho de maça. Ele fica escondido até os nós finais dessa classe.
 
+Na mesa de ferraria, arma de mod entra na lista do nó que já libera essa categoria: arco, besta, claymore, adaga, machado duplo, glaive, martelo, maça e lança. O paladino aprende o arco e a besta especiais dessa mesa. O arqueiro aprende o caminho até as receitas de arco e besta, e nesse caminho também entram armadura e ferramenta. O ladino aprende o braço do caçador de loot e de experiência de mob.
+
 Se a build não ficou boa, o Pergaminho da Amnésia zera a árvore. Vinte por cento dos pontos ficam para trás. O dragão pode deixar um desses pergaminhos.
 
 ## Classes de combate
