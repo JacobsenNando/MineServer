@@ -1,0 +1,686 @@
+{
+  "janelaSegundos": 600,
+  "seguidaAPartirDe": 3,
+  "causas": [
+    {
+      "id": "queda",
+      "chaves": ["death.attack.fall"],
+      "linhas": [
+        "{jogador} achou o chão. Ele estava lá o tempo todo, gênio.",
+        "{jogador} discutiu com a gravidade e levou um não.",
+        "{jogador} desceu. Sem estilo, sem plano, sem dignidade.",
+        "{jogador} transformou altura em atestado de óbito.",
+        "{jogador} olhou pra baixo e mesmo assim foi."
+      ],
+      "seguida": [
+        "{jogador} caiu de novo. O chão já tem a sua ficha.",
+        "De novo o chão. {jogador} insiste em perder pra física.",
+        "{jogador}, a gravidade não vai cansar antes de você.",
+        "Outra queda. Isso já é hobby, e hobby ruim."
+      ]
+    },
+    {
+      "id": "lava",
+      "chaves": ["death.attack.lava"],
+      "linhas": [
+        "{jogador} entrou na lava sozinho. Ninguém precisa ajudar.",
+        "{jogador} foi ver se lava queima. O teste deu certo.",
+        "{jogador} escolheu a piscina quente. Péssima escolha.",
+        "{jogador} derreteu. A lava nem precisou se esforçar.",
+        "{jogador} viu o brilho laranja e foi na direção. Claro."
+      ],
+      "seguida": [
+        "{jogador} voltou pra lava. Aprendizado é opcional, pelo visto.",
+        "De novo a lava. {jogador} gosta de perder feio.",
+        "{jogador} já devia ter a lava desenhada no mapa. Continua entrando.",
+        "{jogador} e a lava estão num relacionamento. Só a lava sai ganhando."
+      ]
+    },
+    {
+      "id": "agua",
+      "chaves": ["death.attack.drown", "death.attack.dryout"],
+      "linhas": [
+        "{jogador} esqueceu que pra cima existe. A água agradece.",
+        "{jogador} perdeu uma briga com oxigênio.",
+        "{jogador} ficou olhando o fundo. O fundo olhou de volta.",
+        "{jogador} afundou com estilo de quem não nada.",
+        "{jogador} tratou o mar como corredor. Errou o modal."
+      ],
+      "seguida": [
+        "{jogador} afogou de novo. A água já nem se surpreende.",
+        "Outra afogada. {jogador} e o ar não se falam.",
+        "{jogador}, bolha não é sugestão. É o jogo inteiro.",
+        "{jogador} coleciona morte por água. Que coleção triste."
+      ]
+    },
+    {
+      "id": "fogo",
+      "chaves": ["death.attack.inFire", "death.attack.onFire", "death.attack.hotFloor"],
+      "linhas": [
+        "{jogador} ficou no fogo até virar anedota.",
+        "{jogador} viu fogo e pensou em ficar mais um pouco.",
+        "{jogador} queimou por teimosia. Nem foi acidente.",
+        "{jogador} descobriu que fogo não é decoração.",
+        "O chão era lava e {jogador} foi passear. Lindo."
+      ],
+      "seguida": [
+        "{jogador} queimou outra vez. Fósforo com perna.",
+        "De novo o fogo. {jogador} não aprende nem com bolha.",
+        "{jogador} já podia trazer balde. Preferiu a chama.",
+        "Outra queimada. Isso é masoquismo com skin."
+      ]
+    },
+    {
+      "id": "vazio",
+      "chaves": ["death.attack.outOfWorld", "death.attack.outsideBorder"],
+      "linhas": [
+        "{jogador} pulou no vazio. Coragem é uma palavra. Essa não é.",
+        "{jogador} foi ver o que tem embaixo do mundo. Tem vergonha.",
+        "{jogador} saiu do mapa por conta própria.",
+        "{jogador} escolheu o nada. O nada aceitou.",
+        "{jogador} caiu do mundo. O mundo não vai sentir falta."
+      ],
+      "seguida": [
+        "{jogador} no vazio de novo. O buraco já tem nome.",
+        "Outra vez o nada. {jogador} trata o fim do mapa como porta.",
+        "{jogador}, pular no vazio três vezes não é exploração.",
+        "{jogador} e o vazio estão íntimos. Constrangedor."
+      ]
+    },
+    {
+      "id": "jogador",
+      "linhas": [
+        "{assassino} matou {jogador} e ainda sobrou tempo. Não foi luta.",
+        "{assassino} matou {jogador} com {arma}. Nem precisou caprichar.",
+        "{jogador} entregou a luta pro {assassino} de bandeja.",
+        "{assassino} passou por {jogador} e levou a vida junto.",
+        "{jogador} viu {assassino} e mesmo assim ficou. Corajoso. Ruim também.",
+        "{arma} do {assassino} conheceu {jogador}. Foi rápido e triste."
+      ],
+      "seguida": [
+        "{assassino} de novo. {jogador} virou rotina, e rotina fácil.",
+        "{jogador} perdeu pro {assassino} outra vez. Já pode entregar o inventário.",
+        "{assassino} nem está tentando. {jogador} que está fácil.",
+        "Outra pro {assassino}. {jogador}, isso já é doação.",
+        "{jogador} insiste em duelar com {assassino}. O resultado insiste em ser o mesmo."
+      ]
+    },
+    {
+      "id": "warden",
+      "mobs": ["entity.minecraft.warden"],
+      "chaves": ["death.attack.sonic_boom"],
+      "linhas": [
+        "O Warden pediu silêncio. {jogador} fez o discurso.",
+        "{jogador} foi buscar loot no sculk e voltou em pedaços.",
+        "{jogador} achou que o Warden estava de bom humor.",
+        "O Warden nem correu. {jogador} que fez questão.",
+        "{jogador} tratou a cidade antiga como loja. O caixa era o Warden.",
+        "Sensor, grito, morte. {jogador} completou o tutorial ao contrário."
+      ],
+      "seguida": [
+        "{jogador} voltou no Warden. O loot continua lá. A dignidade, não.",
+        "De novo o Warden. {jogador} não está explorando. Está entregando.",
+        "Outra pro Warden. O baú não vale essa humilhação, {jogador}.",
+        "{jogador} insiste. O Warden já reconhece o barulho dos seus passos.",
+        "{jogador}, larga o loot. O Warden já ganhou essa série.",
+        "Na sequência o Warden nem caça. {jogador} é que volta."
+      ]
+    },
+    {
+      "id": "dragao",
+      "mobs": ["entity.minecraft.ender_dragon"],
+      "chaves": ["death.attack.dragonBreath"],
+      "linhas": [
+        "{jogador} foi ao End e o dragão devolveu o ingresso.",
+        "O dragão respirou. {jogador} não.",
+        "{jogador} subiu na torre e desceu em espírito.",
+        "O dragão olhou pra {jogador} e resolveu o problema.",
+        "{jogador} contra o dragão. Durou o que tinha que durar: pouco."
+      ],
+      "seguida": [
+        "{jogador} no dragão de novo. A ilha já tem sua cova marcada.",
+        "Outra vez o bafo. {jogador} não aprende nem com cristal.",
+        "{jogador} insiste no dragão. O dragão insiste em vencer.",
+        "Terceira no End. {jogador}, a ilha não está impressionada."
+      ]
+    },
+    {
+      "id": "wither",
+      "mobs": ["entity.minecraft.wither"],
+      "chaves": ["death.attack.witherSkull"],
+      "linhas": [
+        "{jogador} invocou o Wither e se arrependeu no primeiro tiro.",
+        "O Wither atirou. {jogador} recebeu. Fim da resenha.",
+        "{jogador} quis as estrelas e levou o crânio.",
+        "Wither no {jogador}. Quem chamou foi {jogador}.",
+        "{jogador} ficou no meio do Wither como se fosse enfeite."
+      ],
+      "seguida": [
+        "{jogador} chamou o Wither outra vez. Masoquista com areia de almas.",
+        "De novo o Wither. {jogador} gosta de explosão na cara.",
+        "Outra invocação, mesmo resultado. {jogador} é teimoso e frágil.",
+        "{jogador}, para de chamar o chefe se você é o aperitivo."
+      ]
+    },
+    {
+      "id": "creeper",
+      "mobs": ["entity.minecraft.creeper"],
+      "linhas": [
+        "O creeper avisou. {jogador} ficou aí, ouvindo.",
+        "{jogador} virou confete. O creeper pediu licença antes.",
+        "{jogador} ouviu o tss e resolveu ficar. Gênio.",
+        "Creeper no {jogador}. Clássico de quem não olha pra trás.",
+        "{jogador} abraçou o creeper. O creeper devolveu em pedaços."
+      ],
+      "seguida": [
+        "Outro creeper. {jogador} ama esse barulho, pelo visto.",
+        "{jogador} de novo no tss. Já é assinatura.",
+        "Mais um creeper. {jogador} podia só andar pra trás.",
+        "O creeper nem precisa mais se esconder. {jogador} vai até ele."
+      ]
+    },
+    {
+      "id": "zumbi",
+      "mobs": ["entity.minecraft.zombie", "entity.minecraft.husk", "entity.minecraft.zombie_villager"],
+      "linhas": [
+        "Um zumbi comeu {jogador}. O zumbi pensa com meio cérebro.",
+        "{jogador} perdeu pra um morto que anda mais devagar que você.",
+        "Zumbi no {jogador}. A barra de fome do zumbi agradece.",
+        "{jogador} foi alcançado por alguém que arrasta o pé.",
+        "{jogador} contra zumbi. O zumbi não tinha espada. Nem precisou."
+      ],
+      "seguida": [
+        "Zumbi de novo. {jogador}, ele é lento. Você que parou.",
+        "{jogador} doou outra vida pra um zumbi. Que generoso.",
+        "Outro zumbi. Isso já é constrangedor até pro morto.",
+        "{jogador} está perdendo pro mob mais básico do jogo."
+      ]
+    },
+    {
+      "id": "esqueleto",
+      "mobs": ["entity.minecraft.skeleton", "entity.minecraft.stray", "entity.minecraft.bogged"],
+      "linhas": [
+        "O esqueleto mirava. {jogador} ficou parado, ajudando.",
+        "{jogador} perdeu pra um osso com arco.",
+        "Flecha no {jogador}. O esqueleto nem comemorou, de tão fácil.",
+        "{jogador} dançou na frente do esqueleto. A dança acabou cedo.",
+        "Esqueleto no {jogador}. Distância existia. {jogador} não usou."
+      ],
+      "seguida": [
+        "Outro esqueleto. {jogador} é alvo de treinamento.",
+        "{jogador} de novo na flecha. Desvia é uma tecla.",
+        "Mais um osso. Ele já deve estar entediado de {jogador}.",
+        "{jogador}, um osso está ganhando a série."
+      ]
+    },
+    {
+      "id": "aranha",
+      "mobs": ["entity.minecraft.spider", "entity.minecraft.cave_spider"],
+      "linhas": [
+        "Uma aranha subiu no {jogador} e resolveu a vida dele.",
+        "{jogador} perdeu pra um bicho que vive no teto.",
+        "Aranha no {jogador}. Oito patas, zero dificuldade.",
+        "{jogador} olhou pra cima tarde demais.",
+        "{jogador} foi presente de teia. A aranha nem pediu."
+      ],
+      "seguida": [
+        "Aranha de novo. {jogador} podia olhar o teto.",
+        "{jogador} insiste em perder pra aranha. Que fase.",
+        "Outra aranha. Isso não é caverna, é entrega.",
+        "{jogador}, a aranha tem o tamanho de um bloco. E ganhou."
+      ]
+    },
+    {
+      "id": "enderman",
+      "mobs": ["entity.minecraft.enderman"],
+      "linhas": [
+        "{jogador} olhou no olho do enderman. O enderman olhou de volta.",
+        "Enderman no {jogador}. Bastava não encarar.",
+        "{jogador} provocou o cara alto e levou.",
+        "{jogador} contra enderman. O teleporte não foi a seu favor.",
+        "{jogador} quis a pérola e virou o endereço de entrega."
+      ],
+      "seguida": [
+        "Enderman de novo. {jogador} não aprende nem a desviar o olhar.",
+        "{jogador} encarou outro. Mesmo final.",
+        "Mais uma pérola que não veio. {jogador} veio, em espírito.",
+        "{jogador} trata enderman como ovelha. A ovelha não arranca a cabeça."
+      ]
+    },
+    {
+      "id": "guardiao",
+      "mobs": ["entity.minecraft.elder_guardian"],
+      "linhas": [
+        "O guardião-mestre achou {jogador} no monumento e cobrou o ingresso.",
+        "{jogador} foi minerar esponja e voltou sem pulmão.",
+        "Laser no {jogador}. O monumento avisou com o cansaço.",
+        "{jogador} contra um peixe antigo. O peixe ganhou."
+      ],
+      "seguida": [
+        "{jogador} voltou no monumento. O guardião ainda está lá. Você que é frágil.",
+        "De novo o laser. {jogador} gosta de nadar errado.",
+        "Outra esponja que não saiu. A morte saiu. {jogador} pagou."
+      ]
+    },
+    {
+      "id": "devastador",
+      "mobs": ["entity.minecraft.ravager"],
+      "linhas": [
+        "O devastador passou por cima de {jogador}. Literalmente.",
+        "{jogador} enfrentou a besta da raid e virou tapete.",
+        "{jogador} ouviu o sino e foi na frente. Corajoso e amassado.",
+        "Devastador no {jogador}. Não foi luta, foi atropelamento."
+      ],
+      "seguida": [
+        "{jogador} na raid de novo e o devastador de novo. Padrão feio.",
+        "Outra pisada. {jogador} é que volta pra debaixo.",
+        "Mais uma. {jogador}, deixa a raid pra quem sobe no pilar."
+      ]
+    },
+    {
+      "id": "invocador",
+      "mobs": ["entity.minecraft.evoker"],
+      "linhas": [
+        "O invocador mandou as presas. {jogador} ficou no meio, ajudando.",
+        "{jogador} perdeu pra um illager de robe.",
+        "Presas no {jogador}. O círculo estava desenhado. {jogador} pisou.",
+        "{jogador} contra vex e presas. Escolheu ficar."
+      ],
+      "seguida": [
+        "Invocador de novo. {jogador} não sai do círculo.",
+        "{jogador} doou outra vida pro robe azul.",
+        "Mais uma. As presas já conhecem o formato do {jogador}."
+      ]
+    },
+    {
+      "id": "bruxa",
+      "mobs": ["entity.minecraft.witch"],
+      "linhas": [
+        "A bruxa jogou poção. {jogador} bebeu com o corpo.",
+        "{jogador} perdeu pra uma senhora com chapéu.",
+        "Poção no {jogador}. A bruxa nem chegou perto.",
+        "{jogador} trocou dano com a bruxa e perdeu o câmbio."
+      ],
+      "seguida": [
+        "Bruxa de novo. {jogador} é fraco até pra poção.",
+        "{jogador} voltou no alcance da bruxa. Mesma poção, mesmo fim.",
+        "Mais uma. Leva leite ou leva outra morte, {jogador}."
+      ]
+    },
+    {
+      "id": "espectro",
+      "mobs": ["entity.minecraft.phantom"],
+      "linhas": [
+        "{jogador} não dormiu e o espectro cobrou o imposto.",
+        "Espectro no {jogador}. A cama existia.",
+        "{jogador} preferiu a insônia. O espectro preferiu {jogador}."
+      ],
+      "seguida": [
+        "Espectro de novo. {jogador}, deita na cama.",
+        "{jogador} insiste em não dormir. O espectro insiste em você.",
+        "Mais um. Isso não é desafio, é teimosia com asa."
+      ]
+    },
+    {
+      "id": "blaze",
+      "mobs": ["entity.minecraft.blaze"],
+      "linhas": [
+        "Blaze no {jogador}. A fortaleza cobrou pedágio em fogo.",
+        "{jogador} foi buscar vara e voltou assado.",
+        "Bola de fogo no {jogador}. Ele viu a bola. Ficou.",
+        "{jogador} contra um fogo que flutua. Perdeu feio."
+      ],
+      "seguida": [
+        "Blaze de novo. {jogador} trata a fortaleza como fornalha própria.",
+        "Outra vara que não veio. Outra morte que veio.",
+        "Mais um blaze. A fortaleza já riu de {jogador}."
+      ]
+    },
+    {
+      "id": "ghast",
+      "mobs": ["entity.minecraft.ghast"],
+      "linhas": [
+        "O ghast chorou fogo. {jogador} recebeu o choro na cara.",
+        "{jogador} devolveu a bola? Não. {jogador} comeu a bola.",
+        "Ghast no {jogador}. O nether tem espaço. {jogador} não usou.",
+        "{jogador} ouviu o choro e foi na direção. Claro."
+      ],
+      "seguida": [
+        "Ghast de novo. {jogador} é alvo de lágrima.",
+        "{jogador} no nether outra vez, mesmo choro, mesmo fim.",
+        "Mais um. Desvia a bola ou aceita o título de fácil, {jogador}."
+      ]
+    },
+    {
+      "id": "saqueador",
+      "mobs": ["entity.minecraft.pillager", "entity.minecraft.vindicator"],
+      "linhas": [
+        "Saqueador no {jogador}. A besta nem estava mirando direito.",
+        "{jogador} perdeu pra um illager de plantão.",
+        "{jogador} entrou no posto e saiu em espírito.",
+        "Besta no {jogador}. Distância curta, resultado longo."
+      ],
+      "seguida": [
+        "Outro saqueador. {jogador} é que entra no posto.",
+        "{jogador} de novo pros illagers. A raid nem começou.",
+        "Mais um. {jogador}, o posto é pequeno e você ainda perde."
+      ]
+    },
+    {
+      "id": "barbaro",
+      "mobs": ["entity.minecraft.piglin_brute"],
+      "linhas": [
+        "O piglin bárbaro não negocia. {jogador} tentou mesmo assim.",
+        "Machado no {jogador}. O bárbaro não perguntou se tinha ouro.",
+        "{jogador} chegou perto do bárbaro. O bárbaro resolveu.",
+        "{jogador} no bastião, corpo no chão, ouro no bruto."
+      ],
+      "seguida": [
+        "Bárbaro de novo. {jogador} não leva ouro e ainda chega perto.",
+        "{jogador} voltou no bastião com a mesma cara de alvo.",
+        "Mais um. O bruto já deve estar de saco cheio de {jogador}."
+      ]
+    },
+    {
+      "id": "afogado",
+      "mobs": ["entity.minecraft.drowned"],
+      "linhas": [
+        "O afogado pegou {jogador}. Zumbi molhado, vítima fácil.",
+        "{jogador} perdeu pra um morto que nada melhor.",
+        "Afogado no {jogador}. A água já era ruim, piorou."
+      ],
+      "seguida": [
+        "Afogado de novo. {jogador} nada mal e luta pior.",
+        "{jogador} voltou no afogado. Mesmo tridente, mesmo fim.",
+        "Mais um. Sai da água ou aceita, {jogador}."
+      ]
+    },
+    {
+      "id": "abelha",
+      "mobs": ["entity.minecraft.bee"],
+      "chaves": ["death.attack.sting"],
+      "linhas": [
+        "Uma abelha acabou com {jogador}. Uma.",
+        "{jogador} mexeu na colmeia e pagou com a vida.",
+        "Abelha no {jogador}. O ferrão era pequeno. A burrice, não.",
+        "{jogador} perdeu pra um mob de flor."
+      ],
+      "seguida": [
+        "Abelha de novo. {jogador} não larga a colmeia.",
+        "{jogador} insiste na abelha. A abelha insiste no ferrão.",
+        "Mais uma. Deixa o mel, {jogador}. Sério."
+      ]
+    },
+    {
+      "id": "cacto",
+      "chaves": ["death.attack.cactus"],
+      "linhas": [
+        "{jogador} perdeu pro cacto. O cacto nem andou.",
+        "{jogador} abraçou espinho. O espinho devolveu.",
+        "Cacto no {jogador}. Dava pra desviar um bloco."
+      ],
+      "seguida": [
+        "Cacto de novo. {jogador} gosta de encostar no que fura.",
+        "{jogador} e o cacto, capítulo dois. Mesmo final.",
+        "Mais um. Anda um bloco pro lado, {jogador}."
+      ]
+    },
+    {
+      "id": "fome",
+      "chaves": ["death.attack.starve"],
+      "linhas": [
+        "{jogador} morreu de fome com comida no mundo. Artista.",
+        "{jogador} esqueceu de comer. O estômago não esqueceu.",
+        "Fome no {jogador}. Tinha vaca, tinha pão, tinha escolha."
+      ],
+      "seguida": [
+        "Fome de novo. {jogador} trata comida como decoração.",
+        "{jogador} passou fome outra vez. Impressionante e triste.",
+        "Mais uma. Abre o inventário, {jogador}."
+      ]
+    },
+    {
+      "id": "elitro",
+      "chaves": ["death.attack.flyIntoWall"],
+      "linhas": [
+        "{jogador} usou élitro pra abraçar a montanha. Bonito, hein.",
+        "{jogador} confundiu parede com pista de pouso.",
+        "Élitro no {jogador}. Velocidade tinha. Juízo, não."
+      ],
+      "seguida": [
+        "{jogador} beijou outra parede. O élitro não é o problema.",
+        "De novo a montanha. {jogador} pilota como quem odeia viver.",
+        "Mais uma. Guarda o élitro até aprender a olhar pra frente."
+      ]
+    },
+    {
+      "id": "magia",
+      "chaves": ["death.attack.magic", "death.attack.indirectMagic", "death.attack.even_more_magic"],
+      "linhas": [
+        "{assassino} acertou {jogador} com magia. Nem precisou chegar perto.",
+        "{jogador} comeu feitiço e fez cara de surpresa.",
+        "{jogador} perdeu pra brilho colorido.",
+        "Feitiço no {jogador}. Bonito de ver, feio de levar."
+      ],
+      "seguida": [
+        "Magia de novo. {jogador} é fraco até pra partícula.",
+        "{jogador} no mesmo feitiço. Desvia ou aceita.",
+        "Mais uma. {assassino} está lançando de olhos fechados."
+      ]
+    },
+    {
+      "id": "frio",
+      "chaves": ["death.attack.freeze"],
+      "linhas": [
+        "{jogador} congelou. A poeira de neve fez o trabalho.",
+        "{jogador} ficou no pó até virar estátua.",
+        "Frio no {jogador}. Tinha lareira em algum lugar. Não aqui."
+      ],
+      "seguida": [
+        "Congelou de novo. {jogador} gosta de ficar parado no pó.",
+        "{jogador} no mesmo frio. Mover as pernas é permitido.",
+        "Mais um. Sai do pó, {jogador}."
+      ]
+    },
+    {
+      "id": "raio",
+      "chaves": ["death.attack.lightningBolt"],
+      "linhas": [
+        "Caiu um raio no {jogador}. Até o clima já tinha opinião.",
+        "{jogador} virou para-raios. Sem querer, mas virou.",
+        "Raio no {jogador}. Raro, e mesmo assim achou você."
+      ],
+      "seguida": [
+        "Outro raio. {jogador} atrai humilhação até do céu.",
+        "{jogador} de novo no raio. Estatística pessoal vergonhosa.",
+        "Mais um. Até o tempo já te acha fácil, {jogador}."
+      ]
+    },
+    {
+      "id": "lotacao",
+      "chaves": ["death.attack.cramming"],
+      "linhas": [
+        "{jogador} foi esmagado pela própria multidão de bicho.",
+        "Entidade demais, {jogador} de menos.",
+        "{jogador} morreu de lotação. Que morte pequena."
+      ],
+      "seguida": [
+        "Amontoou de novo. {jogador} não aprende nem com galinha.",
+        "{jogador} no mesmo sufoco. Espalha os bichos.",
+        "Mais uma. Para de empilhar mob em cima de você."
+      ]
+    },
+    {
+      "id": "bigorna",
+      "chaves": ["death.attack.anvil"],
+      "linhas": [
+        "Uma bigorna achou a cabeça de {jogador}. Encaixe perfeito.",
+        "{jogador} ficou debaixo da bigorna. A bigorna desceu.",
+        "Bigorna no {jogador}. Física básica, vítima teimosa."
+      ],
+      "seguida": [
+        "Bigorna de novo. {jogador} olha pra cima.",
+        "{jogador} no mesmo encaixe. Sai de baixo.",
+        "Mais uma bigorna. Isso já é piada pronta."
+      ]
+    },
+    {
+      "id": "parede",
+      "chaves": ["death.attack.inWall"],
+      "linhas": [
+        "{jogador} sufocou na parede. A parede nem se moveu.",
+        "{jogador} entrou no bloco e esqueceu de sair.",
+        "Parede no {jogador}. Sufocou com estilo de quem cava errado."
+      ],
+      "seguida": [
+        "Parede de novo. {jogador} e os blocos não combinam.",
+        "{jogador} sufocou outra vez. Cava com a cabeça, é?",
+        "Mais uma. O bloco ganhou de lavada."
+      ]
+    },
+    {
+      "id": "baga",
+      "chaves": ["death.attack.sweetBerryBush"],
+      "linhas": [
+        "{jogador} morreu num arbusto de fruta. Num arbusto.",
+        "Baga doce no {jogador}. Até a planta achou fácil.",
+        "{jogador} ficou no espinho da baga até acabar."
+      ],
+      "seguida": [
+        "Arbusto de novo. {jogador} não sai da moita.",
+        "{jogador} perdeu outra pra fruta. Que fase.",
+        "Mais uma baga. Anda um bloco pro lado."
+      ]
+    },
+    {
+      "id": "fogos",
+      "chaves": ["death.attack.fireworks"],
+      "linhas": [
+        "{jogador} se explodiu com fogo de artifício. Fogos.",
+        "Foguete no {jogador}. A festa foi curta.",
+        "{jogador} apontou o fogo pra si. Brilhante."
+      ],
+      "seguida": [
+        "Fogos de novo. {jogador} é o show e o acidente.",
+        "{jogador} no mesmo foguete. Mira existe.",
+        "Mais um. Guarda o fogo de artifício, {jogador}."
+      ]
+    },
+    {
+      "id": "explosao",
+      "chaves": ["death.attack.explosion", "death.attack.badRespawnPoint.message"],
+      "linhas": [
+        "{jogador} explodiu. Alguém apertou, e foi você ou quase.",
+        "{jogador} virou pó. A explosão nem foi das grandes.",
+        "Boom no {jogador}. Dava pra não estar ali."
+      ],
+      "seguida": [
+        "Explodiu de novo. {jogador} gosta do barulho e do caixão.",
+        "{jogador} na mesma explosão. Afasta.",
+        "Mais uma. Para de abraçar TNT, {jogador}."
+      ]
+    },
+    {
+      "id": "bloco",
+      "chaves": ["death.attack.fallingBlock"],
+      "linhas": [
+        "Um bloco caiu na cabeça de {jogador}. Merecido o encaixe.",
+        "{jogador} cavou e o teto respondeu.",
+        "Bloco no {jogador}. Olha pra cima de vez em quando."
+      ],
+      "seguida": [
+        "Outro bloco na cabeça. {jogador} não olha pra cima.",
+        "{jogador} cavou o próprio caixão. De novo.",
+        "Mais um. O teto já te acha fácil."
+      ]
+    },
+    {
+      "id": "estalactite",
+      "chaves": ["death.attack.fallingStalactite"],
+      "linhas": [
+        "Uma estalactite furou {jogador}. O teto avisou.",
+        "{jogador} passou debaixo do pingente. O pingente desceu.",
+        "Estalactite no {jogador}. Caminho largo existia."
+      ],
+      "seguida": [
+        "Pingente de novo. {jogador} gosta de passar no meio.",
+        "{jogador} no mesmo espeto do teto.",
+        "Mais uma. Desvia um bloco, não dói."
+      ]
+    },
+    {
+      "id": "estalagmite",
+      "chaves": ["death.attack.stalagmite"],
+      "linhas": [
+        "{jogador} caiu no espeto. O espeto agradece a visita.",
+        "Estalagmite no {jogador}. Pular era uma opção.",
+        "{jogador} empalou sozinho. Que eficiência."
+      ],
+      "seguida": [
+        "Espeto de novo. {jogador} mira o chão pontudo.",
+        "{jogador} no mesmo palito. Cai do lado.",
+        "Mais uma. O chão pontudo já tem sua medida."
+      ]
+    },
+    {
+      "id": "espinhos",
+      "chaves": ["death.attack.thorns"],
+      "linhas": [
+        "Espinhos devolveram o golpe e {jogador} não gostou do troco.",
+        "{jogador} bateu e morreu no próprio ataque. Elegante.",
+        "{jogador} perdeu pros espinhos. A armadura nem era sua."
+      ],
+      "seguida": [
+        "Espinhos de novo. {jogador} bate em quem devolve.",
+        "{jogador} no mesmo troco. Para de cutucar.",
+        "Mais uma. A armadura está ganhando sem o dono tentar."
+      ]
+    },
+    {
+      "id": "wither_efeito",
+      "chaves": ["death.attack.wither"],
+      "linhas": [
+        "O efeito de wither comeu {jogador} por dentro.",
+        "{jogador} ficou com wither até acabar. Leite existe.",
+        "{jogador} ignorou o efeito preto. O efeito não ignorou."
+      ],
+      "seguida": [
+        "Wither de novo no sangue. {jogador} não bebe leite.",
+        "{jogador} deixou o efeito acabar com ele outra vez.",
+        "Mais uma. A poção é barata. A morte, repetida."
+      ]
+    },
+    {
+      "id": "outros",
+      "chaves": ["death.attack.mob", "death.attack.arrow", "death.attack.trident", "death.attack.thrown", "death.attack.fireball", "death.attack.mace_smash", "death.attack.spear"],
+      "linhas": [
+        "{assassino} derrubou {jogador}. Meio cérebro, vitória inteira.",
+        "{jogador} perdeu pra {assassino}. Dá pra explicar, mas não salva.",
+        "{assassino} nem suou. {jogador} fez a parte difícil, que era morrer.",
+        "{jogador} virou loot de {assassino}.",
+        "{assassino} ganhou de {jogador} com o kit de fábrica."
+      ],
+      "seguida": [
+        "{assassino} de novo. {jogador} já é cliente fiel.",
+        "Outra morte pro {assassino}. {jogador} está farmando o próprio funeral.",
+        "{jogador} voltou no {assassino} e levou a mesma resposta.",
+        "{assassino} já devia estar entediado de {jogador}.",
+        "Na sequência, não é azar. {jogador} é que é fácil."
+      ]
+    },
+    {
+      "id": "geral",
+      "chaves": ["death.attack.generic", "death.attack.genericKill"],
+      "linhas": [
+        "{jogador} morreu. Nem a morte quis explicar, de tão sem graça.",
+        "{jogador} achou um jeito novo de perder. O resultado é o de sempre.",
+        "{jogador} foi de arrasta. Sem glória, sem desculpa boa."
+      ],
+      "seguida": [
+        "{jogador} de novo. A causa muda, a facilidade fica.",
+        "Outra morte, {jogador}. O servidor já decorou seu nome no obituário.",
+        "Mais uma seguida. {jogador} está fácil."
+      ]
+    }
+  ]
+}

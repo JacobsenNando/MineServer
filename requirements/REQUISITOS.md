@@ -85,4 +85,4 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Complementary Reimagined](https://modrinth.com/shader/HVnmMxH1) `ComplementaryReimagined_r5.9.3.zip`
 - [Iris](https://modrinth.com/mod/YL57xq9U) `iris-fabric-1.11.4+mc26.2.jar`
 
-Ficam só no servidor e não entram nesta lista: servercore, discord-mc-chat, Player Corpses, MineServer Comandos e MineServer Classes. O instalador copia o MineServer JEI para o cliente. Ele mostra a mesa de encadernação e o corte de gema. O instalador também copia o MineServer Encantamentos. No livro, a linha cinza diz o que aquele nível faz.
+Ficam só no servidor e não entram nesta lista: servercore, discord-mc-chat, Player Corpses, MineServer Comandos, MineServer Classes e MineServer Zoeira. Quando alguém morre, o bot manda uma zoeira no Discord e a mesma frase aparece no chat. O instalador copia o MineServer JEI para o cliente. Ele mostra a mesa de encadernação e o corte de gema. O instalador também copia o MineServer Encantamentos. No livro, a linha cinza diz o que aquele nível faz.

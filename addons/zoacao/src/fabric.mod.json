@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "mineserver_zoacao",
+  "version": "1.0.0",
+  "name": "MineServer Zoeira",
+  "description": "Quando alguém morre, o bot zoa no Discord e a mesma frase aparece no chat.",
+  "authors": ["JacobsenNando"],
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "main": ["com.mineserver.zoacao.MineServerZoacao"]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": ">=26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

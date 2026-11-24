@@ -605,6 +605,13 @@ copy_server_bundle() {
   cp "bundled/config/icys-better-horses.json" "$dest/config/icys-better-horses.json"
   cp "$src" "$dest/mods/mineserver-classes-1.0.0.jar"
   echo "MineServer Classes copiado para $dest/mods."
+  src="bundled/server/mineserver-zoacao-1.0.0.jar"
+  [ -f "$src" ] || {
+    echo "Falta $src." >&2
+    exit 1
+  }
+  cp "$src" "$dest/mods/mineserver-zoacao-1.0.0.jar"
+  echo "MineServer Zoeira copiado para $dest/mods."
 }
 
 copy_client_config "$GAME_DIR"
@@ -689,6 +696,7 @@ fi
 if [ -n "$SERVER_DIR" ]; then
   echo "Mods do servidor atualizados em $SERVER_DIR/mods."
   echo "A trava de classe está em $SERVER_DIR/mods/mineserver-classes-1.0.0.jar."
+  echo "A zoeira de morte está em $SERVER_DIR/mods/mineserver-zoacao-1.0.0.jar."
 fi
 echo "O menu de caminhos usa $GAME_DIR/mods/mineserver-classes-1.0.0.jar. Feche o Minecraft por completo para carregar."
 echo "Anel, livro e mochila ficam na coluna ao lado do personagem. Feche o jogo e abra de novo se ele estiver aberto."

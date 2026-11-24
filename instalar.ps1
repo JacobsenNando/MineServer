@@ -428,6 +428,10 @@ function Install-ServerBundle([string]$Dest) {
   Copy-Item -LiteralPath $horses -Destination (Join-Path $Dest "config\icys-better-horses.json") -Force
   Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-classes-1.0.0.jar") -Force
   Write-Host "MineServer Classes copiado para $(Join-Path $Dest 'mods')."
+  $zoacao = Join-Path $Root "bundled\server\mineserver-zoacao-1.0.0.jar"
+  if (-not (Test-Path -LiteralPath $zoacao)) { throw "Falta $zoacao." }
+  Copy-Item -LiteralPath $zoacao -Destination (Join-Path $Dest "mods\mineserver-zoacao-1.0.0.jar") -Force
+  Write-Host "MineServer Zoeira copiado para $(Join-Path $Dest 'mods')."
 }
 
 function Install-ClassMod([string]$Dest) {
@@ -532,6 +536,7 @@ else { Write-Host "Shaders não instalados." }
 if ($ServerDir) {
   Write-Host "Mods do servidor atualizados em $(Join-Path $ServerDir 'mods')."
   Write-Host "A trava de classe está em $(Join-Path $ServerDir 'mods\mineserver-classes-1.0.0.jar')."
+  Write-Host "A zoeira de morte está em $(Join-Path $ServerDir 'mods\mineserver-zoacao-1.0.0.jar')."
 }
 Write-Host "O menu de caminhos usa $(Join-Path $GameDir 'mods\mineserver-classes-1.0.0.jar'). Feche o Minecraft por completo para carregar."
 Write-Host "Anel, livro e mochila ficam na coluna ao lado do personagem. Feche o jogo e abra de novo se ele estiver aberto."
