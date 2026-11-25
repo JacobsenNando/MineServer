@@ -1,0 +1,14 @@
+{
+  "item.mcwlights.covered_garden_light": "Luz de jardim coberta",
+  "item.mcwlights.pale_oak_ceiling_fan_light": "Luminária de ventilador de carvalho pálido",
+  "item.mcwlights.pale_oak_tiki_torch": "Tocha tiki de carvalho pálido",
+  "item.mcwlights.round_garden_light": "Luz de jardim redonda",
+  "item.mcwlights.soul_pale_oak_tiki_torch": "Tocha tiki das almas de carvalho pálido",
+  "item.mcwlights.striped_garden_light": "Luz de jardim listrada",
+  "item.mcwlights.thin_garden_light": "Luz de jardim fina",
+  "item.mcwlights.tower_garden_light": "Luz de jardim em torre",
+  "itemGroup.mcwlights.lightsgroup": "Luzes e Lâmpadas do Macaw",
+  "mcwlights.lights.dyeableinfo": "Clique direito com qualquer corante para recolorir",
+  "mcwlights.lights.stackableinfo": "Dá para deixar mais alto, colocando outro em cima deste",
+  "mcwlights.lights.tikitorchinfo": "Dá para deixar mais alto, colocando outro em cima deste"
+}

@@ -1,0 +1,10 @@
+{
+  "itemGroup.toms_storage.tab": "Armazenamento Simples do Tom",
+  "menu.toms_storage.crafting_terminal": "Terminal de Criação",
+  "menu.toms_storage.storage_terminal": "Terminal de Armazenamento",
+  "tooltip.toms_storage.item_sync_error": "Erro ao sincronizar o item",
+  "tooltip.toms_storage.slots_used": "Espaços usados: %d",
+  "tooltip.toms_storage.sorting_id": "Classificar por ID do item",
+  "tooltip.toms_storage.sorting_space_efficiency": "Classificar por eficiência de espaço",
+  "tooltip.toms_storage.sorting_type": "Classificar por tipo do item"
+}

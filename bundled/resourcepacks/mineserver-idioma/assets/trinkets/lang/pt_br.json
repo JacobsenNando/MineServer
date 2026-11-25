@@ -1,0 +1,16 @@
+{
+  "button.trinkets.switch_to_cosmetic_slots": "Trocar para slots cosméticos",
+  "button.trinkets.switch_to_regular_slots": "Trocar para slots normais",
+  "button.trinkets.toggle_visiblity": "Alternar visibilidade",
+  "commands.trinkets.inventory_does_not_exist": "O inventário '%s' não existe!",
+  "commands.trinkets.modifier.add.success": "Modificador de quantidade %s adicionado a %s slots da entidade %s",
+  "commands.trinkets.modifier.remove.success": "Modificador %s removido de %s slots da entidade %s",
+  "commands.trinkets.modifier.value.get.success": "O valor do modificador %s de %s slots da entidade %s é %s",
+  "commands.trinkets.not_a_living_entity": "Não é uma entidade viva!",
+  "commands.trinkets.slot_does_not_exit": "O slot '%s' no deslocamento %s não existe!",
+  "text.trinkets.slot.cosmetic_slot": "(Cosmético)",
+  "trinkets.slot.feet.aglet": "Ponteira",
+  "trinkets.slot.generic.charm": "Amuleto",
+  "trinkets.slot.generic.trinket": "Bugiganga",
+  "trinkets.tooltip.attributes.slots": "%d slots"
+}

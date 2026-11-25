@@ -1,0 +1,12 @@
+{
+  "container.imbue.enchantedBookMissing": "Falta %s!",
+  "container.imbue.enchantmentsNotMatching": "Os encantamentos não batem!",
+  "container.imbue.hallowedGemMissing": "Falta %s!",
+  "container.imbue.levelsNotEqual": "Os níveis dos encantamentos não são iguais!",
+  "entity.illagerinvasion.flying_magma": "Magma Voador",
+  "entity.illagerinvasion.hatchet": "Machadinha",
+  "entity.illagerinvasion.invoker_fangs": "Presas do Invocador",
+  "entity.illagerinvasion.skull_bolt": "Raio de Crânio",
+  "subtitles.entity.invoker.complete_cast": "Invocador conjura",
+  "subtitles.item.lost_candle.find_ore": "Minério ressoa"
+}
