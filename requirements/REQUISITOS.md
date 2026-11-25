@@ -17,6 +17,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Cloth Config v26.2](https://modrinth.com/mod/9s6osm5g) `cloth-config-26.2.155.jar`
 - [Clumps](https://modrinth.com/mod/Wnxd13zP) `Clumps-fabric-26.2-26.2.1.jar`
 - [Cristel Lib](https://modrinth.com/mod/cl223EMc) `cristellib-fabric-26.2-3.1.13.jar`
+- [Critical Strike](https://modrinth.com/mod/critical-strike) `critical_strike-fabric-1.0.6+26.2.jar`
 - [Damage Tester](https://modrinth.com/mod/frsShSJ6) `damage_tester-fabric-26.2-1.0.1.jar`
 - [Decorative Blocks Rewalked](https://modrinth.com/mod/nZMnPhfd) `decorative_blocks_rewalked-fabric-26.2-7.0.0.jar`
 - [Dungeons and Taverns](https://modrinth.com/mod/tpehi7ww) `dungeons-and-taverns-5.3.2.jar`
@@ -40,9 +41,9 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Macaw's Windows](https://modrinth.com/mod/C7I0BCni) `mcw-windows-2.4.2-mc26.2fabric.jar`
 - [Modonomicon](https://modrinth.com/mod/692GClaE) `modonomicon-26.2-fabric-2.5.0.jar`
 - [Paladins & Priests (RPG Series)](https://modrinth.com/mod/FxXkHaLe) `paladins-fabric-3.1.3.003+26.2.jar`
-- [Passive Skill Tree](https://github.com/glea94/Passive-SKill-Tree-Fabric) `PassiveSkillTree-Fabric-26.2-0.7.6+c.jar`
 - [Player Animation Library](https://modrinth.com/mod/ha1mEyJS) `PlayerAnimationLibMerged-1.2.8+mc.26.2.jar`
 - [PrickleMC](https://modrinth.com/mod/aaRl8GiW) `PrickleMC-fabric-MC26.2-26.2.0.3.jar`
+- [Pufferfish's Skills](https://modrinth.com/mod/skills) `puffish_skills-0.19.2-26.2-fabric.jar`
 - [Puzzles Lib](https://modrinth.com/mod/QAGBst4M) `puzzleslib-v26.2.5-mc26.2.x+fabric.jar`
 - [RangedWeaponAPI](https://modrinth.com/mod/AqaIIO6D) `ranged_weapon_api-fabric-4.0.0+26.2.jar`
 - [Rechiseled](https://modrinth.com/mod/B0g2vT6l) `rechiseled-1.2.6-fabric-mc26.2.jar`
@@ -51,6 +52,7 @@ O instalador baixa esta lista. O servidor não está neste repositório.
 - [Rogues & Warriors (RPG Series)](https://modrinth.com/mod/3MKqoGuP) `rogues-fabric-3.1.3.003+26.2.jar`
 - [Runes](https://modrinth.com/mod/lP9Yrr1E) `runes-fabric-1.3.2+26.2.jar`
 - [Shogi](https://modrinth.com/mod/bi4iCmsw) `shogi-fabric-26.2-26.2.0.8.jar`
+- [Skill Tree (RPG Series)](https://modrinth.com/mod/skill-tree) `skill_tree-fabric-1.6.2+26.2.jar`
 - [Skill Proficiencies](https://modrinth.com/mod/d4TtjlpN) `specialities-1.6.4+26.2.jar`
 - [skniro's Furniture](https://modrinth.com/mod/pezpt98N) `SkniroFurniture-1.6.0-26.2-Fabric.jar`
 - [Spell Engine](https://modrinth.com/mod/XvoWJaA2) `spell_engine-fabric-1.10.9+26.2.jar`

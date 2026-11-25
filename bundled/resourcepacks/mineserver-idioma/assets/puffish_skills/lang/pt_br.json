@@ -1,0 +1,20 @@
+{
+  "text.puffish_skills.buy_point": "Comprar ponto",
+  "tooltip.puffish_skills.cost": "Custo: %s",
+  "toast.puffish_skills.missing_config.description": "Nenhuma árvore de habilidades. Coloque uma.",
+  "command.puffish_skills.no_experience": "A categoria %s não usa experiência",
+  "command.puffish_skills.no_level": "A categoria %s não usa nível",
+  "command.puffish_skills.experience.get.success": "%3$s tem %1$s de experiência na categoria %2$s",
+  "command.puffish_skills.level.add.success.single": "Adicionei %s níveis na categoria %s para %s",
+  "command.puffish_skills.level.add.success.multiple": "Adicionei %s níveis na categoria %s para %s jogadores",
+  "command.puffish_skills.level.set.success.single": "Defini o nível %s na categoria %s para %s",
+  "command.puffish_skills.level.set.success.multiple": "Defini o nível %s na categoria %s para %s jogadores",
+  "command.puffish_skills.level.get.success": "%3$s está no nível %1$s na categoria %2$s",
+  "command.puffish_skills.points.get.success": "%3$s tem %1$s pontos na categoria %2$s",
+  "command.puffish_skills.skills.lock.success.single": "Bloqueei a habilidade %s na categoria %s para %s",
+  "command.puffish_skills.skills.lock.success.multiple": "Bloqueei a habilidade %s na categoria %s para %s jogadores",
+  "command.puffish_skills.category.open.success.single": "Abri a tela da categoria %s para %s",
+  "command.puffish_skills.category.open.success.multiple": "Abri a tela da categoria %s para %s jogadores",
+  "command.puffish_skills.open.success.single": "Abri a tela de habilidades para %s",
+  "command.puffish_skills.open.success.multiple": "Abri a tela de habilidades para %s jogadores"
+}

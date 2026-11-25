@@ -364,23 +364,6 @@ patch_immersive_armors() {
     "patches/immersive_armors/mixin/MixinHumanoidArmorLayer.class"
 }
 
-# A barra de progresso fica no canto inferior direito, com 80 pixels de largura.
-patch_skill_hud() {
-  local jar
-  jar="$1"
-  need_zip
-  case "$jar" in
-    /*) ;;
-    *) jar="$(pwd)/$jar" ;;
-  esac
-  patch_class "$jar" \
-    "daripher/skilltree/client/hud/SkillProgressHudOverlay.class" \
-    "patches/skilltree/SkillProgressHudOverlay.class"
-  patch_class "$jar" \
-    "daripher/skilltree/client/SkillTreeModClient.class" \
-    "patches/skilltree/SkillTreeModClient.class"
-}
-
 retire_old_viewers() {
   local base name
   base="$1"
@@ -476,9 +459,6 @@ install_row() {
   download "$url" "$target" "$sum" "$alt"
   if [ "$patch" != "-" ] && ! hash_ok "$target" "$alt"; then
     patch_loader "$target" "$patch"
-  fi
-  if [ "$filename" = "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar" ]; then
-    patch_skill_hud "$target"
   fi
   if [ "$filename" = "immersive_armors-1.8.2+26.2-fabric.jar" ]; then
     patch_immersive_armors "$target"

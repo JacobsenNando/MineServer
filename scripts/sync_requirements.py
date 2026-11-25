@@ -126,7 +126,7 @@ def write_requirements(meta: dict[str, str], rows: list[dict[str, str]]) -> None
         "# Ficha do cliente MineServer",
         "# Quem vai jogar usa o instalador. O mundo e os arquivos do servidor não estão aqui.",
         "# O visualizador de receitas é o JEI. O MezzConfig vem dentro do jar do JEI. O addon mostra a mesa de encadernação e o corte de gema. O instalador remove o REI e o Architectury que ficaram de antes.",
-        "# O Passive Skill Tree recebe a barra de progresso no canto inferior direito, com 80 pixels de largura. O server_sha1 dessa linha é o jar já corrigido.",
+        "# A árvore de habilidades é a Skill Tree do RPG Series, na tecla K. A Passive Skill Tree saiu.",
     ]
     for key in META_KEYS:
         lines.append(f"# {key} {meta[key]}")

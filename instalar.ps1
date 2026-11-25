@@ -259,18 +259,6 @@ function Update-ReiClass([System.IO.Compression.ZipArchive]$Zip, [string]$EntryN
   $write.Close()
 }
 
-function Update-SkillHud([string]$Jar) {
-  Add-Type -AssemblyName System.IO.Compression
-  Add-Type -AssemblyName System.IO.Compression.FileSystem
-  $zip = [System.IO.Compression.ZipFile]::Open($Jar, [System.IO.Compression.ZipArchiveMode]::Update)
-  try {
-    Update-ReiClass $zip "daripher/skilltree/client/hud/SkillProgressHudOverlay.class" (Join-Path $Root "patches\skilltree\SkillProgressHudOverlay.class")
-    Update-ReiClass $zip "daripher/skilltree/client/SkillTreeModClient.class" (Join-Path $Root "patches\skilltree\SkillTreeModClient.class")
-  } finally {
-    $zip.Dispose()
-  }
-}
-
 # A camada do meio do peito da armadura divina não desenha mais o brilho forçado.
 # Em primeira pessoa, a armadura do próprio jogador não desenha por cima da câmera.
 function Update-ImmersiveArmors([string]$Jar) {
@@ -333,7 +321,6 @@ foreach ($line in Get-Content -LiteralPath $Req -Encoding UTF8) {
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
     Save-Url $url $target $sum $alt
     if ($patch -ne "-" -and -not (Test-Hash $target $alt)) { Update-LoaderPin $target $patch }
-    if ($filename -eq "PassiveSkillTree-Fabric-26.2-0.7.6+c.jar") { Update-SkillHud $target }
     if ($filename -eq "immersive_armors-1.8.2+26.2-fabric.jar") { Update-ImmersiveArmors $target }
   }
 }

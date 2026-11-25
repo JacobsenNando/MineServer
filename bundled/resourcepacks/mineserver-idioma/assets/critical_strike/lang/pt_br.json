@@ -1,0 +1,20 @@
+{
+  "attribute.name.critical_strike.chance": "Chance de acerto crítico",
+  "attribute.name.critical_strike.damage": "Dano do acerto crítico",
+  "effect.critical_strike.chance": "Acerto crítico",
+  "effect.critical_strike.chance.description": "Aumenta a chance de acerto crítico.",
+  "effect.critical_strike.damage": "Impacto crítico",
+  "effect.critical_strike.damage.description": "Aumenta o dano do acerto crítico.",
+  "enchantment.critical_strike.chance": "Acerto crítico",
+  "enchantment.critical_strike.chance.description": "Aumenta a chance de acerto crítico.",
+  "enchantment.critical_strike.damage": "Impacto crítico",
+  "enchantment.critical_strike.damage.description": "Aumenta o dano do acerto crítico.",
+  "item.minecraft.lingering_potion.effect.critical_strike_chance": "Poção prolongada de acerto crítico",
+  "item.minecraft.lingering_potion.effect.critical_strike_damage": "Poção prolongada de impacto crítico",
+  "item.minecraft.potion.effect.critical_strike_chance": "Poção de acerto crítico",
+  "item.minecraft.potion.effect.critical_strike_damage": "Poção de impacto crítico",
+  "item.minecraft.splash_potion.effect.critical_strike_chance": "Poção arremessável de acerto crítico",
+  "item.minecraft.splash_potion.effect.critical_strike_damage": "Poção arremessável de impacto crítico",
+  "item.minecraft.tipped_arrow.effect.critical_strike_chance": "Flecha de acerto crítico",
+  "item.minecraft.tipped_arrow.effect.critical_strike_damage": "Flecha de impacto crítico"
+}

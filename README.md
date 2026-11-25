@@ -38,34 +38,19 @@ Na base, os baús podem se ligar, e a mochila do viajante carrega um pedaço da 
 
 ## A escolha de classe
 
-![Caçador, Alquimista, Cozinheiro e Ferreiro diante de uma ruína](img/classes.jpg)
-
-*Ilustração. Da esquerda para a direita: Caçador, Alquimista, Cozinheiro e Ferreiro.*
-
 Você escolhe um jeito de jogar, e o jogo também te ensina outro por baixo.
 
 **O que sobe sozinho.** Enquanto você minera, corta árvore, luta, atira, pesca, planta, cava, se defende, corre, escala, anda agachado, forja, faz poção e encanta, quinze habilidades sobem com a prática. O bônus soma com o encantamento da ferramenta. A barra aparece na tela. Ninguém escolhe isso num menu: a habilidade sobe porque você fez a ação.
 
-**O que você escolhe.** A tecla **O** abre a árvore de habilidades. O menu mostra os caminhos da classe: Caçador, Alquimista, Cozinheiro, Ferreiro e, no paladino, a maça. A experiência que você junta vira ponto. O primeiro ponto é barato. Os seguintes vão ficando caros, então gasta com calma. O manual `docs/manual-de-classes.pdf` descreve o de cada uma. O instalador deixa essa árvore em português. Você não precisa ligar nada no menu de pacotes.
+**O que você escolhe.** A tecla **K** abre a árvore de habilidades. São duas telas.
 
-Para a árvore abrir de verdade, crafte uma vez o item que apresenta a classe:
+A da classe cabe 13 pontos. O primeiro caminho que você abre trava os outros. A das armas cabe 6 pontos, e dá para abrir mais de um caminho. O ponto sai da experiência de matar criatura. Quem está no mesmo time, até 200 blocos, recebe a mesma experiência. A árvore já abre em português.
 
-| Classe | Para começar | O que ela puxa |
-| --- | --- | --- |
-| Caçador | um arco | flecha, couro, movimento enquanto mira |
-| Alquimista | um suporte de poções | veneno, poção, frasco arremessado, cura |
-| Cozinheiro | uma fornalha | comida, pesca, vida, recuperação |
-| Ferreiro | uma mesa de ferraria | armadura, escudo, lâmina, ferramenta |
-
-No fundo da árvore do Ferreiro abre um caminho de maça. Ele fica escondido até os nós finais dessa classe.
-
-Na mesa de ferraria, arma de mod entra na lista do nó que já libera essa categoria: arco, besta, claymore, adaga, machado duplo, glaive, martelo, maça e lança. O paladino aprende o arco e a besta especiais dessa mesa. O arqueiro aprende o caminho até as receitas de arco e besta, e nesse caminho também entram armadura e ferramenta. O ladino aprende o braço do caçador de loot e de experiência de mob.
-
-Se a build não ficou boa, o Pergaminho da Amnésia zera a árvore. Vinte por cento dos pontos ficam para trás. O dragão pode deixar um desses pergaminhos.
+Quem já tinha pontos na árvore antiga começa esta do zero. O acerto crítico passa a valer no golpe e na flecha. Peça de guerreiro, ladino, joia e relíquia que já trazia crítico passa a usar esse número.
 
 ## Classes de combate
 
-A árvore da tecla O continua, com o ramo preso à classe de combate. O livro de feitiços é outro caminho: ele muda o jeito de lutar.
+A tecla **K** abre a árvore. O livro de feitiços é outro caminho: ele muda o jeito de lutar. O caminho da árvore se escolhe nela mesma.
 
 A tecla J abre a ficha com a vida, o dano, a armadura e o resto que o jogo já somou. O H continua empinando o cavalo. A troca fica em Controles, na categoria Diversos.
 
@@ -129,7 +114,7 @@ Estes mudam a sua partida:
 - **Arsenal.** Armas lendárias, achadas no fim do jogo.
 - **Immersive Armors.** Conjuntos de armadura no visual do vanilla.
 - **Relics** e **Trinkets.** Amuletos no espaço de berloque.
-- **Passive Skill Tree.** As classes e a árvore da tecla O.
+- **Skill Tree (RPG Series).** A árvore das classes, na tecla K. Os pontos vêm da experiência, e a experiência é compartilhada com o time.
 - **Wizards, Archers, Paladins & Priests, Rogues & Warriors.** As classes de combate e os livros de feitiço.
 - **Runes.** A munição do mago, do paladino e do sacerdote.
 - **Jewelry.** Anel e colar no espaço de berloque.
