@@ -453,13 +453,25 @@ function Install-Encantamentos([string]$Dest) {
   Write-Host "MineServer Encantamentos copiado para $(Join-Path $Dest 'mods')."
 }
 
+function Install-Oficios([string]$Dest) {
+  $jar = Join-Path $Root "bundled\client\mineserver-oficios-1.0.0.jar"
+  if (-not (Test-Path -LiteralPath $jar)) { throw "Falta $jar." }
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dest "mods") | Out-Null
+  Copy-Item -LiteralPath $jar -Destination (Join-Path $Dest "mods\mineserver-oficios-1.0.0.jar") -Force
+  Write-Host "MineServer Ofícios copiado para $(Join-Path $Dest 'mods')."
+}
+
 Install-ClientConfig $GameDir
 Install-LanguagePack $GameDir
 Install-JeiAddon $GameDir
 Install-Atributos $GameDir
 Install-Encantamentos $GameDir
 Install-ClassMod $GameDir
-if ($ServerDir) { Install-ServerBundle $ServerDir }
+Install-Oficios $GameDir
+if ($ServerDir) {
+  Install-ServerBundle $ServerDir
+  Install-Oficios $ServerDir
+}
 
 $fabricJson = Join-Path $VersionDir "$VersionId.json"
 Write-Host "baixando o perfil Fabric $VersionId"

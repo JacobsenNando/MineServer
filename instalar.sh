@@ -414,6 +414,19 @@ copy_encantamentos() {
   echo "MineServer Encantamentos copiado para $dest/mods."
 }
 
+copy_oficios() {
+  local dest src
+  dest="$1"
+  src="bundled/client/mineserver-oficios-1.0.0.jar"
+  [ -f "$src" ] || {
+    echo "Falta $src." >&2
+    exit 1
+  }
+  mkdir -p "$dest/mods"
+  cp "$src" "$dest/mods/mineserver-oficios-1.0.0.jar"
+  echo "MineServer Ofícios copiado para $dest/mods."
+}
+
 copy_class_mod() {
   local dest src
   dest="$1"
@@ -600,8 +613,10 @@ copy_jei_addon "$GAME_DIR"
 copy_atributos "$GAME_DIR"
 copy_encantamentos "$GAME_DIR"
 copy_class_mod "$GAME_DIR"
+copy_oficios "$GAME_DIR"
 if [ -n "$SERVER_DIR" ]; then
   copy_server_bundle "$SERVER_DIR"
+  copy_oficios "$SERVER_DIR"
 fi
 
 FABRIC_JSON="$MINECRAFT_DIR/versions/$VERSION_ID/$VERSION_ID.json"
