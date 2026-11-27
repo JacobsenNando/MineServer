@@ -2,6 +2,8 @@
 
 [Baixar o MineServer](https://github.com/JacobsenNando/MineServer/archive/refs/heads/master.zip)
 
+[Guia do jogador](docs/guia.md) · A versão navegável está em `docs/guia.html` dentro do ZIP.
+
 O botão verde **Code** desta página pede o Git. Pode ignorar. O link acima baixa um zip pronto, e o Python também fica de fora.
 
 No Windows, abre os Downloads, clica com o botão direito em `MineServer-master.zip` e escolhe **Extrair tudo**. Abre a pasta `MineServer-master` e dá dois cliques em `Instalar.bat`. Se aparecer um aviso azul, clica em **Mais informações** e em **Executar assim mesmo**. Guarda essa pasta. Na próxima atualização, o mesmo `Instalar.bat` busca a versão nova. O Minecraft tem que estar fechado.

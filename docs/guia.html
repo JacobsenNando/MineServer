@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia do MineServer</title>
+<style>
+  :root {
+    --panel: #101210;
+    --panel-2: #181a16;
+    --ink: #f4f1e8;
+    --muted: #d7d0c4;
+    --dim: #9a917f;
+    --gold: #e6c98a;
+    --line: #3a4034;
+    --nav: #141612;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    min-height: 100%;
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    background: #070806 url("../img/noite.jpg") center / cover no-repeat fixed;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 6, 4, 0.62);
+  }
+  .wrap {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px 20px;
+    gap: 14px;
+  }
+  .screen {
+    width: min(920px, 100%);
+    height: min(700px, calc(100dvh - 48px));
+    background: rgba(16, 18, 16, 0.94);
+    border: 2px solid #2a2e26;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    position: relative;
+  }
+  .screen::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    background: var(--gold);
+  }
+  nav {
+    background: var(--nav);
+    border-right: 1px solid var(--line);
+    padding: 18px 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .brand {
+    margin: 0 8px 12px;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+  }
+  nav a {
+    all: unset;
+    display: block;
+    cursor: pointer;
+    padding: 8px 10px;
+    color: var(--muted);
+    font-size: 15px;
+    border-left: 2px solid transparent;
+  }
+  nav a:hover { color: var(--ink); }
+  nav a[aria-current="page"] {
+    color: var(--ink);
+    border-left-color: var(--gold);
+    background: rgba(230, 201, 138, 0.08);
+  }
+  main {
+    padding: 24px 28px 32px;
+    overflow: auto;
+  }
+  h1 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  p { margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.45; }
+  ol, ul { margin: 0 0 12px; padding-left: 18px; color: var(--muted); }
+  li { margin: 0 0 6px; font-size: 15px; line-height: 1.4; }
+  li strong, p strong { color: var(--ink); font-weight: 600; }
+  main a { color: var(--gold); text-underline-offset: 3px; }
+  nav a:focus-visible, main a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  h2 { margin: 0 0 14px; font-size: 24px; }
+  h3 { margin: 20px 0 8px; font-size: 16px; color: var(--gold); }
+  kbd, code { color: var(--gold); }
+  code { overflow-wrap: anywhere; }
+  [hidden] { display: none; }
+  @media (max-width: 640px) {
+    .wrap { padding: 12px; }
+    .screen { height: auto; grid-template-columns: 1fr; }
+    nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-right: 0; border-bottom: 1px solid var(--line); }
+    .brand { grid-column: 1 / -1; }
+    main { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="screen">
+      <nav aria-label="Capítulos do guia">
+        <h1 class="brand">Guia do MineServer</h1>
+        <a href="#inicio">Comece por aqui</a>
+        <a href="#instalacao">Entrar e atualizar</a>
+        <a href="#mundo">Mundo</a>
+        <a href="#caminho">Rota de aventura</a>
+        <a href="#cartas">Cartas</a>
+        <a href="#grupo">Chefes em grupo</a>
+        <a href="#personagem">Classe e progressão</a>
+        <a href="#oficios">Ofícios</a>
+        <a href="#encantamento">Regras de encantamento</a>
+      </nav>
+      <main>
+        <section id="inicio" aria-labelledby="inicio-titulo">
+          <h2 id="inicio-titulo">Comece por aqui</h2>
+          <p>O MineServer é um mundo de sobrevivência compartilhado. Você pode construir, explorar e desenvolver seu personagem no seu ritmo.</p>
+          <ol>
+            <li><strong>Instale o perfil MineServer.</strong> Use o instalador do pacote e entre pelo endereço que o grupo passou no chat.</li>
+            <li><strong>Monte uma base.</strong> Faça cama, escudo e equipamento de ferro. Quando encontrar uma vila, procure uma Waystone e ative-a.</li>
+            <li><strong>Aprenda a progredir.</strong> Abra a árvore com <kbd>K</kbd>, confira seus atributos com <kbd>J</kbd> e veja as receitas no inventário com <kbd>E</kbd>.</li>
+            <li><strong>Escolha como quer lutar e o que quer fabricar.</strong> O tomo define a classe de combate. O Manual de Ofícios serve para escolher uma profissão.</li>
+            <li><strong>Organize a primeira expedição.</strong> Procure uma carta e leve um amigo se o destino tiver um chefe que exige dupla.</li>
+          </ol>
+        </section>
+        <section id="instalacao" aria-labelledby="instalacao-titulo">
+          <h2 id="instalacao-titulo">Entrar e atualizar</h2>
+          <p><a href="https://github.com/JacobsenNando/MineServer/archive/refs/heads/master.zip">Baixar o pacote do MineServer</a></p>
+          <ol>
+            <li><strong>Windows.</strong> Extraia o ZIP e execute <code>Instalar.bat</code> na pasta extraída.</li>
+            <li><strong>Linux.</strong> Extraia o ZIP e abra <strong>Instalar MineServer</strong>. Se o atalho abrir como texto, rode <code>bash instalar.sh</code> no terminal dentro da pasta.</li>
+            <li><strong>Launcher.</strong> Abra o Minecraft oficial ou o SKLauncher, selecione o perfil <strong>MineServer</strong> e entre com seu nome. Adicione o endereço que o grupo enviou no chat.</li>
+          </ol>
+          <p>Para atualizar, feche o Minecraft e rode o instalador novamente. Ele busca o pacote atual. Se a conexão indicar mods incompatíveis, atualize e confira se abriu o perfil MineServer.</p>
+        </section>
+        <section id="mundo" aria-labelledby="mundo-titulo">
+          <h2 id="mundo-titulo">Mundo</h2>
+          <p>É um mundo só. A casa continua lá quando você sai, e o pedaço que o grupo já andou também.</p>
+          <p>Morrer dói, e a mochila volta com você. Fome, noite e tombo continuam doendo do mesmo jeito.</p>
+          <p>Baú de masmorra, vila ou cemitério nasce dourado. Abriu, ele fica azul, e o que tinha dentro é seu. O baú que a gente põe na base é de todo mundo.</p>
+          <p>Waystone nasce em vila de chão novo. Ligou uma, dá para pular para as outras que você já ligou.</p>
+        </section>
+        <section id="caminho" aria-labelledby="caminho-titulo">
+          <h2 id="caminho-titulo">Rota de aventura</h2>
+          <p>Um rumo, para quem quiser seguir. Dá para furar a fila. A classe não trava porta nenhuma.</p>
+          <ol>
+            <li><strong>Ferro.</strong> Cama, ferro, e uma vila.</li>
+            <li><strong>Uma carta.</strong> O mapa aponta um lugar maior.</li>
+            <li><strong>Uma masmorra.</strong> Fortaleza Solitária, Covil Tóxico ou Desafio do Tridente. Vale ir em duas pessoas.</li>
+            <li><strong>O Campeão.</strong> O altar fica no cemitério. O ritual, de noite, está na capítulo Chefes em grupo.</li>
+            <li><strong>Nether.</strong> Portal e uma fortaleza.</li>
+            <li><strong>Salões do Selo.</strong> Enfrente o ghast grande em dupla.</li>
+            <li><strong>Cidadela.</strong> O Wildfire.</li>
+            <li><strong>End.</strong> Enfrente o dragão e, depois, explore as cidades e procure o castelo da Assombração.</li>
+          </ol>
+          <p>Wither e warden ficam de fora. Quando der vontade, o grupo vai.</p>
+        </section>
+        <section id="cartas" aria-labelledby="cartas-titulo">
+          <h2 id="cartas-titulo">Cartas</h2>
+          <p>Acampamento, taverna e masmorra costumam ter uma carta no baú. O nome vem em inglês.</p>
+          <p>Segura o botão direito com ela na mão, no mundo certo. Ela vira um mapa com um X. Carta do Nether, só no Nether. Carta do End, só no End.</p>
+          <p>Na vila, prega o mapa na parede. Carta que ainda não abriu fica no barril <strong>Cartas</strong>. Lugar que o grupo já limpou vai para o barril <strong>Feito</strong>.</p>
+          <p>Tira o mapa da moldura e segura na mão para seguir o X.</p>
+        </section>
+        <section id="grupo" aria-labelledby="grupo-titulo">
+          <h2 id="grupo-titulo">Chefes em grupo</h2>
+          <p>Seis lutas pedem companhia. Sozinho, a até 64 blocos, o chefe não perde vida.</p>
+          <p>A tela escreve <strong>Precisa de mais pessoas</strong>. Embaixo, <strong>Essa luta pede duas.</strong> Chegou o segundo, o aviso some e o golpe entra.</p>
+          <ul>
+            <li>Campeão corrompido, no altar do cemitério, de noite</li>
+            <li>Fortaleza Solitária</li>
+            <li>Covil Tóxico</li>
+            <li>Desafio do Tridente</li>
+            <li>Ghast grande dos Salões do Selo</li>
+            <li>Assombração, no castelo do End</li>
+          </ul>
+          <p>O Campeão pede mais uma coisa, e o altar não conta. Faz uma adaga com três ossos em coluna. Deixa uma garrafa vazia na barra e mata aldeões com essa adaga: o frasco enche até 8. As três peças do cajado saem com o Enforcado sem nome. Ele fica pendurado na árvore morta, em floresta escura, pântano ou jardim pálido. De dia ele manda voltar à noite. De noite, cada peça custa 64 de corrupção. Corrupção cai das criaturas do cemitério.</p>
+          <p>De noite, coloca as peças em fila na frente do altar: ponta, meio, ponta. Usa o frasco cheio no altar. Se faltar noite, sangue ou a ordem das peças, o altar avisa.</p>
+          <p>Acampamento, mina, vila e carta continuam de boa com uma pessoa só.</p>
+        </section>
+        <section id="personagem" aria-labelledby="personagem-titulo">
+          <h2 id="personagem-titulo">Classe e progressão</h2>
+          <p>A <strong>classe</strong> define seu equipamento e seu jeito de lutar. O <strong>ofício</strong> define o que você consegue fabricar e melhorar.</p>
+          <ul>
+            <li><strong>Prática.</strong> Minerar, lutar, plantar e outras ações desenvolvem habilidades automaticamente.</li>
+            <li><strong>Árvore.</strong> Abra com <kbd>K</kbd> e escolha um ramo de classe. A árvore de classe tem até 13 pontos e a de armas tem até 6.</li>
+            <li><strong>Primeiro tomo.</strong> Crie um livro de feitiços na mesa de encadernação para definir a classe. Um tomo novo de outra classe permite mudar e devolve os pontos gastos na árvore.</li>
+            <li><strong>Ficha.</strong> Abra com <kbd>J</kbd> para ver vida, dano, armadura e outros atributos.</li>
+          </ul>
+          <h3>Escolha seu equipamento</h3>
+          <ul>
+            <li><strong>Magos de fogo, gelo ou arcano.</strong> Tomo, cajado ou varinha da escola e runas.</li>
+            <li><strong>Arqueiro.</strong> Arco ou besta e flechas.</li>
+            <li><strong>Paladino e sacerdote.</strong> O paladino protege na linha de frente. O sacerdote cura e protege com magia sagrada.</li>
+            <li><strong>Ladino e guerreiro.</strong> O ladino usa armas como adagas e foices. O guerreiro luta com armas pesadas como machado duplo, glaive e claymore.</li>
+          </ul>
+          <p>A mesa de encadernação aparece em vilas de terreno novo. Você também pode consultar a receita no inventário e construir uma. Equipe o tomo no espaço de livro e use a arma na mão.</p>
+        </section>
+        <section id="oficios" aria-labelledby="oficios-titulo">
+          <h2 id="oficios-titulo">Ofícios</h2>
+          <p>Combine <strong>um livro e um lingote de ferro</strong> para criar o Manual de Ofícios. Abra o livro e escolha uma profissão. Ele vira o manual escolhido, com seu progresso, as receitas e o selo que identifica o grau exigido. Depois faça o juramento.</p>
+          <h3>Ferreiro · Aprendiz, Oficial e Mestre</h3>
+          <p>Na <strong>mesa de ferraria</strong>, coloque um equipamento compatível no espaço central, deixe os outros vazios e clique em <strong>Jurar</strong>.</p>
+          <ol>
+            <li>Veja a receita do Martelo de Forja no inventário. Ela usa quatro lingotes de ferro e dois gravetos. Aqueça ferro no alto-forno. Com o Martelo de Forja na mão principal e a peça quente na outra, agache-se e use a bigorna.</li>
+            <li>Bata quando as faíscas ficarem laranja. A Chapa leva três marteladas. A Liga leva Chapa quente, ouro e quatro marteladas. O Reforço de Netherita leva Liga quente, uma sucata de netherita e cinco marteladas.</li>
+            <li>Se esfriar, recolha a peça com a mão principal vazia e reaqueça no alto-forno com carvão. As marteladas ficam salvas.</li>
+            <li>Com a peça pronta e quente sobre a bigorna, segure o equipamento na outra mão e bata para encaixar. Use o equipamento no caldeirão com água enquanto estiver agachado para ativar o selo. Reaqueça um encaixe frio com o martelo numa bigorna vazia.</li>
+          </ol>
+          <p>As armas ganham +2, +3 ou +4 de dano. Cada peça de armadura ganha +1, +1,5 ou +2 de proteção e um bônus fixo de durabilidade que depende do tipo de peça.</p>
+          <h3>Arqueiro · Batedor, Atirador e Mestre-Arqueiro</h3>
+          <p>Coloque um arco ou uma besta na <strong>bancada de arquearia</strong>, deixe os demais espaços vazios e clique em <strong>Jurar</strong>. As receitas do manual mostram como fabricar flechas e componentes.</p>
+          <p>Para selar um arco ou uma besta, use <strong>Ajustar tensão</strong>. Segure Espaço ou o botão para aumentar a tensão e solte para aliviar. Mantenha o marcador na faixa ideal pelo tempo pedido. Nos graus mais altos, a faixa muda de posição. O selo acrescenta +2, +3 ou +4 de dano à flecha.</p>
+          <h3>Alquimista · Nigredo, Albedo e Rubedo</h3>
+          <p>Com as mãos vazias, interaja com o <strong>caldeirão fervente</strong> para jurar. Fogo, lava ou fogueira embaixo do caldeirão aquecem a água. Use o manual para consultar as receitas de solventes, óleos, antídotos e frascos.</p>
+          <p>Para imbuir um cajado, combine ametista e Solvente no suporte de poções. Ative o cristal no caldeirão fervente e passe para um caldeirão com água fria quando a barra indicar <strong>Estabilize agora</strong> e o cristal brilhar em branco. Com o cajado na mão principal, agache-se e use a mesa de encantamentos para abrir o ritual do catalisador.</p>
+        </section>
+        <section id="encantamento" aria-labelledby="encantamento-titulo">
+          <h2 id="encantamento-titulo">Regras de encantamento</h2>
+          <p>Saque, Fortuna e Infinidade não saem na mesa, nem na bigorna, nem com o aldeão.</p>
+          <p>Saque e Fortuna já vêm da prática. Flecha de volta e saque em dobro já estão na árvore do caçador. A runa que não se gasta continua: essa é outra coisa.</p>
+          <p>Livro velho desses três não cola na ferramenta. O que já está numa espada, picareta ou arco fica lá.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script>
+    const sections = [...document.querySelectorAll('main section')];
+    const links = [...document.querySelectorAll('nav a')];
+    const main = document.querySelector('main');
+    function showChapter() {
+      const active = sections.find((section) => '#' + section.id === location.hash) || sections[0];
+      sections.forEach((section) => { section.hidden = section !== active; });
+      links.forEach((link) => {
+        if (link.hash === '#' + active.id) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+      });
+      main.scrollTop = 0;
+    }
+    links.forEach((link) => link.addEventListener('click', (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      if (location.hash !== link.hash) history.pushState(null, '', link.hash);
+      event.preventDefault();
+      showChapter();
+    }));
+    window.addEventListener('hashchange', showChapter);
+    showChapter();
+  </script>
+</body>
+</html>
