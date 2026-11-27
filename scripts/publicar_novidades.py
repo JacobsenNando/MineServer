@@ -62,9 +62,9 @@ def salvar_nota(config, titulo, link, importante):
             arquivo_temporario.unlink(missing_ok=True)
 
 
-def publicar(config, titulo, mensagem, importante, cargo=None, imagens=()):
+def publicar(config, titulo, mensagem, importante, cargo=None, imagens=(), canal_publicacao="chat"):
     ponte = json.loads((config / "discord-mc-chat.json").read_text(encoding="utf-8"))["generic"]
-    canal = id_discord(ponte.get("channelId"), "Canal principal do bot")
+    canal_ponte = id_discord(ponte.get("channelId"), "Canal da ponte do Minecraft")
     token = ponte.get("botToken", "").strip()
     arquivo_token = config / "discord-bot.token"
     if not token and arquivo_token.is_file():
@@ -72,7 +72,16 @@ def publicar(config, titulo, mensagem, importante, cargo=None, imagens=()):
     if not token:
         raise ValueError("O bot está sem token configurado.")
 
-    servidor = id_discord(discord(token, f"/channels/{canal}").get("guild_id"), "Servidor do Discord")
+    servidor = id_discord(discord(token, f"/channels/{canal_ponte}").get("guild_id"), "Servidor do Discord")
+    canais = discord(token, f"/guilds/{servidor}/channels")
+    destinos = [c["id"] for c in canais
+                if c["type"] in (0, 5) and c["name"].casefold() == canal_publicacao.lstrip("#").casefold()]
+    if len(destinos) != 1:
+        raise ValueError("O canal de publicação precisa corresponder a um único canal de texto.")
+    canal = id_discord(destinos[0], "Canal de publicação")
+    if canal == canal_ponte:
+        raise ValueError("Escolha um canal separado da ponte do Minecraft.")
+
     mencoes = {"parse": []}
     prefixo = ""
     if cargo:
@@ -103,6 +112,7 @@ def main():
     parser.add_argument("--titulo", required=True, help="título da nota")
     parser.add_argument("--mensagem", required=True, type=Path, help="arquivo UTF-8 com o texto da nota")
     parser.add_argument("--importante", action="store_true", help="avisa os jogadores no próximo login")
+    parser.add_argument("--canal", default="chat", help="canal das notas (padrão: #chat)")
     parser.add_argument("--cargo", help="nome de um único cargo a mencionar, por exemplo @mineplayer")
     parser.add_argument("--imagem", action="append", type=Path, default=[], help="card PNG para anexar; pode ser repetido")
     args = parser.parse_args()
@@ -127,7 +137,7 @@ def main():
                 raise ValueError(f"{nome} não é um PNG.")
             imagens.append((nome, dados))
             nomes.add(nome)
-        publicar(args.servidor / "config", titulo, mensagem, args.importante, args.cargo, imagens)
+        publicar(args.servidor / "config", titulo, mensagem, args.importante, args.cargo, imagens, args.canal)
     except HTTPError as erro:
         parser.exit(1, f"O Discord retornou HTTP {erro.code}.\n")
     except (URLError, TimeoutError):
