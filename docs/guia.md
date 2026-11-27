@@ -123,6 +123,12 @@ Para imbuir um cajado, combine ametista e Solvente no suporte de poções. Ative
 
 ## Regras de encantamento
 
+Aldeões não vendem livros encantados. Reparo continua disponível como recompensa de exploração, e os itens que já têm Reparo continuam funcionando.
+
+**Proteção geral vai até III.** Uma peça antiga que ainda mostra IV protege como III. Proteção contra Fogo, Explosões e Projéteis segue suas próprias regras.
+
+Afiação e Poder aumentam em 8% por nível o atributo de dano da arma correspondente. Carga Rápida reduz o tempo base da besta em 0,05 s por nível e aumenta o atributo de cadência em 10% por nível.
+
 Saque, Fortuna e Infinidade não saem na mesa, nem na bigorna, nem com o aldeão.
 
 Saque e Fortuna já vêm da prática. Flecha de volta e saque em dobro já estão na árvore do caçador. A runa que não se gasta continua: essa é outra coisa.
