@@ -4,6 +4,8 @@
 
 ## Comece por aqui
 
+Mudanças importantes aparecem no chat na primeira vez que você entra depois da atualização. Use `/novidades` para ver de novo o link da postagem no Discord.
+
 O MineServer é um mundo de sobrevivência compartilhado. Você pode construir, explorar e desenvolver seu personagem no seu ritmo.
 
 1. **Instale o perfil MineServer.** Use o instalador do pacote e entre pelo endereço que o grupo passou no chat.
