@@ -113,7 +113,7 @@ As armas ganham +2, +3 ou +4 de dano. Cada peça de armadura ganha +1, +1,5 ou +
 
 ### Arqueiro · Batedor, Atirador e Mestre-Arqueiro
 
-Coloque um arco ou uma besta na **bancada de arquearia**, deixe os demais espaços vazios e clique em **Jurar**. As receitas do manual mostram como fabricar flechas e componentes.
+Coloque um arco ou uma besta na **bancada de arquearia**, deixe os demais espaços vazios e clique em **Jurar**. As receitas do manual mostram como fabricar flechas e componentes. As Pontas de Mestre-Arqueiro levam um osso e um chifre de cabra.
 
 Para selar um arco ou uma besta, use **Ajustar tensão**. Segure Espaço ou o botão para aumentar a tensão e solte para aliviar. Mantenha o marcador na faixa ideal pelo tempo pedido. Nos graus mais altos, a faixa muda de posição. O selo acrescenta +2, +3 ou +4 de dano à flecha.
 
