@@ -106,8 +106,8 @@ Na **mesa de ferraria**, coloque um equipamento compatível no espaço central, 
 
 1. Veja a receita do Martelo de Forja no inventário. Na primeira linha, coloque ferro, pedra lisa e ferro. No centro da segunda linha, ponha mais um lingote de ferro. No centro da última, ponha um graveto. Aqueça ferro no alto-forno. Com o Martelo de Forja na mão principal e a peça quente na outra, agache-se e use a bigorna.
 2. Bata quando as faíscas ficarem laranja. A Chapa leva três marteladas. A Liga leva Chapa quente, ouro e quatro marteladas. O Reforço de Netherita leva Liga quente, uma sucata de netherita e cinco marteladas.
-3. Se esfriar, recolha a peça com a mão principal vazia e reaqueça no alto-forno com carvão. As marteladas ficam salvas.
-4. Com a peça pronta e quente sobre a bigorna, segure o equipamento na outra mão e bata para encaixar. Use o equipamento no caldeirão com água enquanto estiver agachado para ativar o selo. Reaqueça um encaixe frio com o martelo numa bigorna vazia.
+3. Se esfriar, recolha a peça com a mão principal vazia e coloque-a no alto-forno com combustível. As marteladas ficam salvas.
+4. Na mesa de ferraria, coloque o equipamento no meio e a peça pronta e quente à direita. Deixe o molde vazio e retire o resultado. Agache-se e use o equipamento no caldeirão com água para ativar o selo. Se o encaixe esfriar, volte à mesa de ferraria e coloque o equipamento no meio e carvão à direita.
 
 As armas ganham +2, +3 ou +4 de dano. Cada peça de armadura ganha +1, +1,5 ou +2 de proteção e um bônus fixo de durabilidade que depende do tipo de peça.
 
